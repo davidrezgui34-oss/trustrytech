@@ -13,8 +13,10 @@
     <!-- Font Awesome للأيقونات -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    
     <style>
-        /* تحسينات إضافية */
         * {
             margin: 0;
             padding: 0;
@@ -25,47 +27,94 @@
             font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Tajawal', sans-serif;
             background: linear-gradient(135deg, #f0f9ff 0%, #e6f0fa 100%);
             min-height: 100vh;
+            padding-top: 70px;
         }
         
-        /* نظام الترجمة المحسن */
+        /* نظام الترجمة */
         .lang-fr .fr, .lang-ar .ar {
             display: block;
         }
-        
         .lang-fr .ar, .lang-ar .fr {
             display: none;
         }
-        
         .lang-ar {
             direction: rtl;
             text-align: right;
         }
-        
         .lang-fr {
             direction: ltr;
             text-align: left;
         }
         
-        /* زر اللغة المحسن */
-        .lang-switch {
+        /* ========== شريط التنقل العلوي الموحد ========== */
+        .top-navbar {
             position: fixed;
-            top: 1rem;
-            right: 1rem;
-            z-index: 100;
-            background: linear-gradient(135deg, #1e3a8a, #1e40af);
-            border: none;
-            padding: 0.6rem 1.2rem;
-            border-radius: 2rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.98);
+            padding: 0.75rem 1.5rem;
         }
         
-        .lang-switch:hover {
+        .navbar-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        /* زر العودة إلى الرئيسية */
+        .back-home-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+        }
+        .back-home-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(135deg, #059669, #047857);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+        }
+        
+        /* زر اللغة في المنتصف */
+        .lang-switch-center {
+            background: linear-gradient(135deg, #1e3a8a, #1e40af);
+            border: none;
+            padding: 0.6rem 1.8rem;
+            border-radius: 2.5rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.4);
+        }
+        .lang-switch-center:hover {
+            transform: translateY(-2px) scale(1.02);
             background: linear-gradient(135deg, #1e40af, #1e3a8a);
+        }
+        
+        /* عنصر فارغ للتوازن */
+        .navbar-placeholder {
+            width: 120px;
+            visibility: hidden;
         }
         
         /* تنسيق الصورة */
@@ -76,7 +125,6 @@
             object-fit: cover;
             border-radius: 0.75rem;
         }
-        
         .insurance-img:hover {
             transform: scale(1.02);
             box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.2);
@@ -87,7 +135,6 @@
             transition: all 0.3s ease;
             border: 1px solid rgba(0, 0, 0, 0.05);
         }
-        
         .feature-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.1);
@@ -98,52 +145,119 @@
         .faq-item {
             transition: all 0.2s ease;
         }
-        
         .faq-item:hover {
             background: #f8fafc;
         }
         
-        /* تحسينات للشاشات الصغيرة */
+        /* أيقونة واتساب عائمة */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 80px;
+            left: 20px;
+            background: #25D366;
+            color: white;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+            z-index: 99;
+            text-decoration: none;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+        }
+        
+        /* زر العودة للأعلى */
+        .scroll-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #1e3a8a, #1e40af);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 99;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .scroll-top.active {
+            opacity: 1;
+        }
+        .scroll-top:hover {
+            transform: translateY(-3px);
+            background: linear-gradient(135deg, #d4af37, #e6c84a);
+            color: #1e3a8a;
+        }
+        
         @media (max-width: 768px) {
-            .lang-switch {
-                top: 0.8rem;
-                right: 0.8rem;
-                padding: 0.5rem 1rem;
-                font-size: 0.85rem;
+            body {
+                padding-top: 60px;
+            }
+            .back-home-btn span {
+                display: none;
+            }
+            .back-home-btn {
+                padding: 0.5rem;
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                justify-content: center;
+            }
+            .lang-switch-center {
+                padding: 0.5rem 1.2rem;
+                font-size: 0.8rem;
+            }
+            .navbar-placeholder {
+                width: 40px;
+            }
+            .whatsapp-float {
+                bottom: 70px;
+                width: 45px;
+                height: 45px;
+                font-size: 1.5rem;
+            }
+            .scroll-top {
+                bottom: 15px;
+                right: 15px;
+                width: 40px;
+                height: 40px;
             }
         }
         
-        @media (max-width: 640px) {
-            h1 {
-                font-size: 1.6rem !important;
+        @media (max-width: 480px) {
+            .lang-switch-center span {
+                display: none;
             }
-            
-            h2 {
-                font-size: 1.3rem !important;
-            }
-            
-            .feature-card {
-                padding: 1rem !important;
+            .lang-switch-center {
+                padding: 0.5rem;
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                justify-content: center;
             }
         }
         
-        /* تأثيرات حركية */
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .animate-fade-in {
             animation: fadeInUp 0.6s ease-out;
         }
         
-        /* تحسين التمرير */
         html {
             scroll-behavior: smooth;
         }
@@ -155,11 +269,35 @@
     </style>
 </head>
 <body>
-    <!-- زر تغيير اللغة المحسن -->
-    <button class="lang-switch text-white" id="toggleLang">
-        <i class="fas fa-language ml-2"></i>
-        <span id="langBtnText">العربية</span>
-    </button>
+    <!-- شريط التنقل العلوي الموحد -->
+    <div class="top-navbar">
+        <div class="navbar-container">
+            <a href="https://davidrezgui34-oss.github.io/trustrytech/" class="back-home-btn">
+                <i class="fas fa-arrow-right"></i>
+                <i class="fas fa-home"></i>
+                <span class="fr">Accueil</span>
+                <span class="ar">الرئيسية</span>
+            </a>
+            
+            <button class="lang-switch-center" id="toggleLangCenter">
+                <i class="fas fa-globe"></i>
+                <span id="langBtnTextCenter">العربية</span>
+                <i class="fas fa-exchange-alt"></i>
+            </button>
+            
+            <div class="navbar-placeholder"></div>
+        </div>
+    </div>
+
+    <!-- أيقونة واتساب عائمة -->
+    <a href="https://wa.me/213668460780" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- زر العودة للأعلى -->
+    <div class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
 
     <!-- المحتوى الرئيسي -->
     <div class="lang-fr max-w-5xl mx-auto py-8 md:py-12 px-4 md:px-6 transition-all duration-300" id="page">
@@ -225,7 +363,6 @@
             </div>
             
             <div class="grid md:grid-cols-2 gap-6">
-                <!-- عنصر 1 -->
                 <div class="feature-card flex items-start gap-4 bg-white p-5 rounded-xl shadow-md hover:shadow-xl transition-all">
                     <div class="bg-green-100 rounded-full p-2 flex-shrink-0">
                         <i class="fas fa-undo-alt text-green-600 text-xl"></i>
@@ -236,7 +373,6 @@
                     </div>
                 </div>
                 
-                <!-- عنصر 2 -->
                 <div class="feature-card flex items-start gap-4 bg-white p-5 rounded-xl shadow-md hover:shadow-xl transition-all">
                     <div class="bg-green-100 rounded-full p-2 flex-shrink-0">
                         <i class="fas fa-ambulance text-green-600 text-xl"></i>
@@ -247,7 +383,6 @@
                     </div>
                 </div>
                 
-                <!-- عنصر 3 -->
                 <div class="feature-card flex items-start gap-4 bg-white p-5 rounded-xl shadow-md hover:shadow-xl transition-all">
                     <div class="bg-green-100 rounded-full p-2 flex-shrink-0">
                         <i class="fas fa-suitcase text-green-600 text-xl"></i>
@@ -258,7 +393,6 @@
                     </div>
                 </div>
                 
-                <!-- عنصر 4 -->
                 <div class="feature-card flex items-start gap-4 bg-white p-5 rounded-xl shadow-md hover:shadow-xl transition-all">
                     <div class="bg-green-100 rounded-full p-2 flex-shrink-0">
                         <i class="fas fa-smile text-green-600 text-xl"></i>
@@ -312,42 +446,36 @@
             </div>
             
             <div class="space-y-5">
-                <!-- سؤال 1 -->
                 <div class="faq-item border-b border-gray-100 pb-4">
                     <div class="flex items-start gap-3">
                         <i class="fas fa-question-circle text-blue-400 mt-1"></i>
                         <div class="flex-1">
                             <h3 class="font-bold text-gray-800 fr text-lg">Est-ce obligatoire ?</h3>
                             <p class="text-gray-600 mt-2 fr">Non, mais elle est fortement recommandée, surtout pour les voyages à l'international. Elle vous protège contre les imprévus coûteux.</p>
-                            
                             <h3 class="font-bold text-gray-800 ar text-right text-lg">هل هو إلزامي؟</h3>
                             <p class="text-gray-600 mt-2 ar text-right">لا، لكنه موصى به بشدة خاصة عند السفر إلى الخارج. يحميك من النفقات غير المتوقعة.</p>
                         </div>
                     </div>
                 </div>
                 
-                <!-- سؤال 2 -->
                 <div class="faq-item border-b border-gray-100 pb-4">
                     <div class="flex items-start gap-3">
                         <i class="fas fa-question-circle text-blue-400 mt-1"></i>
                         <div class="flex-1">
                             <h3 class="font-bold text-gray-800 fr text-lg">Puis-je souscrire en ligne ?</h3>
                             <p class="text-gray-600 mt-2 fr">Oui, en quelques clics avec une carte bancaire. La souscription est rapide et sécurisée.</p>
-                            
                             <h3 class="font-bold text-gray-800 ar text-right text-lg">هل يمكنني الاشتراك عبر الإنترنت؟</h3>
                             <p class="text-gray-600 mt-2 ar text-right">نعم، بخطوات بسيطة وباستخدام بطاقة بنكية. الاشتراك سريع وآمن.</p>
                         </div>
                     </div>
                 </div>
                 
-                <!-- سؤال 3 -->
                 <div class="faq-item pb-2">
                     <div class="flex items-start gap-3">
                         <i class="fas fa-question-circle text-blue-400 mt-1"></i>
                         <div class="flex-1">
                             <h3 class="font-bold text-gray-800 fr text-lg">Quels documents fournir ?</h3>
                             <p class="text-gray-600 mt-2 fr">Une pièce d'identité et les détails de votre voyage (dates, destination). Rien de plus simple !</p>
-                            
                             <h3 class="font-bold text-gray-800 ar text-right text-lg">ما هي الوثائق المطلوبة؟</h3>
                             <p class="text-gray-600 mt-2 ar text-right">بطاقة تعريف وتفاصيل رحلتك (تواريخ، وجهة). لا شيء أسهل من ذلك!</p>
                         </div>
@@ -364,12 +492,12 @@
             <p class="mb-4 opacity-90 fr">Contactez nos experts pour trouver l'assurance voyage qui vous correspond</p>
             <p class="mb-4 opacity-90 ar">تواصل مع خبرائنا للعثور على تأمين السفر المناسب لك</p>
             <div class="flex flex-wrap justify-center gap-4">
-                <a href="#" class="bg-white text-blue-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition inline-flex items-center gap-2">
+                <a href="tel:0774479525" class="bg-white text-blue-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition inline-flex items-center gap-2">
                     <i class="fas fa-phone-alt"></i>
                     <span class="fr">Nous appeler</span>
                     <span class="ar">اتصل بنا</span>
                 </a>
-                <a href="#" class="bg-green-500 text-white px-6 py-2 rounded-full font-semibold hover:bg-green-600 transition inline-flex items-center gap-2">
+                <a href="https://wa.me/213668460780" class="bg-green-500 text-white px-6 py-2 rounded-full font-semibold hover:bg-green-600 transition inline-flex items-center gap-2">
                     <i class="fab fa-whatsapp"></i>
                     <span class="fr">WhatsApp</span>
                     <span class="ar">واتساب</span>
@@ -383,59 +511,49 @@
         </div>
     </div>
 
-    <!-- سكريبت تبديل اللغة المحسن -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <script>
-        (function() {
-            // عناصر الصفحة
-            const toggleBtn = document.getElementById('toggleLang');
+        // تهيئة AOS
+        AOS.init({ duration: 800, once: true });
+
+        // نظام الترجمة
+        let currentLang = localStorage.getItem('voyageLang') || 'fr';
+        
+        function applyLanguage(lang) {
             const page = document.getElementById('page');
-            const langBtnText = document.getElementById('langBtnText');
+            const toggleBtnCenter = document.getElementById('toggleLangCenter');
+            const langBtnTextCenter = document.getElementById('langBtnTextCenter');
             
-            // التحقق من وجود اللغة المخزنة
-            let currentLang = localStorage.getItem('voyageLang') || 'fr';
-            
-            // تطبيق اللغة المحفوظة
-            function applyLanguage(lang) {
-                if (lang === 'ar') {
-                    page.classList.remove('lang-fr');
-                    page.classList.add('lang-ar');
-                    document.documentElement.setAttribute('dir', 'rtl');
-                    document.documentElement.setAttribute('lang', 'ar');
-                    if (langBtnText) langBtnText.textContent = 'Français';
-                } else {
-                    page.classList.remove('lang-ar');
-                    page.classList.add('lang-fr');
-                    document.documentElement.setAttribute('dir', 'ltr');
-                    document.documentElement.setAttribute('lang', 'fr');
-                    if (langBtnText) langBtnText.textContent = 'العربية';
-                }
-                localStorage.setItem('voyageLang', lang);
-                currentLang = lang;
+            if (lang === 'ar') {
+                page.classList.remove('lang-fr');
+                page.classList.add('lang-ar');
+                document.documentElement.setAttribute('dir', 'rtl');
+                document.documentElement.lang = 'ar';
+                if (langBtnTextCenter) langBtnTextCenter.textContent = 'Français';
+            } else {
+                page.classList.remove('lang-ar');
+                page.classList.add('lang-fr');
+                document.documentElement.setAttribute('dir', 'ltr');
+                document.documentElement.lang = 'fr';
+                if (langBtnTextCenter) langBtnTextCenter.textContent = 'العربية';
             }
-            
-            // تبديل اللغة
-            function toggleLanguage() {
-                const newLang = currentLang === 'fr' ? 'ar' : 'fr';
-                applyLanguage(newLang);
-            }
-            
-            // إضافة حدث النقر
-            if (toggleBtn) {
-                toggleBtn.addEventListener('click', toggleLanguage);
-            }
-            
-            // تطبيق اللغة عند تحميل الصفحة
-            applyLanguage(currentLang);
-            
-            // إضافة تأثير حركي عند تبديل اللغة
-            if (page) {
-                page.style.opacity = '0';
-                setTimeout(() => {
-                    page.style.transition = 'opacity 0.3s ease';
-                    page.style.opacity = '1';
-                }, 50);
-            }
-        })();
+            localStorage.setItem('voyageLang', lang);
+            currentLang = lang;
+        }
+
+        document.getElementById('toggleLangCenter').addEventListener('click', () => {
+            applyLanguage(currentLang === 'fr' ? 'ar' : 'fr');
+        });
+        applyLanguage(currentLang);
+
+        // زر العودة للأعلى
+        const scrollBtn = document.getElementById('scrollTop');
+        window.addEventListener('scroll', () => {
+            scrollBtn.classList.toggle('active', window.scrollY > 300);
+        });
+        scrollBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
     </script>
 </body>
 </html>
