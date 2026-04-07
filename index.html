@@ -69,38 +69,39 @@
         
         /* أنميشنات */
         @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
         
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-3px); }
-            75% { transform: translateX(3px); }
+        @keyframes softPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
         }
         
-        @keyframes glowPulse {
-            0%, 100% {
-                box-shadow: 0 0 5px rgba(212, 175, 55, 0.3);
-            }
-            50% {
-                box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
-            }
+        @keyframes slideBackground {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+        
+        @keyframes borderGlow {
+            0%, 100% { border-color: rgba(212, 175, 55, 0.3); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.2); }
+            50% { border-color: rgba(212, 175, 55, 0.8); box-shadow: 0 0 0 8px rgba(212, 175, 55, 0); }
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
         
         .animate {
@@ -479,6 +480,7 @@
         .hero-img:hover { transform: scale(1.02); box-shadow: 0 30px 50px rgba(0,0,0,0.3); }
         .hero-img img { width: 100%; border-radius: 20px; transition: var(--transition); }
         
+        /* خدمات التأمين مع زر ينبض */
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         .service-card {
             background: var(--white);
@@ -490,7 +492,6 @@
             border: 1px solid var(--light-gray);
             position: relative;
             overflow: hidden;
-            cursor: pointer;
         }
         .service-card::before {
             content: '';
@@ -504,7 +505,11 @@
             transition: transform 0.3s ease;
         }
         .service-card:hover::before { transform: scaleX(1); }
-        .service-card:hover { transform: translateY(-10px); box-shadow: var(--box-shadow-hover); border-color: var(--secondary-light); }
+        .service-card:hover { 
+            transform: translateY(-10px); 
+            box-shadow: var(--box-shadow-hover); 
+            border-color: var(--secondary-light);
+        }
         .service-icon {
             background: var(--gradient-primary);
             width: 80px;
@@ -519,6 +524,30 @@
         .service-card:hover .service-icon { transform: scale(1.1) rotate(5deg); box-shadow: var(--glow); }
         .service-icon i { font-size: 2.2rem; color: var(--white); }
         .service-card h3 { color: var(--primary); margin-bottom: 15px; font-size: 1.4rem; }
+        
+        /* زر اقرأ للمزيد المنبض */
+        .service-btn {
+            display: inline-block;
+            background: var(--gradient-primary);
+            color: var(--white);
+            padding: 10px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: var(--transition);
+            font-size: 0.9rem;
+            animation: pulse 2s infinite;
+            border: none;
+            cursor: pointer;
+        }
+        .service-btn:hover {
+            background: var(--gradient-accent);
+            color: var(--primary-dark);
+            transform: translateY(-3px);
+            animation: none;
+            box-shadow: var(--box-shadow-hover);
+        }
         
         /* قسم العروض الجديد */
         .offers-grid {
@@ -628,15 +657,39 @@
             animation: none;
         }
         
+        /* قسم حجز الموعد بخلفية متحركة */
         .booking-section {
             background: linear-gradient(135deg, var(--white) 0%, var(--light) 100%);
             border-radius: 20px;
             padding: 40px;
             margin-top: 40px;
             box-shadow: var(--box-shadow);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
         }
-        .booking-title { text-align: center; color: var(--primary); margin-bottom: 30px; font-size: 1.8rem; }
-        .booking-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 30px; }
+        .booking-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, 
+                        rgba(212, 175, 55, 0.05) 25%, 
+                        transparent 25%, 
+                        transparent 50%, 
+                        rgba(212, 175, 55, 0.05) 50%, 
+                        rgba(212, 175, 55, 0.05) 75%, 
+                        transparent 75%, 
+                        transparent);
+            background-size: 50px 50px;
+            pointer-events: none;
+            animation: slideBackground 20s linear infinite;
+            z-index: -1;
+        }
+        .booking-title { text-align: center; color: var(--primary); margin-bottom: 30px; font-size: 1.8rem; position: relative; z-index: 2; }
+        .booking-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 30px; position: relative; z-index: 2; }
         .booking-info {
             background: var(--gradient-primary);
             border-radius: 15px;
@@ -932,11 +985,14 @@
         }
         .btn-read:hover { color: var(--accent); gap: 12px; }
         
+        /* قسم الإحصائيات بخلفية متحركة ونص واضح */
         .stats-section {
-            background: var(--gradient-primary);
+            background: linear-gradient(135deg, #0B3B5E, #072a44, #1B8E9E);
+            background-size: 200% 200%;
             padding: 80px 0;
             position: relative;
             overflow: hidden;
+            animation: gradientShift 8s ease infinite;
         }
         .stats-section::before {
             content: "";
@@ -945,21 +1001,32 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(212,175,55,0.08) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 70%);
             animation: rotate 20s linear infinite;
         }
-        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; position: relative; z-index: 2; }
+        .stats-grid { 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 30px; 
+            position: relative; 
+            z-index: 2; 
+        }
         .stat-card {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(12px);
             border-radius: 20px;
             padding: 35px 20px;
             text-align: center;
             transition: var(--transition);
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
         }
-        .stat-card:hover { transform: translateY(-10px); background: rgba(255,255,255,0.15); border-color: var(--accent); }
+        .stat-card:hover { 
+            transform: translateY(-10px); 
+            background: rgba(255,255,255,0.25); 
+            border-color: var(--accent);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
         .stat-icon {
             width: 70px;
             height: 70px;
@@ -970,10 +1037,29 @@
             justify-content: center;
             margin: 0 auto 20px;
             transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
         .stat-card:hover .stat-icon { transform: scale(1.1); box-shadow: var(--glow); }
         .stat-icon i { font-size: 2rem; color: var(--primary-dark); }
-        .stat-card h3 { font-size: 2.5rem; color: var(--accent); font-weight: 800; margin-bottom: 10px; }
+        .stat-card h3 { 
+            font-size: 2.5rem; 
+            color: var(--accent); 
+            font-weight: 800; 
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: 1px;
+        }
+        .stat-card p {
+            color: var(--white);
+            font-weight: 600;
+            font-size: 1rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            background: rgba(0,0,0,0.2);
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 25px;
+            backdrop-filter: blur(4px);
+        }
         
         /* قسم الخبراء مع الصور */
         .team-grid {
@@ -1021,13 +1107,38 @@
             font-size: 0.9rem;
         }
         
-        .contact-section { background: linear-gradient(135deg, var(--white) 0%, var(--light) 100%); }
-        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        /* قسم معلومات التواصل بخلفية متحركة */
+        .contact-section { 
+            background: linear-gradient(135deg, var(--white) 0%, var(--light) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .contact-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 40%, rgba(212,175,55,0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 70%, rgba(27,142,158,0.08) 0%, transparent 50%);
+            animation: softPulse 6s ease-in-out infinite;
+            pointer-events: none;
+        }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; position: relative; z-index: 2; }
         .contact-info-card {
-            background: var(--white);
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 30px;
             box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(212,175,55,0.2);
+        }
+        .contact-info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--box-shadow-hover);
+            border-color: var(--accent);
         }
         .info-item {
             display: flex;
@@ -1151,7 +1262,6 @@
         .copyright { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); }
         
         img { max-width: 100%; height: auto; }
-        .service-link { text-decoration: none; color: inherit; display: block; }
         [data-translate] { transition: all 0.2s ease; }
         
         /* التجاوب للشاشات المتوسطة والصغيرة */
@@ -1235,13 +1345,13 @@
                 <button class="mobile-menu-btn" aria-label="القائمة"><i class="fas fa-bars"></i></button>
                 <ul class="nav-links">
                     <li><a href="#home" data-translate="nav-home">الرئيسية</a></li>
-                    <li><a href="https://davidrezgui34-oss.github.io/trustrytech/services" data-translate="nav-services">خدماتنا</a></li>
+                    <li><a href="#services" data-translate="nav-services">خدماتنا</a></li>
                     <li><a href="#offers" data-translate="nav-offers">عروض حصرية</a></li>
                     <li><a href="#booking" data-translate="nav-booking">حجز موعد</a></li>
                     <li><a href="#about" data-translate="nav-about">من نحن</a></li>
                     <li><a href="#companies" data-translate="nav-companies">الشركات</a></li>
                     <li><a href="#team" data-translate="nav-team">الخبراء</a></li>
-                    <li><a href="https://davidrezgui34-oss.github.io/trustrytech/contacter" data-translate="nav-contact">اتصل بنا</a></li>
+                    <li><a href="#contact" data-translate="nav-contact">اتصل بنا</a></li>
                 </ul>
             </div>
         </div>
@@ -1263,21 +1373,33 @@
         <div class="container">
             <div class="section-title">
                 <h2 data-translate="services-title">خدمات التأمين المتكاملة</h2>
-                <p data-translate="services-desc">نوفر لك مجموعة شاملة من عقود التأمين لحماية كل ما يهمك - اضغط على البطاقة لزيارة الصفحة المخصصة</p>
+                <p data-translate="services-desc">نوفر لك مجموعة شاملة من عقود التأمين لحماية كل ما يهمك - اضغط على زر "اقرأ للمزيد" لزيارة الصفحة المخصصة</p>
             </div>
             <div class="services-grid">
-                <a href="https://davidrezgui34-oss.github.io/trustrytech/automobile.html" class="service-link" target="_blank">
-                    <div class="service-card animate"><div class="service-icon"><i class="fas fa-car"></i></div><h3 data-translate="service1-title">تأمين السيارات</h3><p data-translate="service1-desc">تأمين مسؤولية مدنية، شامل، ضد الغير، وحماية شخصية للسائق بأسعار تنافسية</p></div>
-                </a>
-                <a href="https://davidrezgui34-oss.github.io/trustrytech/sante.html" class="service-link" target="_blank">
-                    <div class="service-card animate"><div class="service-icon"><i class="fas fa-heartbeat"></i></div><h3 data-translate="service2-title">تأمين الصحة</h3><p data-translate="service2-desc">تغطيات طبية شاملة للأفراد والعائلات، مع شبكة واسعة من المستشفيات والعيادات</p></div>
-                </a>
-                <a href="https://davidrezgui34-oss.github.io/trustrytech/habitation.html" class="service-link" target="_blank">
-                    <div class="service-card animate"><div class="service-icon"><i class="fas fa-home"></i></div><h3 data-translate="service3-title">تأمين السكن</h3><p data-translate="service3-desc">حماية منزلك ومحتوياته من المخاطر (حرائق، سرقة، كوارث طبيعية)</p></div>
-                </a>
-                <a href="https://davidrezgui34-oss.github.io/trustrytech/voyage.html" class="service-link" target="_blank">
-                    <div class="service-card animate"><div class="service-icon"><i class="fas fa-plane"></i></div><h3 data-translate="service4-title">تأمين السفر</h3><p data-translate="service4-desc">تغطية طبية وإلغاء الرحلات وفقدان الأمتعة أثناء سفرك داخل الوطن وخارجه</p></div>
-                </a>
+                <div class="service-card animate">
+                    <div class="service-icon"><i class="fas fa-car"></i></div>
+                    <h3 data-translate="service1-title">تأمين السيارات</h3>
+                    <p data-translate="service1-desc">تأمين مسؤولية مدنية، شامل، ضد الغير، وحماية شخصية للسائق بأسعار تنافسية</p>
+                    <a href="https://davidrezgui34-oss.github.io/trustrytech/automobile.html" class="service-btn" target="_blank" data-translate="service1-btn">📖 اقرأ للمزيد</a>
+                </div>
+                <div class="service-card animate">
+                    <div class="service-icon"><i class="fas fa-heartbeat"></i></div>
+                    <h3 data-translate="service2-title">تأمين الصحة</h3>
+                    <p data-translate="service2-desc">تغطيات طبية شاملة للأفراد والعائلات، مع شبكة واسعة من المستشفيات والعيادات</p>
+                    <a href="https://davidrezgui34-oss.github.io/trustrytech/sante.html" class="service-btn" target="_blank" data-translate="service2-btn">📖 اقرأ للمزيد</a>
+                </div>
+                <div class="service-card animate">
+                    <div class="service-icon"><i class="fas fa-home"></i></div>
+                    <h3 data-translate="service3-title">تأمين السكن</h3>
+                    <p data-translate="service3-desc">حماية منزلك ومحتوياته من المخاطر (حرائق، سرقة، كوارث طبيعية)</p>
+                    <a href="https://davidrezgui34-oss.github.io/trustrytech/habitation.html" class="service-btn" target="_blank" data-translate="service3-btn">📖 اقرأ للمزيد</a>
+                </div>
+                <div class="service-card animate">
+                    <div class="service-icon"><i class="fas fa-plane"></i></div>
+                    <h3 data-translate="service4-title">تأمين السفر</h3>
+                    <p data-translate="service4-desc">تغطية طبية وإلغاء الرحلات وفقدان الأمتعة أثناء سفرك داخل الوطن وخارجه</p>
+                    <a href="https://davidrezgui34-oss.github.io/trustrytech/voyage.html" class="service-btn" target="_blank" data-translate="service4-btn">📖 اقرأ للمزيد</a>
+                </div>
             </div>
         </div>
     </section>
@@ -1695,15 +1817,19 @@
                 "hero-title": "📋 دليل وكالات التأمين في الجزائر",
                 "hero-desc": "تجدون جميع وكالات التأمين في الجزائر مصنفة حسب الولايات ونوع الخدمة - تأمين السيارات، الصحة، السكن، السفر والمزيد",
                 "services-title": "خدمات التأمين المتكاملة",
-                "services-desc": "نوفر لك مجموعة شاملة من عقود التأمين لحماية كل ما يهمك - اضغط على البطاقة لزيارة الصفحة المخصصة",
+                "services-desc": "نوفر لك مجموعة شاملة من عقود التأمين لحماية كل ما يهمك - اضغط على زر اقرأ للمزيد لزيارة الصفحة المخصصة",
                 "service1-title": "تأمين السيارات",
                 "service1-desc": "تأمين مسؤولية مدنية، شامل، ضد الغير، وحماية شخصية للسائق بأسعار تنافسية",
+                "service1-btn": "📖 اقرأ للمزيد",
                 "service2-title": "تأمين الصحة",
                 "service2-desc": "تغطيات طبية شاملة للأفراد والعائلات، مع شبكة واسعة من المستشفيات والعيادات",
+                "service2-btn": "📖 اقرأ للمزيد",
                 "service3-title": "تأمين السكن",
                 "service3-desc": "حماية منزلك ومحتوياته من المخاطر (حرائق، سرقة، كوارث طبيعية)",
+                "service3-btn": "📖 اقرأ للمزيد",
                 "service4-title": "تأمين السفر",
                 "service4-desc": "تغطية طبية وإلغاء الرحلات وفقدان الأمتعة أثناء سفرك داخل الوطن وخارجه",
+                "service4-btn": "📖 اقرأ للمزيد",
                 "offers-title": "🎁 عروض حصرية من شركائنا",
                 "offers-desc": "استفد من تخفيضات وخدمات إضافية عند الاشتراك عبر دليل التأمين",
                 "offer1-badge": "🔥 عرض محدود",
@@ -1836,15 +1962,19 @@
                 "hero-title": "📋 Guide des Assurances en Algérie",
                 "hero-desc": "Trouvez toutes les agences d'assurance en Algérie classées par wilaya et type de service",
                 "services-title": "Services d'assurance complets",
-                "services-desc": "Cliquez sur la carte pour visiter la page dédiée",
+                "services-desc": "Cliquez sur le bouton Lire plus pour visiter la page dédiée",
                 "service1-title": "Assurance Auto",
                 "service1-desc": "Assurance responsabilité civile, tous risques, tiers, et protection personnelle",
+                "service1-btn": "📖 Lire plus",
                 "service2-title": "Assurance Santé",
                 "service2-desc": "Couvertures médicales complètes pour particuliers et familles",
+                "service2-btn": "📖 Lire plus",
                 "service3-title": "Assurance Habitation",
                 "service3-desc": "Protection de votre maison et de son contenu contre les risques",
+                "service3-btn": "📖 Lire plus",
                 "service4-title": "Assurance Voyage",
                 "service4-desc": "Couverture médicale, annulation de voyage et perte de bagages",
+                "service4-btn": "📖 Lire plus",
                 "offers-title": "🎁 Offres exclusives de nos partenaires",
                 "offers-desc": "Bénéficiez de réductions et services supplémentaires en vous inscrivant via le guide",
                 "offer1-badge": "🔥 Offre limitée",
