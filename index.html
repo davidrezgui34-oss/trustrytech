@@ -14,7 +14,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     
     <style>
         :root {
@@ -32,7 +31,7 @@
             --white: #ffffff;
             --box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
             --box-shadow-hover: 0 20px 35px rgba(0, 0, 0, 0.12);
-            --transition: all 0.3s ease;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             --gradient-primary: linear-gradient(135deg, #0B3B5E 0%, #1B8E9E 100%);
             --gradient-accent: linear-gradient(135deg, #D4AF37 0%, #e6c84a 100%);
             --glow: 0 0 20px rgba(212, 175, 55, 0.3);
@@ -66,6 +65,53 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 15px;
+        }
+        
+        /* أنميشنات */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-3px); }
+            75% { transform: translateX(3px); }
+        }
+        
+        @keyframes glowPulse {
+            0%, 100% {
+                box-shadow: 0 0 5px rgba(212, 175, 55, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+            }
+        }
+        
+        .animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .animate.active { 
+            opacity: 1; 
+            transform: translateY(0); 
+            animation: fadeUp 0.6s ease-out;
         }
         
         /* الشريط العلوي */
@@ -161,13 +207,12 @@
         
         /* رأس الصفحة */
         header {
-            background: var(--white);
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
             box-shadow: 0 4px 15px rgba(0,0,0,0.06);
             position: sticky;
             top: 0;
             z-index: 1000;
-            backdrop-filter: blur(10px);
-            background: rgba(255,255,255,0.95);
         }
         
         .navbar {
@@ -397,13 +442,6 @@
             font-size: 1.1rem;
         }
         
-        .animate {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
-        }
-        .animate.active { opacity: 1; transform: translateY(0); }
-        
         .hero {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 50%, var(--secondary) 100%);
             color: var(--white);
@@ -482,17 +520,113 @@
         .service-icon i { font-size: 2.2rem; color: var(--white); }
         .service-card h3 { color: var(--primary); margin-bottom: 15px; font-size: 1.4rem; }
         
-        .stats-dashboard {
+        /* قسم العروض الجديد */
+        .offers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+        .offer-card {
             background: var(--white);
             border-radius: 20px;
-            padding: 30px;
-            margin-top: 40px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .offer-card:hover {
+            transform: translateY(-10px);
             box-shadow: var(--box-shadow-hover);
         }
-        .charts-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px; margin-bottom: 30px; }
-        .chart-box { background: var(--light); border-radius: 15px; padding: 20px; text-align: center; }
-        .chart-box h4 { color: var(--primary); margin-bottom: 15px; font-size: 1.2rem; }
-        .chart-box canvas { max-height: 300px; width: 100%; }
+        .offer-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--gradient-accent);
+            color: var(--primary-dark);
+            padding: 5px 12px;
+            border-radius: 25px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            z-index: 2;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            animation: pulse 2s infinite;
+        }
+        .offer-img {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            transition: var(--transition);
+        }
+        .offer-card:hover .offer-img {
+            background: linear-gradient(135deg, #e9ecef, #dee2e6);
+        }
+        .offer-img i {
+            font-size: 4rem;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+        .offer-card:hover .offer-img i {
+            transform: scale(1.1);
+            color: var(--accent);
+        }
+        .offer-content {
+            padding: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .offer-content h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        .offer-discount {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--accent);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            margin: 10px 0;
+        }
+        .offer-desc {
+            color: var(--gray);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        .offer-btn {
+            background: var(--gradient-primary);
+            color: var(--white);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Tajawal', sans-serif;
+            margin-top: auto;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            animation: pulse 2s infinite;
+        }
+        .offer-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--box-shadow-hover);
+            background: var(--gradient-accent);
+            color: var(--primary-dark);
+            animation: none;
+        }
         
         .booking-section {
             background: linear-gradient(135deg, var(--white) 0%, var(--light) 100%);
@@ -841,7 +975,12 @@
         .stat-icon i { font-size: 2rem; color: var(--primary-dark); }
         .stat-card h3 { font-size: 2.5rem; color: var(--accent); font-weight: 800; margin-bottom: 10px; }
         
-        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        /* قسم الخبراء مع الصور */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
         .team-card {
             background: var(--white);
             border-radius: 20px;
@@ -850,20 +989,37 @@
             box-shadow: var(--box-shadow);
             transition: var(--transition);
         }
-        .team-card:hover { transform: translateY(-10px); box-shadow: var(--box-shadow-hover); }
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--box-shadow-hover);
+        }
         .team-img {
-            height: 200px;
-            background: var(--gradient-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+        .team-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             transition: var(--transition);
         }
-        .team-card:hover .team-img { background: var(--gradient-accent); }
-        .team-img i { font-size: 4.5rem; color: var(--white); opacity: 0.8; transition: var(--transition); }
-        .team-card:hover .team-img i { transform: scale(1.1); opacity: 1; }
-        .team-content { padding: 20px; }
-        .team-content h3 { color: var(--primary); margin-bottom: 5px; font-size: 1.2rem; }
+        .team-card:hover .team-img img {
+            transform: scale(1.1);
+        }
+        .team-content {
+            padding: 20px;
+        }
+        .team-content h3 {
+            color: var(--primary);
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+        }
+        .team-content span {
+            color: var(--secondary);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
         
         .contact-section { background: linear-gradient(135deg, var(--white) 0%, var(--light) 100%); }
         .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
@@ -966,6 +1122,32 @@
             transition: var(--transition);
         }
         .footer-links a:hover { color: var(--accent); padding-right: 5px; }
+        
+        /* أيقونات سوشال ميديا محسنة */
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: var(--white);
+            font-size: 1.2rem;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+        .social-links a:hover {
+            background: var(--accent);
+            color: var(--primary-dark);
+            transform: translateY(-5px) rotate(360deg);
+        }
+        
         .copyright { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); }
         
         img { max-width: 100%; height: auto; }
@@ -978,14 +1160,13 @@
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
             .hero h1 { font-size: 2rem; }
             .section { padding: 60px 0; }
-            .charts-container { grid-template-columns: 1fr; }
             .top-contact span { font-size: 0.75rem; }
         }
         
         @media (max-width: 768px) {
             .stats-grid { grid-template-columns: 1fr; gap: 20px; }
             .hero-img { max-width: 100%; }
-            .services-grid, .companies-grid { grid-template-columns: 1fr; }
+            .services-grid, .companies-grid, .offers-grid { grid-template-columns: 1fr; }
             .section-title h2 { font-size: 1.8rem; }
             .top-wrapper { flex-direction: column; text-align: center; gap: 12px; }
             .top-contact { justify-content: center; }
@@ -995,6 +1176,7 @@
             .chat-assistant { left: 15px; bottom: 80px; }
             .chat-window { width: 300px; left: -10px; bottom: 70px; }
             .scroll-top { right: 15px; bottom: 80px; }
+            .team-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
         }
         
         @media (max-width: 576px) {
@@ -1046,15 +1228,15 @@
                         <i class="fas fa-shield-alt"></i>
                     </div>
                     <div class="logo-text">
-    <h1 style="font-size: 1.4rem; color: var(--primary); margin: 0; line-height: 1.2; font-weight: 600;">Trusty Tech</h1>
-    <span data-translate="logo-title" style="font-size: 0.9rem; color: var(--secondary); display: block; margin-top: 3px; font-weight: 900; letter-spacing: 0.5px;">دليل التأمين</span>
-</div>
+                        <h1 style="font-size: 1.4rem; color: var(--primary); margin: 0; line-height: 1.2; font-weight: 600;">Trusty Tech</h1>
+                        <span data-translate="logo-title" style="font-size: 0.9rem; color: var(--secondary); display: block; margin-top: 3px; font-weight: 900; letter-spacing: 0.5px;">دليل التأمين</span>
+                    </div>
                 </div>
                 <button class="mobile-menu-btn" aria-label="القائمة"><i class="fas fa-bars"></i></button>
                 <ul class="nav-links">
                     <li><a href="#home" data-translate="nav-home">الرئيسية</a></li>
                     <li><a href="https://davidrezgui34-oss.github.io/trustrytech/services" data-translate="nav-services">خدماتنا</a></li>
-                    <li><a href="#stats-dashboard" data-translate="nav-stats">الإحصائيات</a></li>
+                    <li><a href="#offers" data-translate="nav-offers">عروض حصرية</a></li>
                     <li><a href="#booking" data-translate="nav-booking">حجز موعد</a></li>
                     <li><a href="#about" data-translate="nav-about">من نحن</a></li>
                     <li><a href="#companies" data-translate="nav-companies">الشركات</a></li>
@@ -1096,26 +1278,56 @@
                 <a href="https://davidrezgui34-oss.github.io/trustrytech/voyage.html" class="service-link" target="_blank">
                     <div class="service-card animate"><div class="service-icon"><i class="fas fa-plane"></i></div><h3 data-translate="service4-title">تأمين السفر</h3><p data-translate="service4-desc">تغطية طبية وإلغاء الرحلات وفقدان الأمتعة أثناء سفرك داخل الوطن وخارجه</p></div>
                 </a>
-                
             </div>
         </div>
     </section>
 
-    <section class="section" id="stats-dashboard">
+    <!-- قسم العروض الحصرية (4 عروض) -->
+    <section class="section" id="offers">
         <div class="container">
             <div class="section-title">
-                <h2 data-translate="dashboard-title">📊 لوحة الإحصائيات المتقدمة</h2>
-                <p data-translate="dashboard-desc">تحليلات دقيقة لسوق التأمين في الجزائر</p>
+                <h2 data-translate="offers-title">🎁 عروض حصرية من شركائنا</h2>
+                <p data-translate="offers-desc">استفد من تخفيضات وخدمات إضافية عند الاشتراك عبر دليل التأمين</p>
             </div>
-            <div class="stats-dashboard">
-                <div class="charts-container">
-                    <div class="chart-box">
-                        <h4 data-translate="chart1-title">📈 أكثر أنواع التأمين طلباً</h4>
-                        <canvas id="insuranceChart"></canvas>
+            <div class="offers-grid">
+                <div class="offer-card animate">
+                    <div class="offer-badge" data-translate="offer1-badge">🔥 عرض محدود</div>
+                    <div class="offer-img"><i class="fas fa-car"></i></div>
+                    <div class="offer-content">
+                        <h3 data-translate="offer1-title">خصم 20% على تأمين السيارات</h3>
+                        <span class="offer-discount" data-translate="offer1-discount">خصم 20% + مساعدة على الطريق مجاناً</span>
+                        <p class="offer-desc" data-translate="offer1-desc">عرض خاص للعملاء الجدد عبر موقعنا. يشمل تأمين شامل ضد الغير والمسؤولية المدنية.</p>
+                        <button class="offer-btn" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})"><span data-translate="offer1-btn">اطلب العرض الآن</span> <i class="fas fa-arrow-left"></i></button>
                     </div>
-                    <div class="chart-box">
-                        <h4 data-translate="chart2-title">📍 أكثر الولايات طلباً للتأمين</h4>
-                        <canvas id="wilayaChart"></canvas>
+                </div>
+                <div class="offer-card animate">
+                    <div class="offer-badge" data-translate="offer2-badge">⭐ عرض العائلة</div>
+                    <div class="offer-img"><i class="fas fa-heartbeat"></i></div>
+                    <div class="offer-content">
+                        <h3 data-translate="offer2-title">تأمين صحي للعائلة + شهر مجاني</h3>
+                        <span class="offer-discount" data-translate="offer2-discount">شهر مجاني عند الاشتراك السنوي</span>
+                        <p class="offer-desc" data-translate="offer2-desc">تغطية طبية شاملة لجميع أفراد العائلة مع شبكة واسعة من المستشفيات والعيادات.</p>
+                        <button class="offer-btn" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})"><span data-translate="offer2-btn">استفد من العرض</span> <i class="fas fa-arrow-left"></i></button>
+                    </div>
+                </div>
+                <div class="offer-card animate">
+                    <div class="offer-badge" data-translate="offer3-badge">🏆 عرض VIP</div>
+                    <div class="offer-img"><i class="fas fa-home"></i></div>
+                    <div class="offer-content">
+                        <h3 data-translate="offer3-title">تأمين السكن + محتويات بأسعار خاصة</h3>
+                        <span class="offer-discount" data-translate="offer3-discount">خصم 15% + تقسيط مريح</span>
+                        <p class="offer-desc" data-translate="offer3-desc">احمِ منزلك وممتلكاتك من المخاطر بأفضل الأسعار. تغطية ضد الحرائق والسرقة والكوارث الطبيعية.</p>
+                        <button class="offer-btn" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})"><span data-translate="offer3-btn">احصل على العرض</span> <i class="fas fa-arrow-left"></i></button>
+                    </div>
+                </div>
+                <div class="offer-card animate">
+                    <div class="offer-badge" data-translate="offer4-badge">✈️ عرض السفر</div>
+                    <div class="offer-img"><i class="fas fa-plane"></i></div>
+                    <div class="offer-content">
+                        <h3 data-translate="offer4-title">تأمين السفر + تغطية كورونا مجاناً</h3>
+                        <span class="offer-discount" data-translate="offer4-discount">خصم 25% + إلغاء مجاني</span>
+                        <p class="offer-desc" data-translate="offer4-desc">سافر براحة بال! تغطية شاملة تشمل المصاريف الطبية، إلغاء الرحلات، وفقدان الأمتعة.</p>
+                        <button class="offer-btn" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})"><span data-translate="offer4-btn">استفد من العرض</span> <i class="fas fa-arrow-left"></i></button>
                     </div>
                 </div>
             </div>
@@ -1312,6 +1524,7 @@
         </div>
     </section>
 
+    <!-- قسم الخبراء مع صور حقيقية -->
     <section class="section" id="team">
         <div class="container">
             <div class="section-title">
@@ -1319,12 +1532,30 @@
                 <p data-translate="team-desc">فريق من المستشارين المتخصصين لخدمتكم</p>
             </div>
             <div class="team-grid">
-                <div class="team-card animate"><div class="team-img"><i class="fas fa-user-tie"></i></div><div class="team-content"><h3>داود عبد الرحمان</h3><span data-translate="team1">خبير في تأمين السيارات</span></div></div>
-                <div class="team-card animate"><div class="team-img"><i class="fas fa-user-md"></i></div><div class="team-content"><h3>بن عدا معمّر</h3><span data-translate="team2">مستشارة في تأمين الصحة</span></div></div>
-                <div class="team-card animate"><div class="team-img"><i class="fas fa-chart-line"></i></div><div class="team-content"><h3>أيمن غويلية</h3><span data-translate="team3">وسيط تأمين مستقل</span></div></div>
-                <div class="team-card animate"><div class="team-img"><i class="fas fa-handshake"></i></div><div class="team-content"><h3>رزقي داود</h3><span data-translate="team4">وسيط تأمين مستقل</span></div></div>
-                <div class="team-card animate"><div class="team-img"><i class="fas fa-home"></i></div><div class="team-content"><h3>أسامة ساحلي</h3><span data-translate="team5">خبير في تأمين السكن</span></div></div>
-                <div class="team-card animate"><div class="team-img"><i class="fas fa-gavel"></i></div><div class="team-content"><h3>خالد مغاني</h3><span data-translate="team6">محامي متخصص في التأمين</span></div></div>
+                <div class="team-card animate">
+                    <div class="team-img"><img src="https://randomuser.me/api/portraits/men/32.jpg" alt="خبير تأمين سيارات"></div>
+                    <div class="team-content"><h3>داود عبد الرحمان</h3><span data-translate="team1">خبير في تأمين السيارات</span></div>
+                </div>
+                <div class="team-card animate">
+                    <div class="team-img"><img src="https://randomuser.me/api/portraits/women/68.jpg" alt="مستشارة تأمين صحي"></div>
+                    <div class="team-content"><h3>بن عدا معمّر</h3><span data-translate="team2">مستشارة في تأمين الصحة</span></div>
+                </div>
+                <div class="team-card animate">
+                    <div class="team-img"><img src="https://randomuser.me/api/portraits/men/45.jpg" alt="وسيط تأمين مستقل"></div>
+                    <div class="team-content"><h3>أيمن غويلية</h3><span data-translate="team3">وسيط تأمين مستقل</span></div>
+                </div>
+                <div class="team-card animate">
+                    <div class="team-img"><img src="https://randomuser.me/api/portraits/men/52.jpg" alt="وسيط تأمين"></div>
+                    <div class="team-content"><h3>رزقي داود</h3><span data-translate="team4">وسيط تأمين مستقل</span></div>
+                </div>
+                <div class="team-card animate">
+                    <div class="team-img"><img src="https://randomuser.me/api/portraits/men/28.jpg" alt="خبير تأمين سكن"></div>
+                    <div class="team-content"><h3>أسامة ساحلي</h3><span data-translate="team5">خبير في تأمين السكن</span></div>
+                </div>
+                <div class="team-card animate">
+                    <div class="team-img"><img src="https://randomuser.me/api/portraits/men/41.jpg" alt="محامي تأمين"></div>
+                    <div class="team-content"><h3>خالد مغاني</h3><span data-translate="team6">محامي متخصص في التأمين</span></div>
+                </div>
             </div>
         </div>
     </section>
@@ -1369,13 +1600,17 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-widget"><h4 data-translate="footer-title">دليل التأمين الجزائر</h4><p data-translate="footer-desc">منصتكم الشاملة للبحث عن وكالات التأمين في الجزائر، مصنفة حسب الولايات ونوع الخدمة.</p></div>
-                <div class="footer-widget"><h4 data-translate="footer-links-title">روابط سريعة</h4><ul class="footer-links"><li><a href="#home" data-translate="footer-home">الرئيسية</a></li><li><a href="#services" data-translate="footer-services">خدماتنا</a></li><li><a href="#stats-dashboard" data-translate="footer-stats">الإحصائيات</a></li><li><a href="#booking" data-translate="footer-booking">حجز موعد</a></li><li><a href="#about" data-translate="footer-about">من نحن</a></li><li><a href="#companies" data-translate="footer-companies">الشركات</a></li><li><a href="#team" data-translate="footer-team">الخبراء</a></li><li><a href="#contact" data-translate="footer-contact">اتصل بنا</a></li></ul></div>
+                <div class="footer-widget"><h4 data-translate="footer-links-title">روابط سريعة</h4><ul class="footer-links"><li><a href="#home" data-translate="footer-home">الرئيسية</a></li><li><a href="#services" data-translate="footer-services">خدماتنا</a></li><li><a href="#offers" data-translate="footer-offers">عروض حصرية</a></li><li><a href="#booking" data-translate="footer-booking">حجز موعد</a></li><li><a href="#about" data-translate="footer-about">من نحن</a></li><li><a href="#companies" data-translate="footer-companies">الشركات</a></li><li><a href="#team" data-translate="footer-team">الخبراء</a></li><li><a href="#contact" data-translate="footer-contact">اتصل بنا</a></li></ul></div>
                 <div class="footer-widget"><h4 data-translate="footer-insurance-title">أنواع التأمين</h4><ul class="footer-links"><li><a href="https://davidrezgui34-oss.github.io/trustrytech/automobile.html" target="_blank" data-translate="footer-car">تأمين السيارات</a></li><li><a href="https://davidrezgui34-oss.github.io/trustrytech/sante.html" target="_blank" data-translate="footer-health">تأمين الصحة</a></li><li><a href="https://davidrezgui34-oss.github.io/trustrytech/habitation.html" target="_blank" data-translate="footer-home-ins">تأمين السكن</a></li><li><a href="https://davidrezgui34-oss.github.io/trustrytech/voyage.html" target="_blank" data-translate="footer-travel">تأمين السفر</a></li></ul></div>
-                <div class="footer-widget"><h4 data-translate="footer-social-title">تابعنا</h4><div class="social-links" style="margin-top:15px;">
-                    <a href="https://www.facebook.com/Leadersvisionacademy" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com/leaders_vision_academy?igsh=MXJzNXk0d202cGdsNA==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                </div></div>
+                <div class="footer-widget">
+                    <h4 data-translate="footer-social-title">تابعنا</h4>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/Leadersvisionacademy" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/leaders_vision_academy?igsh=MXJzNXk0d202cGdsNA==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
             </div>
             <div class="copyright"><p data-translate="copyright">© 2025 دليل وكالات التأمين في الجزائر - جميع الحقوق محفوظة</p></div>
         </div>
@@ -1448,9 +1683,9 @@
             ar: {
                 "hours": "السبت - الخميس: 09:00 - 17:00",
                 "logo-title": "دليل التأمين",
-                "logo-sub": "Annuaire des Assurances Algérie",
                 "nav-home": "الرئيسية",
                 "nav-services": "خدماتنا",
+                "nav-offers": "عروض حصرية",
                 "nav-stats": "الإحصائيات",
                 "nav-booking": "حجز موعد",
                 "nav-about": "من نحن",
@@ -1469,14 +1704,28 @@
                 "service3-desc": "حماية منزلك ومحتوياته من المخاطر (حرائق، سرقة، كوارث طبيعية)",
                 "service4-title": "تأمين السفر",
                 "service4-desc": "تغطية طبية وإلغاء الرحلات وفقدان الأمتعة أثناء سفرك داخل الوطن وخارجه",
-                "service5-title": "تأمين المؤسسات",
-                "service5-desc": "حماية شاملة للمشاريع والمؤسسات التجارية والصناعية",
-                "service6-title": "المسؤولية المدنية",
-                "service6-desc": "حماية قانونية ومالية ضد الأضرار التي قد تسببها للغير",
-                "dashboard-title": "📊 لوحة الإحصائيات المتقدمة",
-                "dashboard-desc": "تحليلات دقيقة لسوق التأمين في الجزائر",
-                "chart1-title": "📈 أكثر أنواع التأمين طلباً",
-                "chart2-title": "📍 أكثر الولايات طلباً للتأمين",
+                "offers-title": "🎁 عروض حصرية من شركائنا",
+                "offers-desc": "استفد من تخفيضات وخدمات إضافية عند الاشتراك عبر دليل التأمين",
+                "offer1-badge": "🔥 عرض محدود",
+                "offer1-title": "خصم 20% على تأمين السيارات",
+                "offer1-discount": "خصم 20% + مساعدة على الطريق مجاناً",
+                "offer1-desc": "عرض خاص للعملاء الجدد عبر موقعنا. يشمل تأمين شامل ضد الغير والمسؤولية المدنية.",
+                "offer1-btn": "اطلب العرض الآن",
+                "offer2-badge": "⭐ عرض العائلة",
+                "offer2-title": "تأمين صحي للعائلة + شهر مجاني",
+                "offer2-discount": "شهر مجاني عند الاشتراك السنوي",
+                "offer2-desc": "تغطية طبية شاملة لجميع أفراد العائلة مع شبكة واسعة من المستشفيات والعيادات.",
+                "offer2-btn": "استفد من العرض",
+                "offer3-badge": "🏆 عرض VIP",
+                "offer3-title": "تأمين السكن + محتويات بأسعار خاصة",
+                "offer3-discount": "خصم 15% + تقسيط مريح",
+                "offer3-desc": "احمِ منزلك وممتلكاتك من المخاطر بأفضل الأسعار. تغطية ضد الحرائق والسرقة والكوارث الطبيعية.",
+                "offer3-btn": "احصل على العرض",
+                "offer4-badge": "✈️ عرض السفر",
+                "offer4-title": "تأمين السفر + تغطية كورونا مجاناً",
+                "offer4-discount": "خصم 25% + إلغاء مجاني",
+                "offer4-desc": "سافر براحة بال! تغطية شاملة تشمل المصاريف الطبية، إلغاء الرحلات، وفقدان الأمتعة.",
+                "offer4-btn": "استفد من العرض",
                 "booking-title": "📅 حجز موعد استشارة مجانية",
                 "booking-info-title": "💡 لماذا تحجز معنا؟",
                 "booking-info1": "استشارة مجانية مع خبراء التأمين",
@@ -1554,6 +1803,7 @@
                 "footer-links-title": "روابط سريعة",
                 "footer-home": "الرئيسية",
                 "footer-services": "خدماتنا",
+                "footer-offers": "عروض حصرية",
                 "footer-stats": "الإحصائيات",
                 "footer-booking": "حجز موعد",
                 "footer-about": "من نحن",
@@ -1574,9 +1824,9 @@
             fr: {
                 "hours": "Samedi - Jeudi: 09:00 - 17:00",
                 "logo-title": "Guide Assurance",
-                "logo-sub": "Annuaire des Assurances Algérie",
                 "nav-home": "Accueil",
                 "nav-services": "Services",
+                "nav-offers": "Offres exclusives",
                 "nav-stats": "Statistiques",
                 "nav-booking": "Rendez-vous",
                 "nav-about": "À Propos",
@@ -1595,14 +1845,28 @@
                 "service3-desc": "Protection de votre maison et de son contenu contre les risques",
                 "service4-title": "Assurance Voyage",
                 "service4-desc": "Couverture médicale, annulation de voyage et perte de bagages",
-                "service5-title": "Assurance Entreprise",
-                "service5-desc": "Protection complète pour les projets et entreprises",
-                "service6-title": "Responsabilité Civile",
-                "service6-desc": "Protection juridique et financière contre les dommages",
-                "dashboard-title": "📊 Tableau de bord avancé",
-                "dashboard-desc": "Analyses précises du marché de l'assurance en Algérie",
-                "chart1-title": "📈 Types d'assurance les plus demandés",
-                "chart2-title": "📍 Wilayas les plus demandeuses",
+                "offers-title": "🎁 Offres exclusives de nos partenaires",
+                "offers-desc": "Bénéficiez de réductions et services supplémentaires en vous inscrivant via le guide",
+                "offer1-badge": "🔥 Offre limitée",
+                "offer1-title": "20% de réduction sur l'assurance auto",
+                "offer1-discount": "20% + assistance routière gratuite",
+                "offer1-desc": "Offre spéciale pour les nouveaux clients via notre site.",
+                "offer1-btn": "Demander l'offre",
+                "offer2-badge": "⭐ Offre famille",
+                "offer2-title": "Assurance santé famille + 1 mois gratuit",
+                "offer2-discount": "1 mois gratuit pour abonnement annuel",
+                "offer2-desc": "Couverture médicale complète pour toute la famille.",
+                "offer2-btn": "Profiter de l'offre",
+                "offer3-badge": "🏆 Offre VIP",
+                "offer3-title": "Assurance habitation + contenu à prix spécial",
+                "offer3-discount": "15% + paiement échelonné",
+                "offer3-desc": "Protégez votre maison et vos biens aux meilleurs prix.",
+                "offer3-btn": "Obtenir l'offre",
+                "offer4-badge": "✈️ Offre voyage",
+                "offer4-title": "Assurance voyage + couverture COVID gratuite",
+                "offer4-discount": "25% + annulation gratuite",
+                "offer4-desc": "Voyagez l'esprit tranquille! Couverture médicale, annulation et perte de bagages.",
+                "offer4-btn": "Profiter de l'offre",
                 "booking-title": "📅 Réserver un rendez-vous gratuit",
                 "booking-info-title": "💡 Pourquoi réserver avec nous?",
                 "booking-info1": "Consultation gratuite avec experts",
@@ -1680,6 +1944,7 @@
                 "footer-links-title": "Liens rapides",
                 "footer-home": "Accueil",
                 "footer-services": "Services",
+                "footer-offers": "Offres exclusives",
                 "footer-stats": "Statistiques",
                 "footer-booking": "Rendez-vous",
                 "footer-about": "À Propos",
@@ -1700,7 +1965,6 @@
         };
 
         let currentLang = 'ar';
-        let insuranceChart, wilayaChart;
 
         function escapeHtml(text) {
             if (!text) return '';
@@ -1720,45 +1984,14 @@
             else if(msg.includes('سكن') || msg.includes('habitation') || msg.includes('maison')) {
                 return currentLang === 'ar' ? '🏠 تأمين السكن يحمي منزلك من الحرائق والسرقة. أسعار خاصة تبدأ من 5000 دج سنوياً.' : '🏠 Assurance habitation à partir de 5000 DA/an.';
             }
+            else if(msg.includes('سفر') || msg.includes('voyage') || msg.includes('travel')) {
+                return currentLang === 'ar' ? '✈️ تأمين السفر يغطيك في الداخل والخارج. تغطية طبية وإلغاء الرحلات وفقدان الأمتعة. عروض خاصة حالياً!' : '✈️ Assurance voyage vous couvre à l\'intérieur et à l\'étranger. Offres spéciales actuellement!';
+            }
             else if(msg.includes('سعر') || msg.includes('prix') || msg.includes('price') || msg.includes('تكلفة')) {
-                return currentLang === 'ar' ? '💰 الأسعار التقريبية: تأمين السيارات من 8000 دج، الصحة من 15000 دج، السكن من 5000 دج سنوياً. للحصول على عرض دقيق، احجز استشارة مجانية.' : '💰 Prix approximatifs: Auto à partir de 8000 DA, Santé 15000 DA, Habitation 5000 DA/an.';
+                return currentLang === 'ar' ? '💰 الأسعار التقريبية: تأمين السيارات من 8000 دج، الصحة من 15000 دج، السكن من 5000 دج، السفر من 3000 دج سنوياً. للحصول على عرض دقيق، احجز استشارة مجانية.' : '💰 Prix approximatifs: Auto à partir de 8000 DA, Santé 15000 DA, Habitation 5000 DA, Voyage 3000 DA/an.';
             }
             else {
                 return currentLang === 'ar' ? '📋 شكراً لتواصلك! يمكنني مساعدتك في معلومات عن تأمين السيارات، الصحة، السكن، أو السفر. يمكنك أيضاً حجز موعد استشارة مجانية من قسم "حجز موعد".' : '📋 Merci! Je peux vous aider avec les assurances auto, santé, habitation ou voyage. Réservez un rendez-vous gratuit.';
-            }
-        }
-
-        function initCharts() {
-            const ctx1 = document.getElementById('insuranceChart')?.getContext('2d');
-            const ctx2 = document.getElementById('wilayaChart')?.getContext('2d');
-            
-            if(ctx1) {
-                if(insuranceChart) insuranceChart.destroy();
-                insuranceChart = new Chart(ctx1, {
-                    type: 'bar',
-                    data: {
-                        labels: currentLang === 'ar' ? ['سيارات', 'صحة', 'سكن', 'سفر', 'مؤسسات'] : ['Auto', 'Santé', 'Habitation', 'Voyage', 'Entreprise'],
-                        datasets: [{
-                            label: currentLang === 'ar' ? 'نسبة الطلب (%)' : 'Taux de demande (%)',
-                            data: [38, 27, 23, 7, 5],
-                            backgroundColor: ['#0B3B5E', '#1B8E9E', '#D4AF37', '#2C3E50', '#6c757d'],
-                            borderRadius: 10
-                        }]
-                    },
-                    options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { position: 'bottom' } } }
-                });
-            }
-            
-            if(ctx2) {
-                if(wilayaChart) wilayaChart.destroy();
-                wilayaChart = new Chart(ctx2, {
-                    type: 'pie',
-                    data: {
-                        labels: currentLang === 'ar' ? ['الجزائر', 'وهران', 'قسنطينة', 'عنابة', 'برج بوعريريج'] : ['Alger', 'Oran', 'Constantine', 'Annaba', 'Bordj'],
-                        datasets: [{ data: [35, 18, 15, 12, 8], backgroundColor: ['#0B3B5E', '#1B8E9E', '#D4AF37', '#2C3E50', '#6c757d'] }]
-                    },
-                    options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { position: 'bottom' } } }
-                });
             }
         }
 
@@ -1784,7 +2017,6 @@
             document.title = (lang === 'ar' ? 'دليل وكالات التأمين في الجزائر' : 'Guide des Assurances en Algérie') + ' | Annuaire des Assurances';
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
             localStorage.setItem('preferred_language', lang);
-            initCharts();
         }
         
         document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -1973,8 +2205,6 @@
             window.open(`https://wa.me/213774479525?text=${msg}`, '_blank');
             alert(currentLang === 'ar' ? '✓ تم التوجيه إلى واتساب، سنتواصل معك قريباً' : '✓ Redirection vers WhatsApp');
         }
-        
-        window.addEventListener('load', () => initCharts());
     </script>
 </body>
 </html>
