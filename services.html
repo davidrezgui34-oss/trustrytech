@@ -70,7 +70,7 @@
             gap: 1rem;
         }
         
-        /* زر العودة إلى الرئيسية */
+        /* زر العودة إلى الرئيسية - جهة اليسار */
         .back-home-btn {
             display: flex;
             align-items: center;
@@ -91,45 +91,50 @@
             box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
         }
         
-        /* شعار بسيط في المنتصف */
-        .navbar-logo {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: #1e3a8a;
-            font-weight: 700;
-            font-size: 1rem;
-        }
-        .navbar-logo i {
-            font-size: 1.3rem;
-            color: #d4af37;
-        }
-        
-        /* زر اللغة */
-        .lang-switch-nav {
+        /* زر اللغة - في المنتصف وبارز */
+        .lang-switch-center {
             background: linear-gradient(135deg, #1e3a8a, #1e40af);
             border: none;
-            padding: 0.5rem 1.2rem;
-            border-radius: 2rem;
-            font-weight: 600;
-            font-size: 0.85rem;
+            padding: 0.6rem 1.8rem;
+            border-radius: 2.5rem;
+            font-weight: 700;
+            font-size: 0.9rem;
             transition: all 0.3s ease;
             cursor: pointer;
             color: white;
             display: flex;
             align-items: center;
-            gap: 6px;
-            box-shadow: 0 2px 8px rgba(30, 58, 138, 0.3);
-        }
-        .lang-switch-nav:hover {
-            transform: translateY(-2px);
-            background: linear-gradient(135deg, #1e40af, #1e3a8a);
+            gap: 10px;
             box-shadow: 0 4px 12px rgba(30, 58, 138, 0.4);
+            letter-spacing: 0.5px;
+        }
+        .lang-switch-center:hover {
+            transform: translateY(-2px) scale(1.02);
+            background: linear-gradient(135deg, #1e40af, #1e3a8a);
+            box-shadow: 0 6px 16px rgba(30, 58, 138, 0.5);
+        }
+        .lang-switch-center i {
+            font-size: 1rem;
         }
         
-        /* للغة العربية - عكس ترتيب الأزرار */
+        /* عنصر فارغ في جهة اليمين للتوازن (لأن زر العودة في اليسار والترجمة في المنتصف) */
+        .navbar-placeholder {
+            width: 120px;
+            visibility: hidden;
+        }
+        
+        /* للغة العربية - عكس ترتيب العناصر */
         .lang-ar .navbar-container {
-            flex-direction: row-reverse;
+            flex-direction: row;
+        }
+        .lang-ar .back-home-btn {
+            order: 3;
+        }
+        .lang-ar .lang-switch-center {
+            order: 2;
+        }
+        .lang-ar .navbar-placeholder {
+            order: 1;
         }
         
         /* تنسيق البطاقات */
@@ -222,33 +227,48 @@
             body {
                 padding-top: 60px;
             }
-            .back-home-btn span, .lang-switch-nav span {
+            .back-home-btn span {
                 display: none;
             }
-            .back-home-btn, .lang-switch-nav {
+            .back-home-btn {
                 padding: 0.5rem;
                 border-radius: 50%;
-                width: 38px;
-                height: 38px;
+                width: 40px;
+                height: 40px;
                 justify-content: center;
             }
-            .back-home-btn i, .lang-switch-nav i {
-                margin: 0;
+            .lang-switch-center {
+                padding: 0.5rem 1.2rem;
+                font-size: 0.8rem;
             }
-            .navbar-logo span {
-                display: none;
+            .lang-switch-center span {
+                display: inline-block;
+            }
+            .navbar-placeholder {
+                width: 40px;
             }
             .counter {
                 font-size: 1.8rem;
             }
         }
         
-        @media (max-width: 640px) {
-            .navbar-logo {
-                font-size: 0.8rem;
+        @media (max-width: 480px) {
+            .lang-switch-center span {
+                display: none;
             }
-            .navbar-logo i {
-                font-size: 1rem;
+            .lang-switch-center {
+                padding: 0.5rem;
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                justify-content: center;
+            }
+            .lang-switch-center i {
+                margin: 0;
+                font-size: 1.2rem;
+            }
+            .navbar-placeholder {
+                width: 40px;
             }
         }
         
@@ -264,13 +284,26 @@
         #searchInput:focus {
             box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
         }
+        
+        /* تأثير نبض لزر اللغة */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(30, 58, 138, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(30, 58, 138, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(30, 58, 138, 0); }
+        }
+        .lang-switch-center {
+            animation: pulse 2s infinite;
+        }
+        .lang-switch-center:hover {
+            animation: none;
+        }
     </style>
 </head>
 <body>
     <!-- شريط التنقل العلوي الموحد -->
     <div class="top-navbar" id="topNavbar">
         <div class="navbar-container">
-            <!-- زر العودة إلى الرئيسية -->
+            <!-- زر العودة إلى الرئيسية - جهة اليسار -->
             <a href="https://davidrezgui34-oss.github.io/trustrytech/" class="back-home-btn" id="backHomeBtn">
                 <i class="fas fa-arrow-right"></i>
                 <i class="fas fa-home"></i>
@@ -278,18 +311,15 @@
                 <span class="ar">الرئيسية</span>
             </a>
             
-            <!-- شعار بسيط في المنتصف -->
-            <div class="navbar-logo">
-                <i class="fas fa-shield-alt"></i>
-                <span class="fr">Assurance Services</span>
-                <span class="ar">خدمات التأمين</span>
-            </div>
-            
-            <!-- زر اللغة -->
-            <button class="lang-switch-nav" id="toggleLangNav">
-                <i class="fas fa-language"></i>
-                <span id="langBtnTextNav">العربية</span>
+            <!-- زر اللغة في المنتصف - بارز وجذاب -->
+            <button class="lang-switch-center" id="toggleLangCenter">
+                <i class="fas fa-globe"></i>
+                <span id="langBtnTextCenter">العربية</span>
+                <i class="fas fa-exchange-alt"></i>
             </button>
+            
+            <!-- عنصر فارغ للتوازن (يحافظ على تناسق التصميم) -->
+            <div class="navbar-placeholder"></div>
         </div>
     </div>
 
@@ -600,32 +630,32 @@
         // تهيئة AOS
         AOS.init();
 
-        // نظام الترجمة الموحد
+        // نظام الترجمة الموحد - زر الترجمة في المنتصف
         let currentLang = localStorage.getItem('servicesLang') || 'fr';
         
         function applyLanguage(lang) {
             const page = document.getElementById('page');
-            const toggleBtnNav = document.getElementById('toggleLangNav');
-            const langBtnTextNav = document.getElementById('langBtnTextNav');
+            const toggleBtnCenter = document.getElementById('toggleLangCenter');
+            const langBtnTextCenter = document.getElementById('langBtnTextCenter');
             
             if (lang === 'ar') {
                 page.classList.remove('lang-fr');
                 page.classList.add('lang-ar');
                 document.documentElement.setAttribute('dir', 'rtl');
                 document.documentElement.lang = 'ar';
-                if (langBtnTextNav) langBtnTextNav.textContent = 'Français';
+                if (langBtnTextCenter) langBtnTextCenter.textContent = 'Français';
             } else {
                 page.classList.remove('lang-ar');
                 page.classList.add('lang-fr');
                 document.documentElement.setAttribute('dir', 'ltr');
                 document.documentElement.lang = 'fr';
-                if (langBtnTextNav) langBtnTextNav.textContent = 'العربية';
+                if (langBtnTextCenter) langBtnTextCenter.textContent = 'العربية';
             }
             localStorage.setItem('servicesLang', lang);
             currentLang = lang;
         }
 
-        document.getElementById('toggleLangNav').addEventListener('click', () => {
+        document.getElementById('toggleLangCenter').addEventListener('click', () => {
             applyLanguage(currentLang === 'fr' ? 'ar' : 'fr');
         });
         applyLanguage(currentLang);
