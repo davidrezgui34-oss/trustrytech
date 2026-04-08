@@ -57,7 +57,7 @@
             box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
             backdrop-filter: blur(10px);
             background: rgba(255, 255, 255, 0.98);
-            padding: 0.75rem 1.5rem;
+            padding: 0.75rem 1rem;
         }
         
         .navbar-container {
@@ -66,45 +66,50 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 1rem;
+            gap: 0.5rem;
         }
         
         /* زر العودة إلى الرئيسية */
         .back-home-btn {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             background: linear-gradient(135deg, #10b981, #059669);
             color: white;
-            padding: 0.5rem 1.2rem;
+            padding: 0.5rem 1rem;
             border-radius: 2rem;
             font-weight: 600;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             transition: all 0.3s ease;
             text-decoration: none;
             box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+            white-space: nowrap;
         }
         .back-home-btn:hover {
             transform: translateY(-2px);
             background: linear-gradient(135deg, #059669, #047857);
             box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
         }
+        .back-home-btn i:first-child {
+            display: none;
+        }
         
         /* زر اللغة في المنتصف */
         .lang-switch-center {
             background: linear-gradient(135deg, #1e3a8a, #1e40af);
             border: none;
-            padding: 0.6rem 1.8rem;
+            padding: 0.5rem 1.2rem;
             border-radius: 2.5rem;
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             transition: all 0.3s ease;
             cursor: pointer;
             color: white;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 6px;
             box-shadow: 0 4px 12px rgba(30, 58, 138, 0.4);
+            white-space: nowrap;
         }
         .lang-switch-center:hover {
             transform: translateY(-2px) scale(1.02);
@@ -113,8 +118,30 @@
         
         /* عنصر فارغ للتوازن */
         .navbar-placeholder {
-            width: 120px;
+            width: 0;
             visibility: hidden;
+        }
+        
+        /* ========== تحسينات للهواتف ========== */
+        @media (min-width: 640px) {
+            .top-navbar {
+                padding: 0.75rem 1.5rem;
+            }
+            .back-home-btn {
+                padding: 0.5rem 1.2rem;
+                font-size: 0.85rem;
+            }
+            .back-home-btn i:first-child {
+                display: inline-block;
+            }
+            .lang-switch-center {
+                padding: 0.6rem 1.8rem;
+                font-size: 0.9rem;
+                gap: 10px;
+            }
+            .navbar-placeholder {
+                width: 120px;
+            }
         }
         
         /* تنسيق البطاقات */
@@ -214,45 +241,137 @@
             color: #1e3a8a;
         }
         
-        @media (max-width: 768px) {
+        /* ========== خلفية قسم الاتصال المحسنة ========== */
+        .contact-section-enhanced {
+            position: relative;
+            background-image: url('https://davidrezgui34-oss.github.io/trustrytech/images/pexels-mart-production-7709286.jpg');
+            background-size: cover;
+            background-position: center 30%;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
+        
+        /* طبقة تراكب متدرجة */
+        .contact-section-enhanced::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                rgba(0, 0, 0, 0.75) 0%,
+                rgba(30, 58, 138, 0.65) 50%,
+                rgba(0, 0, 0, 0.75) 100%);
+            z-index: 1;
+        }
+        
+        /* المحتوى فوق كل الطبقات */
+        .contact-section-enhanced > div {
+            position: relative;
+            z-index: 3;
+        }
+        
+        /* ========== تحسينات جمالية عصرية (زجاجية) ========== */
+        .contact-section-enhanced .info-card {
+            background: rgba(255, 255, 255, 0.85) !important;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.5) !important;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .contact-section-enhanced .info-card:hover {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(12px);
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(255, 215, 0, 0.6) !important;
+        }
+
+        .contact-section-enhanced .bg-white.rounded-2xl {
+            background: rgba(255, 255, 255, 0.9) !important;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6) !important;
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3) !important;
+        }
+
+        .contact-section-enhanced .text-center h2,
+        .contact-section-enhanced .text-center p {
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+        }
+        .contact-section-enhanced .text-center h2 span,
+        .contact-section-enhanced .text-center p span {
+            color: white !important;
+            font-weight: 700;
+        }
+        .contact-section-enhanced .inline-block.bg-blue-100 {
+            background: rgba(255, 255, 255, 0.25) !important;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .contact-section-enhanced .inline-block.bg-blue-100 span {
+            color: #FFD700 !important;
+        }
+        .contact-section-enhanced .inline-block.bg-blue-100 i {
+            color: #FFD700 !important;
+        }
+        
+        /* ========== تحسينات الوضوح على جميع الأجهزة ========== */
+        @media (max-width: 640px) {
             body {
                 padding-top: 60px;
             }
-            .back-home-btn span {
-                display: none;
+            
+            .contact-section-enhanced {
+                background-attachment: scroll;
+                padding: 20px 15px 40px !important;
             }
-            .back-home-btn {
-                padding: 0.5rem;
-                border-radius: 50%;
+            
+            .text-4xl {
+                font-size: 1.8rem !important;
+            }
+            
+            .text-2xl {
+                font-size: 1.4rem !important;
+            }
+            
+            .text-sm {
+                font-size: 0.9rem !important;
+            }
+            
+            p, .text-gray-600, .text-gray-300 {
+                font-size: 0.95rem !important;
+                line-height: 1.5 !important;
+            }
+            
+            h3 {
+                font-size: 1.2rem !important;
+            }
+            
+            .whatsapp-float {
+                bottom: 70px;
+                left: 15px;
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+            
+            .scroll-top {
+                bottom: 15px;
+                right: 15px;
                 width: 40px;
                 height: 40px;
-                justify-content: center;
             }
-            .lang-switch-center {
-                padding: 0.5rem 1.2rem;
-                font-size: 0.8rem;
-            }
-            .navbar-placeholder {
-                width: 40px;
+            
+            .map-container iframe {
+                height: 300px;
             }
         }
         
-        @media (max-width: 480px) {
-            .lang-switch-center span {
-                display: none;
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .contact-section-enhanced {
+                padding: 30px 20px 50px !important;
             }
-            .lang-switch-center {
-                padding: 0.5rem;
-                border-radius: 50%;
-                width: 40px;
-                height: 40px;
-                justify-content: center;
-            }
-        }
-        
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
         }
         
         .map-container {
@@ -269,6 +388,17 @@
         
         html {
             scroll-behavior: smooth;
+        }
+        
+        /* تحسين وضوح النص في البطاقات */
+        .info-card p, .bg-white p {
+            font-weight: 500 !important;
+            color: #1f2937 !important;
+        }
+        
+        .contact-section-enhanced .info-card h3 {
+            color: #1e3a8a !important;
+            font-weight: 800 !important;
         }
     </style>
 </head>
@@ -305,82 +435,82 @@
 
     <div class="lang-fr" id="page">
         
-        <!-- Section Contact -->
-        <section style="padding: 40px 20px 60px;">
+        <!-- Section Contact avec la nouvelle image de fond -->
+        <section class="contact-section-enhanced" style="padding: 40px 20px 60px;">
             <div style="max-width: 1100px; margin: auto;">
                 
                 <!-- En-tête -->
-                <div class="text-center mb-12" data-aos="fade-up">
+                <div class="text-center mb-8 md:mb-12" data-aos="fade-up">
                     <div class="inline-block bg-blue-100 rounded-full px-4 py-1 mb-4">
                         <i class="fas fa-headset text-blue-600 ml-2"></i>
                         <span class="text-blue-600 text-sm font-semibold fr">Support Client</span>
                         <span class="text-blue-600 text-sm font-semibold ar">دعم العملاء</span>
                     </div>
-                    <h2 class="text-4xl font-bold text-blue-800 mb-4">
+                    <h2 class="text-3xl md:text-4xl font-bold text-blue-800 mb-3 md:mb-4">
                         <span class="fr">📞 Contactez-nous</span>
                         <span class="ar">📞 اتصل بنا</span>
                     </h2>
-                    <p class="text-gray-600 max-w-2xl mx-auto">
+                    <p class="text-gray-600 max-w-2xl mx-auto text-sm md:text-base px-4">
                         <span class="fr">Notre équipe d'experts est à votre disposition pour répondre à toutes vos questions.</span>
                         <span class="ar">فريق خبرائنا تحت تصرفكم للإجابة على جميع أسئلتكم.</span>
                     </p>
                 </div>
 
                 <!-- Cartes d'informations -->
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12" data-aos="fade-up" data-aos-delay="100">
-                    <div class="info-card bg-white p-6 rounded-xl shadow-md text-center">
-                        <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-map-marker-alt text-2xl text-blue-600"></i>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-8 md:mb-12" data-aos="fade-up" data-aos-delay="100">
+                    <div class="info-card bg-white p-4 md:p-6 rounded-xl shadow-md text-center">
+                        <div class="bg-blue-100 w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
+                            <i class="fas fa-map-marker-alt text-xl md:text-2xl text-blue-600"></i>
                         </div>
-                        <h3 class="font-bold text-gray-800 mb-2">
+                        <h3 class="font-bold text-gray-800 mb-1 md:mb-2 text-base md:text-lg">
                             <span class="fr">Adresse</span>
                             <span class="ar">العنوان</span>
                         </h3>
-                        <p class="text-gray-600 text-sm">
+                        <p class="text-gray-600 text-xs md:text-sm">
                             <span class="fr">Bordj Bou Arreridj, Cité El Amal, Algérie</span>
                             <span class="ar">برج بوعريريج، حي الأمان، الجزائر</span>
                         </p>
                     </div>
                     
-                    <div class="info-card bg-white p-6 rounded-xl shadow-md text-center">
-                        <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-phone-alt text-2xl text-blue-600"></i>
+                    <div class="info-card bg-white p-4 md:p-6 rounded-xl shadow-md text-center">
+                        <div class="bg-blue-100 w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
+                            <i class="fas fa-phone-alt text-xl md:text-2xl text-blue-600"></i>
                         </div>
-                        <h3 class="font-bold text-gray-800 mb-2">
+                        <h3 class="font-bold text-gray-800 mb-1 md:mb-2 text-base md:text-lg">
                             <span class="fr">Téléphone</span>
                             <span class="ar">الهاتف</span>
                         </h3>
-                        <p class="text-gray-600 text-sm">+213 668 460 780</p>
+                        <p class="text-gray-600 text-xs md:text-sm">+213 668 460 780</p>
                     </div>
                     
-                    <div class="info-card bg-white p-6 rounded-xl shadow-md text-center">
-                        <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-envelope text-2xl text-blue-600"></i>
+                    <div class="info-card bg-white p-4 md:p-6 rounded-xl shadow-md text-center">
+                        <div class="bg-blue-100 w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
+                            <i class="fas fa-envelope text-xl md:text-2xl text-blue-600"></i>
                         </div>
-                        <h3 class="font-bold text-gray-800 mb-2">Email</h3>
-                        <p class="text-gray-600 text-sm">contact@assurance.dz</p>
+                        <h3 class="font-bold text-gray-800 mb-1 md:mb-2 text-base md:text-lg">Email</h3>
+                        <p class="text-gray-600 text-xs md:text-sm">contact@assurance.dz</p>
                     </div>
                     
-                    <div class="info-card bg-white p-6 rounded-xl shadow-md text-center">
-                        <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-clock text-2xl text-blue-600"></i>
+                    <div class="info-card bg-white p-4 md:p-6 rounded-xl shadow-md text-center">
+                        <div class="bg-blue-100 w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
+                            <i class="fas fa-clock text-xl md:text-2xl text-blue-600"></i>
                         </div>
-                        <h3 class="font-bold text-gray-800 mb-2">
+                        <h3 class="font-bold text-gray-800 mb-1 md:mb-2 text-base md:text-lg">
                             <span class="fr">Horaires</span>
                             <span class="ar">ساعات العمل</span>
                         </h3>
-                        <p class="text-gray-600 text-sm">
+                        <p class="text-gray-600 text-xs md:text-sm">
                             <span class="fr">Lun - Sam : 09h00 - 17h00</span>
                             <span class="ar">السبت - الخميس: 09:00 - 17:00</span>
                         </p>
                     </div>
                 </div>
 
-                <!-- Formulaire + Carte WhatsApp -->
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12" data-aos="fade-up" data-aos-delay="200">
+                <!-- Formulaire + Carte Double (WhatsApp/Email) -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mb-8 md:mb-12" data-aos="fade-up" data-aos-delay="200">
                     <!-- Formulaire de contact -->
-                    <div class="bg-white rounded-2xl shadow-xl p-8">
-                        <h3 class="text-2xl font-bold text-blue-800 mb-6 text-center">
+                    <div class="bg-white rounded-2xl shadow-xl p-5 md:p-8">
+                        <h3 class="text-xl md:text-2xl font-bold text-blue-800 mb-4 md:mb-6 text-center">
                             <span class="fr">✉️ Envoyez-nous un message</span>
                             <span class="ar">✉️ أرسل لنا رسالة</span>
                         </h3>
@@ -388,56 +518,56 @@
                         <form id="contactForm">
                             <input type="text" name="_gotcha" style="display:none">
                             
-                            <div class="mb-4">
-                                <label class="block text-gray-700 font-medium mb-2">
+                            <div class="mb-3 md:mb-4">
+                                <label class="block text-gray-700 font-medium mb-1 md:mb-2 text-sm md:text-base">
                                     <i class="fas fa-user text-blue-600 ml-1"></i>
                                     <span class="fr">Nom complet</span>
                                     <span class="ar">الاسم الكامل</span>
                                 </label>
-                                <input type="text" id="fullName" required class="form-input w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-blue-500 transition">
+                                <input type="text" id="fullName" required class="form-input w-full px-3 md:px-4 py-2 md:py-3 rounded-xl border-2 border-gray-200 focus:border-blue-500 transition text-sm md:text-base">
                             </div>
                             
-                            <div class="mb-4">
-                                <label class="block text-gray-700 font-medium mb-2">
+                            <div class="mb-3 md:mb-4">
+                                <label class="block text-gray-700 font-medium mb-1 md:mb-2 text-sm md:text-base">
                                     <i class="fas fa-envelope text-blue-600 ml-1"></i> Email
                                 </label>
-                                <input type="email" id="email" required class="form-input w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-blue-500 transition">
+                                <input type="email" id="email" required class="form-input w-full px-3 md:px-4 py-2 md:py-3 rounded-xl border-2 border-gray-200 focus:border-blue-500 transition text-sm md:text-base">
                             </div>
                             
-                            <div class="mb-4">
-                                <label class="block text-gray-700 font-medium mb-2">
+                            <div class="mb-3 md:mb-4">
+                                <label class="block text-gray-700 font-medium mb-1 md:mb-2 text-sm md:text-base">
                                     <i class="fas fa-phone text-blue-600 ml-1"></i>
                                     <span class="fr">Téléphone</span>
                                     <span class="ar">رقم الهاتف</span>
                                 </label>
-                                <input type="tel" id="phone" class="form-input w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-blue-500 transition">
+                                <input type="tel" id="phone" class="form-input w-full px-3 md:px-4 py-2 md:py-3 rounded-xl border-2 border-gray-200 focus:border-blue-500 transition text-sm md:text-base">
                             </div>
                             
-                            <div class="mb-4">
-                                <label class="block text-gray-700 font-medium mb-2">
+                            <div class="mb-3 md:mb-4">
+                                <label class="block text-gray-700 font-medium mb-1 md:mb-2 text-sm md:text-base">
                                     <i class="fas fa-comment-dots text-blue-600 ml-1"></i>
                                     <span class="fr">Message</span>
                                     <span class="ar">الرسالة</span>
                                 </label>
-                                <textarea id="message" rows="4" required class="form-textarea w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-blue-500 transition"></textarea>
+                                <textarea id="message" rows="4" required class="form-textarea w-full px-3 md:px-4 py-2 md:py-3 rounded-xl border-2 border-gray-200 focus:border-blue-500 transition text-sm md:text-base"></textarea>
                             </div>
                             
-                            <div class="mb-6">
-                                <label class="block text-gray-700 font-medium mb-2">
+                            <div class="mb-4 md:mb-6">
+                                <label class="block text-gray-700 font-medium mb-1 md:mb-2 text-sm md:text-base">
                                     <i class="fas fa-robot text-blue-600 ml-1"></i>
                                     <span class="fr">Combien font 3 + 4 ?</span>
                                     <span class="ar">كم ناتج 3 + 4؟</span>
                                 </label>
-                                <input type="number" id="captcha" required class="form-input w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-blue-500 transition">
+                                <input type="number" id="captcha" required class="form-input w-full px-3 md:px-4 py-2 md:py-3 rounded-xl border-2 border-gray-200 focus:border-blue-500 transition text-sm md:text-base">
                             </div>
                             
-                            <button type="submit" id="submitBtn" class="btn-submit w-full bg-gradient-to-r from-blue-600 to-blue-800 text-white py-3 rounded-xl font-semibold text-lg flex items-center justify-center gap-2">
+                            <button type="submit" id="submitBtn" class="btn-submit w-full bg-gradient-to-r from-blue-600 to-blue-800 text-white py-2 md:py-3 rounded-xl font-semibold text-base md:text-lg flex items-center justify-center gap-2">
                                 <i class="fas fa-paper-plane"></i>
                                 <span class="fr">Envoyer le message</span>
                                 <span class="ar">إرسال الرسالة</span>
                             </button>
                             
-                            <button type="button" id="retryBtn" style="display:none" class="w-full mt-3 bg-red-600 text-white py-3 rounded-xl font-semibold flex items-center justify-center gap-2">
+                            <button type="button" id="retryBtn" style="display:none" class="w-full mt-3 bg-red-600 text-white py-2 md:py-3 rounded-xl font-semibold flex items-center justify-center gap-2 text-sm md:text-base">
                                 <i class="fas fa-rotate-left"></i>
                                 <span class="fr">Réessayer</span>
                                 <span class="ar">إعادة المحاولة</span>
@@ -445,37 +575,67 @@
                         </form>
                     </div>
 
-                    <!-- Carte WhatsApp -->
-                    <div class="bg-gradient-to-br from-green-500 to-green-700 rounded-2xl shadow-xl p-8 text-white text-center">
-                        <i class="fab fa-whatsapp text-5xl mb-4"></i>
-                        <h3 class="text-2xl font-bold mb-3">
-                            <span class="fr">Discutez sur WhatsApp</span>
-                            <span class="ar">تحدث عبر واتساب</span>
+                    <!-- بطاقة التواصل المزدوجة العصرية (واتساب + إيميل) -->
+                    <div class="bg-gradient-to-br from-gray-800/90 to-gray-900/90 backdrop-blur-md rounded-2xl shadow-2xl p-5 md:p-8 text-white text-center border border-gray-600/50" style="backdrop-filter: blur(12px);">
+                        <div class="flex justify-center gap-3 md:gap-4 mb-4 md:mb-6">
+                            <span class="bg-green-500/20 p-2 md:p-3 rounded-full"><i class="fab fa-whatsapp text-2xl md:text-3xl text-green-400"></i></span>
+                            <span class="bg-blue-500/20 p-2 md:p-3 rounded-full"><i class="fas fa-envelope text-2xl md:text-3xl text-blue-400"></i></span>
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-bold mb-2 md:mb-3 text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-400">
+                            <span class="fr">Contactez-nous directement</span>
+                            <span class="ar">تواصل معنا مباشرة</span>
                         </h3>
-                        <p class="mb-6 opacity-90">
-                            <span class="fr">Une réponse rapide garantie !</span>
-                            <span class="ar">رد سريع مضمون!</span>
+                        <p class="mb-6 md:mb-8 text-gray-300 text-xs md:text-sm">
+                            <span class="fr">Choisissez votre méthode préférée</span>
+                            <span class="ar">اختر الطريقة التي تفضلها</span>
                         </p>
-                        <a href="https://wa.me/213668460780" target="_blank" class="inline-block bg-white text-green-600 px-8 py-3 rounded-full font-bold hover:bg-gray-100 transition transform hover:scale-105">
-                            <i class="fab fa-whatsapp ml-2"></i>
-                            <span class="fr">Commencer la discussion</span>
-                            <span class="ar">ابدأ المحادثة</span>
+                        
+                        <!-- خيار واتساب -->
+                        <a href="https://wa.me/213668460780" target="_blank" class="block w-full bg-green-600 hover:bg-green-500 text-white px-4 md:px-6 py-3 md:py-4 rounded-xl font-bold transition-all transform hover:scale-[1.02] hover:shadow-lg mb-3 md:mb-4 group">
+                            <div class="flex items-center justify-between">
+                                <span class="flex items-center gap-2 md:gap-3">
+                                    <i class="fab fa-whatsapp text-xl md:text-2xl"></i>
+                                    <span class="fr text-sm md:text-base">WhatsApp</span>
+                                    <span class="ar text-sm md:text-base">واتساب</span>
+                                </span>
+                                <span class="text-xs bg-white/20 px-2 md:px-3 py-1 rounded-full">
+                                    <span class="fr">Réponse rapide</span>
+                                    <span class="ar">رد سريع</span>
+                                </span>
+                                <i class="fas fa-arrow-right group-hover:translate-x-1 transition text-sm"></i>
+                            </div>
                         </a>
-                        <p class="mt-4 text-sm opacity-75">
-                            <i class="fas fa-clock"></i>
-                            <span class="fr">Réponse sous 24h</span>
-                            <span class="ar">الرد خلال 24 ساعة</span>
+                        
+                        <!-- خيار الإيميل -->
+                        <a href="mailto:davidrezgui34@gmail.com" class="block w-full bg-blue-600 hover:bg-blue-500 text-white px-4 md:px-6 py-3 md:py-4 rounded-xl font-bold transition-all transform hover:scale-[1.02] hover:shadow-lg group">
+                            <div class="flex items-center justify-between">
+                                <span class="flex items-center gap-2 md:gap-3">
+                                    <i class="fas fa-envelope text-xl md:text-2xl"></i>
+                                    <span class="fr text-sm md:text-base">Email</span>
+                                    <span class="ar text-sm md:text-base">البريد الإلكتروني</span>
+                                </span>
+                                <span class="text-xs bg-white/20 px-2 md:px-3 py-1 rounded-full">
+                                    <span class="fr">Sous 24h</span>
+                                    <span class="ar">خلال 24 ساعة</span>
+                                </span>
+                                <i class="fas fa-arrow-right group-hover:translate-x-1 transition text-sm"></i>
+                            </div>
+                        </a>
+                        
+                        <!-- نص فرعي للإيميل -->
+                        <p class="mt-4 text-xs text-gray-400 font-mono tracking-wider border-t border-gray-700 pt-4">
+                            <i class="far fa-envelope mr-1"></i> davidrezgui34@gmail.com
                         </p>
                     </div>
                 </div>
 
                 <!-- Réseaux sociaux -->
-                <div class="text-center mb-12" data-aos="fade-up" data-aos-delay="300">
-                    <h3 class="text-xl font-bold text-gray-800 mb-4">
+                <div class="text-center mb-8 md:mb-12" data-aos="fade-up" data-aos-delay="300">
+                    <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-3 md:mb-4">
                         <span class="fr">📱 Suivez-nous</span>
                         <span class="ar">📱 تابعونا</span>
                     </h3>
-                    <div class="flex justify-center gap-3">
+                    <div class="flex justify-center gap-2 md:gap-3">
                         <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
                         <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
@@ -496,10 +656,10 @@
         </section>
 
         <!-- Footer -->
-        <footer class="bg-gray-900 text-white py-8 mt-8">
+        <footer class="bg-gray-900 text-white py-6 md:py-8 mt-6 md:mt-8">
             <div class="container mx-auto px-4 text-center">
-                <p>© 2025 - <span class="fr">Assurance Services | Tous droits réservés</span><span class="ar">خدمات التأمين | جميع الحقوق محفوظة</span></p>
-                <p class="text-gray-400 text-sm mt-2">
+                <p class="text-sm md:text-base">© 2026 - <span class="fr">Assurance Services | Tous droits réservés</span><span class="ar">خدمات التأمين | جميع الحقوق محفوظة</span></p>
+                <p class="text-gray-400 text-xs md:text-sm mt-2">
                     <span class="fr">Votre partenaire de confiance pour toutes vos assurances</span>
                     <span class="ar">شريكك الموثوق لجميع تأميناتك</span>
                 </p>
@@ -548,7 +708,7 @@
         // Toast notification
         function showToast(message, isError = false) {
             const toast = document.createElement('div');
-            toast.className = `fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-${isError ? 'red' : 'green'}-600 text-white px-6 py-3 rounded-lg shadow-lg z-50 flex items-center gap-2`;
+            toast.className = `fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-${isError ? 'red' : 'green'}-600 text-white px-6 py-3 rounded-lg shadow-lg z-50 flex items-center gap-2 text-sm md:text-base`;
             toast.innerHTML = `<i class="fas ${isError ? 'fa-exclamation-triangle' : 'fa-check-circle'}"></i><span>${message}</span>`;
             document.body.appendChild(toast);
             setTimeout(() => toast.remove(), 4000);
