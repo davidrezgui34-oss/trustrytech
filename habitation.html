@@ -2,628 +2,1176 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>التأمين على السكن | Assurance Habitation</title>
-    <meta name="description" content="دليل شامل للتأمين على السكن - حماية منزلك وممتلكاتك من المخاطر">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    
+    <!-- تحسينات SEO -->
+    <title>تأمين السكن | دليل وكالات التأمين في الجزائر - Trusty Tech</title>
+    <meta name="description" content="تأمين السكن الشامل: حماية منزلك وممتلكاتك من الحرائق، السرقة، تسربات المياه، والكوارث الطبيعية. أفضل عروض تأمين السكن في الجزائر.">
+    <meta name="keywords" content="تأمين السكن, تأمين منزل الجزائر, حريق, سرقة, تسرب مياه, كوارث طبيعية, حماية منزلية">
+    <meta name="author" content="Trusty Tech">
     <meta name="robots" content="index, follow">
     
-    <!-- Tailwind CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://davidrezgui34-oss.github.io/trustrytech/habitation">
+    <meta property="og:title" content="تأمين السكن | دليل وكالات التأمين في الجزائر">
+    <meta property="og:description" content="تأمين السكن الشامل: حماية منزلك وممتلكاتك من الحرائق، السرقة، وتسربات المياه">
+    <meta property="og:site_name" content="دليل التأمين الجزائر">
     
-    <!-- Font Awesome للأيقونات -->
+    <!-- Canonical -->
+    <link rel="canonical" href="https://davidrezgui34-oss.github.io/trustrytech/habitation">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- AOS CSS -->
-    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-    
     <style>
-        /* ========== إعدادات أساسية ========== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* ========== المتغيرات العامة ========== */
+        :root {
+            --primary: #0B3B5E;
+            --primary-dark: #072a44;
+            --primary-light: #1a5a7a;
+            --secondary: #1B8E9E;
+            --secondary-light: #40b8c9;
+            --accent: #D4AF37;
+            --accent-light: #e6c84a;
+            --light: #F5F7FA;
+            --dark: #2C3E50;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --white: #ffffff;
+            --box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            --box-shadow-hover: 0 20px 35px rgba(0, 0, 0, 0.12);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --gradient-primary: linear-gradient(135deg, #0B3B5E 0%, #1B8E9E 100%);
+            --gradient-accent: linear-gradient(135deg, #D4AF37 0%, #e6c84a 100%);
+            --glow: 0 0 20px rgba(212, 175, 55, 0.3);
         }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
-            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Tajawal', sans-serif;
-            min-height: 100vh;
-            padding-top: 70px;
-            position: relative;
-            background: #1a1a2e;
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
         }
         
-        /* ========== نظام الخلفية مع الصورة (موحد لجميع الصفحات) ========== */
-        body::before {
-            content: '';
-            position: fixed;
+        body[dir="ltr"] { text-align: left; }
+        body[dir="rtl"] { text-align: right; }
+        
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--light-gray); }
+        ::-webkit-scrollbar-thumb { background: var(--secondary); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+        
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+        
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .animate.active { 
+            opacity: 1; 
+            transform: translateY(0); 
+            animation: fadeUp 0.6s ease-out;
+        }
+        
+        /* الشريط العلوي */
+        .top-bar {
+            background: var(--gradient-primary);
+            color: var(--white);
+            padding: 6px 0;
+            position: relative;
+            z-index: 1001;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .top-wrapper { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+        .top-contact { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+        .top-contact span {
+            display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem;
+            transition: var(--transition); padding: 3px 8px; border-radius: 20px;
+            background: rgba(255,255,255,0.05);
+        }
+        .top-contact span:hover { background: rgba(255,255,255,0.12); transform: translateY(-1px); }
+        .top-contact i { color: var(--accent); font-size: 0.75rem; }
+        .top-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .language-switch { display: flex; gap: 3px; align-items: center; background: rgba(255,255,255,0.08); padding: 2px; border-radius: 25px; }
+        .lang-btn {
+            background: transparent; border: none; padding: 4px 10px; border-radius: 20px;
+            color: rgba(255,255,255,0.85); cursor: pointer; font-family: 'Tajawal', sans-serif;
+            font-weight: 500; transition: var(--transition); font-size: 0.7rem;
+        }
+        .lang-btn:hover { color: var(--white); background: rgba(255,255,255,0.1); }
+        .lang-btn.active { background: var(--accent); color: var(--primary-dark); box-shadow: 0 2px 6px rgba(212, 175, 55, 0.3); }
+        .top-social { display: flex; gap: 4px; align-items: center; }
+        .top-social a {
+            color: var(--white); background: rgba(255,255,255,0.08); width: 28px; height: 28px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            transition: var(--transition); text-decoration: none; font-size: 0.75rem;
+        }
+        .top-social a:hover { background: var(--accent); color: var(--primary-dark); transform: translateY(-2px); }
+        
+        /* الهيدر الرئيسي */
+        header {
+            background: rgba(255,255,255,0.98);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.04);
+            position: sticky;
             top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.03);
+        }
+        .navbar { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 5px 0; 
+            gap: 10px; 
+            flex-wrap: wrap;
+        }
+        .logo-container { display: flex; align-items: center; flex-shrink: 0; }
+        .logo-icon {
+            width: 42px; height: 42px; background: var(--gradient-primary); border-radius: 10px;
+            display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(11, 59, 94, 0.15);
+            transition: var(--transition); position: relative; overflow: hidden; margin-left: 8px;
+        }
+        .logo-icon i { font-size: 1.4rem; color: var(--white); }
+        .logo-text h1 { font-size: 1.2rem; color: var(--primary); font-weight: 800; line-height: 1.2; margin: 0; }
+        .logo-text span { font-size: 0.65rem; color: var(--secondary); display: block; line-height: 1.2; font-weight: 600; }
+        
+        /* القائمة العلوية */
+        .nav-links { 
+            display: flex; 
+            list-style: none; 
+            gap: 1px; 
+            margin: 0; 
+            padding: 0; 
+            align-items: center; 
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .nav-links li { margin: 0; position: relative; }
+        .nav-links a {
+            text-decoration: none; 
+            color: var(--dark); 
+            font-weight: 600; 
+            padding: 6px 7px;
+            border-radius: 8px; 
+            transition: var(--transition); 
+            font-size: 0.72rem;
+            display: inline-flex; 
+            align-items: center; 
+            gap: 4px; 
+            white-space: nowrap; 
+            position: relative; 
+            background: transparent;
+        }
+        .nav-links a i { font-size: 0.75rem; color: var(--secondary); transition: var(--transition); }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: 2px; left: 50%; width: 0; height: 2px;
+            background: var(--gradient-accent); transition: var(--transition); transform: translateX(-50%); border-radius: 2px;
+        }
+        .nav-links a:hover { color: var(--primary); background: rgba(27, 142, 158, 0.05); }
+        .nav-links a:hover::after { width: 40%; }
+        .nav-links a:hover i { color: var(--accent); }
+        
+        /* القائمة المنسدلة */
+        .dropdown { position: relative; }
+        .dropdown-toggle i { font-size: 0.6rem; transition: transform 0.3s; margin-right: 2px; }
+        .dropdown:hover .dropdown-toggle i { transform: rotate(180deg); }
+        .dropdown-menu {
+            position: absolute; top: calc(100% + 5px); right: 0; background: var(--white);
+            min-width: 180px; border-radius: 10px; box-shadow: 0 10px 35px rgba(0,0,0,0.1);
+            padding: 6px 0; opacity: 0; visibility: hidden; transform: translateY(-8px);
+            transition: all 0.25s ease; z-index: 1000; list-style: none;
+            border: 1px solid rgba(0,0,0,0.04); backdrop-filter: blur(10px); background: rgba(255,255,255,0.98);
+        }
+        .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        .dropdown-menu a {
+            padding: 8px 14px; border-radius: 0; display: flex; align-items: center; gap: 8px;
+            color: var(--dark); font-size: 0.75rem; white-space: nowrap;
+        }
+        .dropdown-menu a i { width: 18px; color: var(--secondary); font-size: 0.8rem; }
+        .dropdown-menu a:hover {
+            background: linear-gradient(90deg, rgba(27, 142, 158, 0.05), transparent);
+            color: var(--primary); padding-right: 20px;
+        }
+        .dropdown-menu a::after { display: none; }
+        
+        /* زر القائمة للهاتف */
+        .mobile-menu-btn {
+            display: none; font-size: 1.4rem; background: rgba(27, 142, 158, 0.05);
+            border: none; color: var(--primary); cursor: pointer; padding: 6px 10px;
+            z-index: 1002; transition: var(--transition); border-radius: 8px; align-items: center; gap: 6px;
+        }
+        .mobile-menu-btn span { font-size: 0.85rem; font-weight: 600; }
+        .mobile-menu-btn:hover { background: var(--secondary); color: var(--white); }
+        
+        @media (min-width: 851px) and (max-width: 1100px) {
+            .navbar { justify-content: center; }
+            .nav-links { justify-content: center; width: 100%; }
+            .nav-links a { padding: 5px 6px; font-size: 0.68rem; }
+            .logo-text h1 { font-size: 1.1rem; }
+        }
+        
+        @media (max-width: 850px) {
+            .mobile-menu-btn { display: flex !important; }
+            .navbar { flex-direction: row; justify-content: space-between; flex-wrap: nowrap; }
+            .nav-links {
+                display: flex !important; position: fixed; top: 0; right: -100%;
+                width: 280px; max-width: 80vw; height: 100vh; background: var(--white);
+                flex-direction: column; padding: 20px 15px 25px;
+                transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: -5px 0 35px rgba(0,0,0,0.12); z-index: 1001; gap: 2px;
+                overflow-y: auto; align-items: stretch; border-left: 1px solid rgba(0,0,0,0.04);
+                flex-wrap: nowrap;
+            }
+            .nav-links.active { right: 0; }
+            .nav-links li { width: 100%; }
+            .nav-links a { display: flex; align-items: center; text-align: right; padding: 14px 15px; font-size: 1rem; white-space: normal; border-radius: 8px; margin: 1px 0; gap: 10px; }
+            .nav-links a i { width: 22px; font-size: 1rem; }
+            .nav-links a::after { display: none; }
+            .dropdown-menu { position: static; opacity: 1; visibility: visible; transform: none; box-shadow: none; border: none; background: transparent; padding: 0; margin-right: 20px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; min-width: auto; border-right: 2px solid var(--secondary); }
+            .dropdown.active .dropdown-menu { max-height: 250px; }
+            .menu-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.35); backdrop-filter: blur(2px); z-index: 1000; opacity: 0; visibility: hidden; transition: all 0.25s ease; cursor: pointer; }
+            .menu-overlay.active { opacity: 1; visibility: visible; }
+            body.menu-open { overflow: hidden; }
+            .mobile-menu-close { position: absolute; top: 15px; left: 15px; background: rgba(0,0,0,0.05); border: none; color: var(--dark); width: 36px; height: 36px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; transition: var(--transition); z-index: 1002; }
+            .mobile-menu-close:hover { background: var(--secondary); color: var(--white); transform: rotate(90deg); }
+        }
+        
+        @media (max-width: 576px) {
+            .top-bar { padding: 4px 0; }
+            .top-wrapper { flex-direction: column; gap: 6px; }
+            .top-contact { justify-content: center; gap: 6px; }
+            .top-contact span { font-size: 0.65rem; padding: 2px 6px; }
+            .logo-icon { width: 38px; height: 38px; }
+            .logo-text h1 { font-size: 1rem; }
+            .logo-text span { font-size: 0.55rem; }
+            .mobile-menu-btn span { display: none; }
+            .nav-links { padding-top: 60px; }
+            .container { width: 95%; padding: 0 10px; }
+            .section { padding: 50px 0; }
+        }
+        
+        .section { padding: 80px 0; position: relative; }
+        
+        /* ========== صفحة تأمين السكن - خلفية عصرية ========== */
+        .habitation-page-section {
+            position: relative;
             background-image: url('https://raw.githubusercontent.com/davidrezgui34-oss/trustrytech/refs/heads/main/images/habitation.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             background-repeat: no-repeat;
-            z-index: -2;
+            padding: 80px 0;
         }
         
-        /* طبقة تراكب متدرجة فوق الصورة لتحسين الوضوح (موحد) */
-        body::after {
+        .habitation-page-section::before {
             content: '';
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             background: linear-gradient(135deg, 
-                rgba(0, 0, 0, 0.75) 0%,
-                rgba(30, 58, 138, 0.65) 50%,
-                rgba(0, 0, 0, 0.75) 100%);
-            z-index: -1;
+                rgba(0, 0, 0, 0.65) 0%,
+                rgba(30, 58, 138, 0.55) 50%,
+                rgba(0, 0, 0, 0.65) 100%);
+            z-index: 1;
         }
         
-        /* ========== نظام الترجمة (موحد) ========== */
-        .lang-fr .fr, .lang-ar .ar {
-            display: block;
-        }
-        .lang-fr .ar, .lang-ar .fr {
-            display: none;
-        }
-        .lang-ar {
-            direction: rtl;
-            text-align: right;
-        }
-        .lang-fr {
-            direction: ltr;
-            text-align: left;
+        .habitation-page-section .container {
+            position: relative;
+            z-index: 3;
         }
         
-        /* ========== شريط التنقل العلوي (موحد لجميع الصفحات) ========== */
-        .top-navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
-            backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.98);
-            padding: 0.75rem 1rem;
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 3;
+        }
+        .section-title h2 {
+            font-size: 2.3rem;
+            color: var(--white);
+            margin-bottom: 15px;
+            font-weight: 800;
+            position: relative;
+            display: inline-block;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+        }
+        .section-title h2::after {
+            content: "";
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 4px;
+            background: var(--gradient-accent);
+            border-radius: 2px;
         }
         
-        .navbar-container {
-            max-width: 1280px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 0.5rem;
+        /* شارة العنوان */
+        .title-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            border-radius: 30px;
+            padding: 8px 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.3);
         }
-        
-        .back-home-btn {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 2rem;
+        .title-badge i {
+            color: var(--accent);
+            margin-left: 8px;
+        }
+        .title-badge span {
+            color: var(--white);
             font-weight: 600;
-            font-size: 0.8rem;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
-            white-space: nowrap;
-        }
-        .back-home-btn:hover {
-            transform: translateY(-2px);
-            background: linear-gradient(135deg, #059669, #047857);
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
-        }
-        .back-home-btn i:first-child {
-            display: none;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
         
-        .lang-switch-center {
-            background: linear-gradient(135deg, #1e3a8a, #1e40af);
-            border: none;
-            padding: 0.5rem 1.2rem;
-            border-radius: 2.5rem;
-            font-weight: 700;
-            font-size: 0.8rem;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            color: white;
-            display: flex;
+        /* Breadcrumb */
+        .breadcrumb-wrapper {
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 3;
+        }
+        .breadcrumb {
+            display: inline-flex;
             align-items: center;
-            gap: 6px;
-            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.4);
-            white-space: nowrap;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(255,255,255,0.4);
         }
-        .lang-switch-center:hover {
-            transform: translateY(-2px) scale(1.02);
-            background: linear-gradient(135deg, #1e40af, #1e3a8a);
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        .breadcrumb a:hover { color: var(--accent); }
+        .breadcrumb i { color: var(--secondary); font-size: 0.8rem; }
+        .breadcrumb span { color: var(--dark); font-weight: 500; }
+        
+        /* بطاقة التعريف */
+        .intro-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(8px);
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255,255,255,0.4);
+            position: relative;
+            z-index: 3;
         }
         
-        .navbar-placeholder {
-            width: 0;
-            visibility: hidden;
+        .intro-image img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: var(--transition);
+        }
+        .intro-image img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
         }
         
-        @media (min-width: 640px) {
-            .top-navbar {
-                padding: 0.75rem 1.5rem;
-            }
-            .back-home-btn {
-                padding: 0.5rem 1.2rem;
-                font-size: 0.85rem;
-            }
-            .back-home-btn i:first-child {
-                display: inline-block;
-            }
-            .lang-switch-center {
-                padding: 0.6rem 1.8rem;
-                font-size: 0.9rem;
-                gap: 10px;
-            }
-            .navbar-placeholder {
-                width: 120px;
-            }
+        .intro-content h3 {
+            color: var(--primary-dark);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+        .intro-content p {
+            color: var(--dark);
+            font-weight: 500;
+            line-height: 1.9;
         }
         
-        /* ========== تأثيرات البطاقات الزجاجية (موحد) ========== */
-        .glass-card, 
-        .bg-white,
-        .feature-card,
-        .bg-white.rounded-2xl {
-            background: rgba(255, 255, 255, 0.85) !important;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.3) !important;
-        }
-        
-        .glass-card {
-            box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.3) !important;
+        /* بطاقات المميزات */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin: 40px 0;
+            position: relative;
+            z-index: 3;
         }
         
         .feature-card {
-            transition: all 0.3s ease;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            background: rgba(255, 255, 255, 0.85) !important;
+            background: rgba(255, 255, 255, 0.75);
             backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            border-radius: 15px;
+            padding: 25px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            border: 1px solid rgba(255,255,255,0.4);
+            transition: var(--transition);
         }
         .feature-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.15);
-            border-color: rgba(59, 130, 246, 0.3) !important;
-            background: rgba(255, 255, 255, 0.95) !important;
+            background: rgba(255, 255, 255, 0.85);
+            border-color: var(--accent);
         }
-        
-        /* ========== قسم الدعوة للتواصل (موحد - شفاف) ========== */
-        .cta-section {
-            background: rgba(30, 58, 138, 0.75) !important;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.3) !important;
-            box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.3);
-        }
-        
-        /* ========== تحسينات إضافية ========== */
-        .faq-item {
-            transition: all 0.2s ease;
-        }
-        .faq-item:hover {
-            background: rgba(248, 250, 252, 0.7);
-            border-radius: 0.5rem;
-        }
-        
-        .insurance-img {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-            border-radius: 0.75rem;
-        }
-        .insurance-img:hover {
-            transform: scale(1.02);
-            box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.3);
-        }
-        
-        /* ========== أيقونات عائمة (موحد) ========== */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 80px;
-            left: 20px;
-            background: #25D366;
-            color: white;
+        .feature-icon {
             width: 55px;
             height: 55px;
-            border-radius: 50%;
+            background: var(--gradient-primary);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
+        }
+        .feature-icon i {
+            font-size: 1.5rem;
+            color: var(--white);
+        }
+        .feature-content h4 {
+            color: var(--primary-dark);
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+        .feature-content p {
+            color: var(--dark);
+            font-weight: 500;
+        }
+        
+        /* أنواع التأمين */
+        .types-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            border-radius: 20px;
+            padding: 35px;
+            margin: 40px 0;
+            border: 1px solid rgba(255,255,255,0.4);
+            position: relative;
+            z-index: 3;
+        }
+        .types-panel h3 {
+            color: var(--primary-dark);
+            font-size: 1.6rem;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        .types-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .type-card {
+            background: rgba(255,255,255,0.9);
+            border-radius: 15px;
+            padding: 25px 15px;
+            text-align: center;
+            transition: var(--transition);
+        }
+        .type-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .type-card i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        .type-card h4 {
+            color: var(--primary-dark);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .type-card p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        /* FAQ */
+        .faq-panel {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(8px);
+            border-radius: 20px;
+            padding: 35px;
+            margin: 40px 0;
+            border: 1px solid rgba(255,255,255,0.4);
+            position: relative;
+            z-index: 3;
+        }
+        .faq-panel h3 {
+            color: var(--primary-dark);
+            font-size: 1.6rem;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        .accordion-item {
+            background: rgba(255,255,255,0.5);
+            border-radius: 12px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        .accordion-header {
+            padding: 18px 25px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+        .accordion-header:hover {
+            background: rgba(27, 142, 158, 0.1);
+        }
+        .accordion-header i {
+            transition: transform 0.3s;
+            color: var(--secondary);
+        }
+        .accordion-item.active .accordion-header i {
+            transform: rotate(180deg);
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            padding: 0 25px;
+        }
+        .accordion-item.active .accordion-content {
+            max-height: 200px;
+            padding: 0 25px 20px;
+        }
+        .accordion-content p {
+            color: var(--dark);
+            font-weight: 500;
+        }
+        
+        /* CTA */
+        .cta-panel {
+            background: rgba(30, 58, 138, 0.75);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            color: var(--white);
+            border: 1px solid rgba(255,255,255,0.3);
+            position: relative;
+            z-index: 3;
+            margin: 40px 0;
+        }
+        .cta-panel i {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+        .cta-panel h3 {
             font-size: 1.8rem;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-            transition: all 0.3s ease;
-            z-index: 99;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+        .cta-panel p {
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 30px;
+            border-radius: 40px;
+            font-weight: 600;
             text-decoration: none;
+            transition: var(--transition);
         }
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+        .cta-btn-white {
+            background: var(--white);
+            color: var(--primary);
         }
+        .cta-btn-white:hover {
+            background: var(--light-gray);
+            transform: translateY(-3px);
+        }
+        .cta-btn-green {
+            background: #25D366;
+            color: white;
+        }
+        .cta-btn-green:hover {
+            background: #1da851;
+            transform: translateY(-3px);
+        }
+        
+        .footer {
+            background: var(--primary-dark);
+            color: rgba(255,255,255,0.8);
+            padding: 60px 0 30px;
+        }
+        
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-widget h4 { color: var(--white); margin-bottom: 20px; position: relative; padding-bottom: 10px; }
+        .footer-widget h4::after { content: ""; position: absolute; bottom: 0; right: 0; width: 50px; height: 3px; background: var(--gradient-accent); border-radius: 2px; }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a { color: rgba(255,255,255,0.7); text-decoration: none; transition: var(--transition); }
+        .footer-links a:hover { color: var(--accent); padding-right: 5px; }
+        .social-links { display: flex; gap: 15px; margin-top: 15px; }
+        .social-links a { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; color: var(--white); font-size: 1.2rem; transition: var(--transition); text-decoration: none; }
+        .social-links a:hover { background: var(--accent); color: var(--primary-dark); transform: translateY(-5px) rotate(360deg); }
+        .copyright { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); }
         
         .scroll-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 45px;
-            height: 45px;
-            background: linear-gradient(135deg, #1e3a8a, #1e40af);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            cursor: pointer;
-            opacity: 0;
-            transition: all 0.3s ease;
-            z-index: 99;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px;
+            background: var(--gradient-primary); border-radius: 50%; display: flex;
+            align-items: center; justify-content: center; color: white; cursor: pointer;
+            opacity: 0; transition: var(--transition); z-index: 998;
+            box-shadow: var(--box-shadow); border: 2px solid rgba(255,255,255,0.3);
         }
-        .scroll-top.active {
-            opacity: 1;
-        }
-        .scroll-top:hover {
-            transform: translateY(-3px);
-            background: linear-gradient(135deg, #d4af37, #e6c84a);
-            color: #1e3a8a;
+        .scroll-top.active { opacity: 1; }
+        .scroll-top:hover { transform: translateY(-5px); background: var(--gradient-accent); color: var(--primary-dark); }
+        
+        @media (max-width: 992px) {
+            .intro-card { grid-template-columns: 1fr; }
+            .features-grid { grid-template-columns: 1fr; }
+            .types-grid { grid-template-columns: 1fr; }
         }
         
-        /* ========== تحسين وضوح النصوص ========== */
-        h1, h2, h3 {
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        
-        .text-blue-700, .text-blue-600 {
-            color: #1e3a8a !important;
-        }
-        
-        .text-gray-700, .text-gray-600, .text-gray-500 {
-            color: #2d3748 !important;
-        }
-        
-        /* ========== تجاوب مع الهواتف (موحد) ========== */
-        @media (max-width: 640px) {
-            body {
-                padding-top: 60px;
-            }
-            body::before {
-                background-attachment: scroll;
-            }
-            .whatsapp-float {
-                bottom: 70px;
-                left: 15px;
-                width: 50px;
-                height: 50px;
-                font-size: 1.5rem;
-            }
-            .scroll-top {
-                bottom: 15px;
-                right: 15px;
-                width: 40px;
-                height: 40px;
-            }
-        }
-        
-        /* ========== حركات (موحد) ========== */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .animate-fade-in {
-            animation: fadeInUp 0.6s ease-out;
-        }
-        
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        img {
-            max-width: 100%;
-            height: auto;
+        @media (max-width: 768px) {
+            .habitation-page-section { background-attachment: scroll; }
+            .section-title h2 { font-size: 1.8rem; }
+            .scroll-top { right: 15px; bottom: 30px; }
+            .cta-buttons { flex-direction: column; align-items: center; }
         }
     </style>
 </head>
-<body>
-    <!-- ========== شريط التنقل العلوي (موحد) ========== -->
-    <div class="top-navbar">
-        <div class="navbar-container">
-            <a href="https://davidrezgui34-oss.github.io/trustrytech/" class="back-home-btn">
-                <i class="fas fa-arrow-right"></i>
-                <i class="fas fa-home"></i>
-                <span class="fr">Accueil</span>
-                <span class="ar">الرئيسية</span>
-            </a>
-            
-            <button class="lang-switch-center" id="toggleLangCenter">
-                <i class="fas fa-globe"></i>
-                <span id="langBtnTextCenter">العربية</span>
-                <i class="fas fa-exchange-alt"></i>
-            </button>
-            
-            <div class="navbar-placeholder"></div>
+<body dir="rtl">
+    <!-- الشريط العلوي -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-wrapper">
+                <div class="top-contact">
+                    <span><i class="fas fa-phone-alt"></i> 0774479525</span>
+                    <span><i class="fas fa-envelope"></i> contact@annuaire-assurance.dz</span>
+                    <span><i class="fas fa-clock"></i> <span data-translate="hours">السبت - الخميس: 09:00 - 17:00</span></span>
+                </div>
+                <div class="top-actions">
+                    <div class="language-switch">
+                        <button class="lang-btn active" data-lang="ar">🇩🇿 العربية</button>
+                        <button class="lang-btn" data-lang="fr">🇫🇷 Français</button>
+                    </div>
+                    <div class="top-social">
+                        <a href="https://www.facebook.com/Leadersvisionacademy" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/leaders_vision_academy" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- ========== أيقونة واتساب عائمة (موحد) ========== -->
-    <a href="https://wa.me/213668460780" class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
-    <!-- ========== زر العودة للأعلى (موحد) ========== -->
-    <div class="scroll-top" id="scrollTop">
-        <i class="fas fa-arrow-up"></i>
-    </div>
-
-    <!-- ========== المحتوى الرئيسي ========== -->
-    <div class="lang-fr max-w-5xl mx-auto py-8 md:py-12 px-4 md:px-6 transition-all duration-300" id="page">
-        
-        <!-- العنوان الرئيسي -->
-        <div class="text-center mb-10 md:mb-12 animate-fade-in">
-            <div class="inline-block rounded-full px-4 py-1 mb-4" style="background: rgba(255, 255, 255, 0.25) !important; backdrop-filter: blur(5px); border: 1px solid rgba(255, 255, 255, 0.3);">
-                <i class="fas fa-home ml-2" style="color: #FFD700 !important;"></i>
-                <span class="text-sm font-semibold fr" style="color: #FFD700 !important;">Protection & Sécurité</span>
-                <span class="text-sm font-semibold ar" style="color: #FFD700 !important;">حماية وأمان لمنزلك</span>
-            </div>
-            <h1 class="text-3xl md:text-4xl font-bold mb-3 fr" style="color: white !important; text-shadow: 0 4px 15px rgba(0,0,0,0.6);">
-                <i class="fas fa-shield-alt ml-2" style="color: #FFD700;"></i>
-                <a href="#" class="hover:underline transition" style="color: white !important;">Assurance Habitation</a>
-            </h1>
-            <h1 class="text-3xl md:text-4xl font-bold mb-3 ar" style="color: white !important; text-shadow: 0 4px 15px rgba(0,0,0,0.6);">
-                <i class="fas fa-shield-alt ml-2" style="color: #FFD700;"></i>
-                <a href="#" class="hover:underline transition" style="color: white !important;">التأمين على السكن</a>
-            </h1>
-            <p class="fr max-w-2xl mx-auto" style="color: rgba(255,255,255,0.9) !important; text-shadow: 0 2px 8px rgba(0,0,0,0.5);">Protégez votre maison et vos biens avec la meilleure assurance habitation</p>
-            <p class="ar max-w-2xl mx-auto" style="color: rgba(255,255,255,0.9) !important; text-shadow: 0 2px 8px rgba(0,0,0,0.5);">احم منزلك وممتلكاتك مع أفضل تأمين على السكن</p>
-        </div>
-
-        <!-- قسم التعريف مع الصورة -->
-        <div class="grid md:grid-cols-2 gap-8 items-center rounded-2xl shadow-xl p-6 md:p-8 mb-10 hover:shadow-2xl transition-all duration-300 glass-card">
-            <div class="order-2 md:order-1">
-                <div class="overflow-hidden rounded-xl bg-gray-100">
-                    <img alt="Assurance Habitation" 
-                         class="w-full insurance-img"
-                         src="https://www.cash-assurances.dz/cloud/luna/SLIDER-2024/Construction-assurance-cash-.png"
-                         loading="lazy">
+    <!-- الهيدر الرئيسي -->
+    <header>
+        <div class="container">
+            <div class="navbar">
+                <div class="logo-container">
+                    <div class="logo-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h1>Trusty Tech</h1>
+                        <span data-translate="logo-title">دليل التأمين</span>
+                    </div>
                 </div>
-            </div>
-            <div class="order-1 md:order-2">
-                <div class="bg-blue-50 rounded-lg p-2 inline-block mb-4">
-                    <i class="fas fa-info-circle text-blue-600 ml-1"></i>
-                </div>
-                <h2 class="text-2xl md:text-3xl font-bold text-blue-600 mb-4 fr">Qu'est-ce que l'assurance habitation ?</h2>
-                <p class="text-gray-700 leading-relaxed fr">
-                    L'<strong class="text-blue-600">assurance habitation</strong> couvre votre logement et vos biens contre les risques 
-                    comme l'incendie, le vol ou les dégâts des eaux. Elle est essentielle pour protéger votre patrimoine et votre responsabilité civile.
-                </p>
                 
-                <h2 class="text-2xl md:text-3xl font-bold text-blue-600 mb-4 ar text-right">ما هو التأمين على السكن؟</h2>
-                <p class="text-gray-700 leading-relaxed ar text-right">
-                    <strong class="text-blue-600">التأمين على السكن</strong> يضمن حماية منزلك وممتلكاتك من المخاطر 
-                    كالحريق، والسرقة، وتسربات المياه. وهو ضروري لحماية ممتلكاتك ومسؤوليتك المدنية.
-                </p>
+                <button class="mobile-menu-btn" aria-label="القائمة">
+                    <i class="fas fa-bars"></i>
+                    <span data-translate="nav-menu">القائمة</span>
+                </button>
+                
+                <div class="menu-overlay"></div>
+                
+                <ul class="nav-links">
+                    <button class="mobile-menu-close" style="display: none;"><i class="fas fa-times"></i></button>
+                    
+                    <li><a href="https://davidrezgui34-oss.github.io/trustrytech/"><i class="fas fa-home"></i> <span data-translate="nav-home">الرئيسية</span></a></li>
+                    <li><a href="https://davidrezgui34-oss.github.io/trustrytech/services"><i class="fas fa-cogs"></i> <span data-translate="nav-services">خدماتنا</span></a></li>
+                    
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle"><i class="fas fa-shield"></i> <span data-translate="nav-insurance">تأمينات</span> <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="https://davidrezgui34-oss.github.io/trustrytech/automobile"><i class="fas fa-car"></i> <span data-translate="nav-car-insurance">تأمين السيارات</span></a></li>
+                            <li><a href="https://davidrezgui34-oss.github.io/trustrytech/sante"><i class="fas fa-heartbeat"></i> <span data-translate="nav-health-insurance">تأمين الصحة</span></a></li>
+                            <li><a href="https://davidrezgui34-oss.github.io/trustrytech/habitation" style="color: var(--accent);"><i class="fas fa-home"></i> <span data-translate="nav-home-insurance">تأمين السكن</span></a></li>
+                            <li><a href="https://davidrezgui34-oss.github.io/trustrytech/voyage"><i class="fas fa-plane"></i> <span data-translate="nav-travel-insurance">تأمين السفر</span></a></li>
+                        </ul>
+                    </li>
+                    
+                    <li><a href="https://davidrezgui34-oss.github.io/trustrytech/#offers"><i class="fas fa-tags"></i> <span data-translate="nav-offers">عروض حصرية</span></a></li>
+                    <li><a href="https://davidrezgui34-oss.github.io/trustrytech/#booking"><i class="fas fa-calendar-alt"></i> <span data-translate="nav-booking">حجز موعد</span></a></li>
+                    <li><a href="https://davidrezgui34-oss.github.io/trustrytech/#about"><i class="fas fa-info-circle"></i> <span data-translate="nav-about">من نحن</span></a></li>
+                    <li><a href="https://davidrezgui34-oss.github.io/trustrytech/#companies"><i class="fas fa-building"></i> <span data-translate="nav-companies">الشركات</span></a></li>
+                    <li><a href="https://davidrezgui34-oss.github.io/trustrytech/#team"><i class="fas fa-users"></i> <span data-translate="nav-team">الخبراء</span></a></li>
+                    <li><a href="https://davidrezgui34-oss.github.io/trustrytech/contacter"><i class="fas fa-phone"></i> <span data-translate="nav-contact">اتصل بنا</span></a></li>
+                </ul>
             </div>
         </div>
+    </header>
 
-        <!-- لماذا التأمين على السكن -->
-        <div class="mt-12">
-            <div class="text-center mb-8">
-                <div class="inline-block rounded-full px-4 py-1 mb-3" style="background: rgba(255,255,255,0.25) !important; backdrop-filter: blur(5px);">
-                    <i class="fas fa-check-circle ml-1" style="color: #FFD700 !important;"></i>
+    <!-- محتوى صفحة تأمين السكن -->
+    <section class="section habitation-page-section">
+        <div class="container">
+            <!-- Breadcrumb -->
+            <div class="breadcrumb-wrapper animate">
+                <div class="breadcrumb">
+                    <a href="https://davidrezgui34-oss.github.io/trustrytech/"><i class="fas fa-home"></i> <span data-translate="breadcrumb-home">الرئيسية</span></a>
+                    <i class="fas fa-chevron-left"></i>
+                    <a href="https://davidrezgui34-oss.github.io/trustrytech/services"><span data-translate="breadcrumb-services">خدماتنا</span></a>
+                    <i class="fas fa-chevron-left"></i>
+                    <span data-translate="breadcrumb-current">تأمين السكن</span>
                 </div>
-                <h2 class="text-2xl md:text-3xl font-bold mb-2 fr" style="color: white !important; text-shadow: 0 4px 15px rgba(0,0,0,0.6);">✅ Pourquoi souscrire une assurance habitation ?</h2>
-                <h2 class="text-2xl md:text-3xl font-bold mb-2 ar text-right" style="color: white !important; text-shadow: 0 4px 15px rgba(0,0,0,0.6);">✅ لماذا يجب الاشتراك في تأمين السكن؟</h2>
-                <p class="fr" style="color: rgba(255,255,255,0.9) !important;">Découvrez les avantages essentiels d'une bonne assurance habitation</p>
-                <p class="ar" style="color: rgba(255,255,255,0.9) !important;">اكتشف الفوائد الأساسية للتأمين الجيد على السكن</p>
             </div>
             
-            <div class="grid md:grid-cols-2 gap-6">
-                <div class="feature-card flex items-start gap-4 p-5 rounded-xl shadow-md">
-                    <div class="bg-green-100 rounded-full p-2 flex-shrink-0">
-                        <i class="fas fa-fire-extinguisher text-green-600 text-xl"></i>
-                    </div>
-                    <div>
-                        <p class="text-gray-700 fr font-medium">Protection contre les incendies, inondations, vols, etc.</p>
-                        <p class="text-gray-700 ar text-right font-medium">حماية من الحريق، الفيضانات، السرقة، وغيرها.</p>
-                    </div>
+            <div class="section-title">
+                <div class="title-badge animate">
+                    <i class="fas fa-home"></i>
+                    <span data-translate="habitation-badge">حماية وأمان لمنزلك</span>
                 </div>
-                
-                <div class="feature-card flex items-start gap-4 p-5 rounded-xl shadow-md">
-                    <div class="bg-green-100 rounded-full p-2 flex-shrink-0">
-                        <i class="fas fa-clock text-green-600 text-xl"></i>
-                    </div>
-                    <div>
-                        <p class="text-gray-700 fr font-medium">Assistance 24h/24 en cas de sinistre.</p>
-                        <p class="text-gray-700 ar text-right font-medium">مساعدة على مدار الساعة في حال وقوع أضرار.</p>
-                    </div>
-                </div>
-                
-                <div class="feature-card flex items-start gap-4 p-5 rounded-xl shadow-md">
-                    <div class="bg-green-100 rounded-full p-2 flex-shrink-0">
-                        <i class="fas fa-gavel text-green-600 text-xl"></i>
-                    </div>
-                    <div>
-                        <p class="text-gray-700 fr font-medium">Responsabilité civile incluse.</p>
-                        <p class="text-gray-700 ar text-right font-medium">يشمل المسؤولية المدنية.</p>
-                    </div>
-                </div>
-                
-                <div class="feature-card flex items-start gap-4 p-5 rounded-xl shadow-md">
-                    <div class="bg-green-100 rounded-full p-2 flex-shrink-0">
-                        <i class="fas fa-users text-green-600 text-xl"></i>
-                    </div>
-                    <div>
-                        <p class="text-gray-700 fr font-medium">Formules adaptées aux propriétaires et locataires.</p>
-                        <p class="text-gray-700 ar text-right font-medium">صيغ مناسبة للمالكين والمستأجرين.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- أنواع التأمين على السكن -->
-        <div class="mt-12 rounded-2xl p-6 md:p-8" style="background: rgba(255, 255, 255, 0.75) !important; backdrop-filter: blur(10px);">
-            <div class="text-center mb-6">
-                <i class="fas fa-layer-group text-blue-600 text-3xl mb-2"></i>
-                <h3 class="text-xl font-bold text-blue-700 fr">📋 Types d'assurance habitation disponibles</h3>
-                <h3 class="text-xl font-bold text-blue-700 ar text-right">📋 أنواع التأمين على السكن المتاحة</h3>
-            </div>
-            <div class="grid sm:grid-cols-3 gap-4">
-                <div class="bg-white rounded-lg p-4 text-center hover:shadow-md transition" style="background: rgba(255,255,255,0.9) !important;">
-                    <i class="fas fa-user-shield text-blue-500 text-2xl mb-2"></i>
-                    <p class="font-semibold fr">Formule de base</p>
-                    <p class="font-semibold ar">صيغة أساسية</p>
-                    <p class="text-sm text-gray-500 fr">Incendie + Dégâts des eaux</p>
-                    <p class="text-sm text-gray-500 ar">حريق + تسربات المياه</p>
-                </div>
-                <div class="bg-white rounded-lg p-4 text-center hover:shadow-md transition" style="background: rgba(255,255,255,0.9) !important;">
-                    <i class="fas fa-chart-line text-blue-500 text-2xl mb-2"></i>
-                    <p class="font-semibold fr">Formule intermédiaire</p>
-                    <p class="font-semibold ar">صيغة متوسطة</p>
-                    <p class="text-sm text-gray-500 fr">Base + Vol + Bris de glace</p>
-                    <p class="text-sm text-gray-500 ar">أساسي + سرقة + كسر الزجاج</p>
-                </div>
-                <div class="bg-white rounded-lg p-4 text-center hover:shadow-md transition" style="background: rgba(255,255,255,0.9) !important;">
-                    <i class="fas fa-crown text-blue-500 text-2xl mb-2"></i>
-                    <p class="font-semibold fr">Formule complète</p>
-                    <p class="font-semibold ar">صيغة شاملة</p>
-                    <p class="text-sm text-gray-500 fr">Protection maximale + Assistance</p>
-                    <p class="text-sm text-gray-500 ar">حماية شاملة + مساعدة</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- الأسئلة الشائعة -->
-        <div class="mt-12 bg-white rounded-2xl shadow-xl p-6 md:p-8">
-            <div class="text-center mb-8">
-                <i class="fas fa-question-circle text-blue-500 text-3xl mb-2"></i>
-                <h2 class="text-2xl md:text-3xl font-bold text-blue-700 fr">❓ Questions fréquentes</h2>
-                <h2 class="text-2xl md:text-3xl font-bold text-blue-700 ar text-right">❓ أسئلة شائعة</h2>
+                <h2 data-translate="habitation-title">🏠 تأمين السكن الشامل</h2>
             </div>
             
-            <div class="space-y-5">
-                <div class="faq-item border-b border-gray-100 pb-4">
-                    <div class="flex items-start gap-3">
-                        <i class="fas fa-question-circle text-blue-400 mt-1"></i>
-                        <div class="flex-1">
-                            <h3 class="font-bold text-gray-800 fr text-lg">Quels risques sont couverts ?</h3>
-                            <p class="text-gray-600 mt-2 fr">Incendie, dégât des eaux, vol, bris de glace, catastrophes naturelles, et bien d'autres selon la formule choisie.</p>
-                            <h3 class="font-bold text-gray-800 ar text-right text-lg">ما هي المخاطر التي يغطيها التأمين؟</h3>
-                            <p class="text-gray-600 mt-2 ar text-right">الحريق، تسرب المياه، السرقة، كسر الزجاج، الكوارث الطبيعية، وغيرها حسب الصيغة المختارة.</p>
-                        </div>
+            <!-- بطاقة التعريف -->
+            <div class="intro-card animate">
+                <div class="intro-image">
+                    <img src="https://www.cash-assurances.dz/cloud/luna/SLIDER-2024/Construction-assurance-cash-.png" alt="تأمين السكن" loading="lazy">
+                </div>
+                <div class="intro-content">
+                    <h3 data-translate="intro-title">ما هو تأمين السكن؟</h3>
+                    <p data-translate="intro-desc">تأمين السكن يضمن حماية منزلك وممتلكاتك من المخاطر كالحريق، والسرقة، وتسربات المياه. وهو ضروري لحماية ممتلكاتك ومسؤوليتك المدنية تجاه الغير.</p>
+                </div>
+            </div>
+            
+            <!-- لماذا تأمين السكن -->
+            <div class="section-title" style="margin-top: 40px;">
+                <h2 data-translate="why-title">✅ لماذا تحتاج تأمين السكن؟</h2>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card animate">
+                    <div class="feature-icon"><i class="fas fa-fire-extinguisher"></i></div>
+                    <div class="feature-content">
+                        <h4 data-translate="feature1-title">حماية شاملة</h4>
+                        <p data-translate="feature1-desc">حماية من الحريق، الفيضانات، السرقة، وتسربات المياه.</p>
                     </div>
                 </div>
-                
-                <div class="faq-item border-b border-gray-100 pb-4">
-                    <div class="flex items-start gap-3">
-                        <i class="fas fa-question-circle text-blue-400 mt-1"></i>
-                        <div class="flex-1">
-                            <h3 class="font-bold text-gray-800 fr text-lg">Est-elle obligatoire ?</h3>
-                            <p class="text-gray-600 mt-2 fr">Oui, pour les locataires. Elle est vivement recommandée pour les propriétaires afin de protéger leur bien.</p>
-                            <h3 class="font-bold text-gray-800 ar text-right text-lg">هل التأمين على السكن إجباري؟</h3>
-                            <p class="text-gray-600 mt-2 ar text-right">نعم، للمستأجرين. ويوصى به بشدة للمالكين لحماية ممتلكاتهم.</p>
-                        </div>
+                <div class="feature-card animate">
+                    <div class="feature-icon"><i class="fas fa-clock"></i></div>
+                    <div class="feature-content">
+                        <h4 data-translate="feature2-title">مساعدة 24/7</h4>
+                        <p data-translate="feature2-desc">مساعدة على مدار الساعة في حال وقوع أضرار أو طوارئ.</p>
                     </div>
                 </div>
-                
-                <div class="faq-item pb-2">
-                    <div class="flex items-start gap-3">
-                        <i class="fas fa-question-circle text-blue-400 mt-1"></i>
-                        <div class="flex-1">
-                            <h3 class="font-bold text-gray-800 fr text-lg">Comment souscrire ?</h3>
-                            <p class="text-gray-600 mt-2 fr">En ligne via notre formulaire, en agence, ou par téléphone. Nos conseillers sont à votre disposition.</p>
-                            <h3 class="font-bold text-gray-800 ar text-right text-lg">كيف يمكن الاشتراك؟</h3>
-                            <p class="text-gray-600 mt-2 ar text-right">عبر الإنترنت من خلال نموذجنا، أو في الوكالات، أو عبر الهاتف. مستشارونا في خدمتكم.</p>
-                        </div>
+                <div class="feature-card animate">
+                    <div class="feature-icon"><i class="fas fa-gavel"></i></div>
+                    <div class="feature-content">
+                        <h4 data-translate="feature3-title">مسؤولية مدنية</h4>
+                        <p data-translate="feature3-desc">تغطية المسؤولية المدنية تجاه الغير مشمولة في العقد.</p>
+                    </div>
+                </div>
+                <div class="feature-card animate">
+                    <div class="feature-icon"><i class="fas fa-users"></i></div>
+                    <div class="feature-content">
+                        <h4 data-translate="feature4-title">للمالك والمستأجر</h4>
+                        <p data-translate="feature4-desc">صيغ تأمينية مناسبة للمالكين والمستأجرين على حد سواء.</p>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <!-- ========== دعوة للتواصل - نسخة شفافة (موحدة لجميع الصفحات) ========== -->
-        <div class="mt-12 cta-section rounded-2xl p-6 md:p-8 text-center text-white">
-            <i class="fas fa-headset text-4xl mb-3" style="color: #FFD700;"></i>
-            <h3 class="text-xl md:text-2xl font-bold mb-3 fr" style="text-shadow: 0 2px 8px rgba(0,0,0,0.3);">Besoin d'un conseil personnalisé ?</h3>
-            <h3 class="text-xl md:text-2xl font-bold mb-3 ar" style="text-shadow: 0 2px 8px rgba(0,0,0,0.3);">بحاجة إلى استشارة مخصصة؟</h3>
-            <p class="mb-5 fr" style="color: rgba(255,255,255,0.95); text-shadow: 0 1px 4px rgba(0,0,0,0.3);">Contactez nos experts pour trouver l'assurance habitation qui vous correspond</p>
-            <p class="mb-5 ar" style="color: rgba(255,255,255,0.95); text-shadow: 0 1px 4px rgba(0,0,0,0.3);">تواصل مع خبرائنا للعثور على تأمين السكن المناسب لك</p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="tel:0774479525" class="bg-white text-blue-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition inline-flex items-center gap-2 shadow-lg">
-                    <i class="fas fa-phone-alt"></i>
-                    <span class="fr">Nous appeler</span>
-                    <span class="ar">اتصل بنا</span>
-                </a>
-                <a href="https://wa.me/213668460780" class="bg-green-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-green-600 transition inline-flex items-center gap-2 shadow-lg">
-                    <i class="fab fa-whatsapp"></i>
-                    <span class="fr">WhatsApp</span>
-                    <span class="ar">واتساب</span>
-                </a>
+            
+            <!-- أنواع التأمين -->
+            <div class="types-panel animate">
+                <h3 data-translate="types-title">📋 أنواع تأمين السكن المتاحة</h3>
+                <div class="types-grid">
+                    <div class="type-card">
+                        <i class="fas fa-shield"></i>
+                        <h4 data-translate="type1-title">الصيغة الأساسية</h4>
+                        <p data-translate="type1-desc">حريق + تسربات المياه</p>
+                    </div>
+                    <div class="type-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h4 data-translate="type2-title">الصيغة المتوسطة</h4>
+                        <p data-translate="type2-desc">أساسي + سرقة + كسر الزجاج</p>
+                    </div>
+                    <div class="type-card">
+                        <i class="fas fa-crown"></i>
+                        <h4 data-translate="type3-title">الصيغة الشاملة</h4>
+                        <p data-translate="type3-desc">حماية شاملة + مساعدة 24/7</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- FAQ -->
+            <div class="faq-panel animate">
+                <h3 data-translate="faq-title">❓ الأسئلة الشائعة</h3>
+                <div id="faqContainer"></div>
+            </div>
+            
+            <!-- CTA -->
+            <div class="cta-panel animate">
+                <i class="fas fa-headset"></i>
+                <h3 data-translate="cta-title">بحاجة إلى استشارة مخصصة؟</h3>
+                <p data-translate="cta-desc">تواصل مع خبرائنا للعثور على تأمين السكن المناسب لك</p>
+                <div class="cta-buttons">
+                    <a href="tel:0774479525" class="cta-btn cta-btn-white"><i class="fas fa-phone-alt"></i> <span data-translate="cta-call">اتصل بنا</span></a>
+                    <a href="https://wa.me/213774479525" class="cta-btn cta-btn-green"><i class="fab fa-whatsapp"></i> <span data-translate="cta-whatsapp">واتساب</span></a>
+                </div>
             </div>
         </div>
+    </section>
 
-        <!-- حقوق الملكية -->
-        <div class="mt-10 text-center text-sm pt-6 border-t" style="color: rgba(255,255,255,0.7) !important; border-color: rgba(255,255,255,0.2) !important;">
-            <p>© 2026 - <span class="fr">Assurance Habitation | Tous droits réservés</span><span class="ar">التأمين على السكن | جميع الحقوق محفوظة</span></p>
+    <!-- الفوتر -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-widget">
+                    <h4 data-translate="footer-title">دليل التأمين الجزائر</h4>
+                    <p data-translate="footer-desc">منصتكم الشاملة للبحث عن وكالات التأمين في الجزائر، مصنفة حسب الولايات ونوع الخدمة.</p>
+                </div>
+                <div class="footer-widget">
+                    <h4 data-translate="footer-links-title">روابط سريعة</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://davidrezgui34-oss.github.io/trustrytech/" data-translate="footer-home">الرئيسية</a></li>
+                        <li><a href="https://davidrezgui34-oss.github.io/trustrytech/services" data-translate="footer-services">خدماتنا</a></li>
+                        <li><a href="https://davidrezgui34-oss.github.io/trustrytech/#offers" data-translate="footer-offers">عروض حصرية</a></li>
+                        <li><a href="https://davidrezgui34-oss.github.io/trustrytech/#booking" data-translate="footer-booking">حجز موعد</a></li>
+                        <li><a href="https://davidrezgui34-oss.github.io/trustrytech/#about" data-translate="footer-about">من نحن</a></li>
+                    </ul>
+                </div>
+                <div class="footer-widget">
+                    <h4 data-translate="footer-insurance-title">أنواع التأمين</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://davidrezgui34-oss.github.io/trustrytech/automobile" data-translate="footer-car">تأمين السيارات</a></li>
+                        <li><a href="https://davidrezgui34-oss.github.io/trustrytech/sante" data-translate="footer-health">تأمين الصحة</a></li>
+                        <li><a href="https://davidrezgui34-oss.github.io/trustrytech/habitation" data-translate="footer-home-ins">تأمين السكن</a></li>
+                        <li><a href="https://davidrezgui34-oss.github.io/trustrytech/voyage" data-translate="footer-travel">تأمين السفر</a></li>
+                    </ul>
+                </div>
+                <div class="footer-widget">
+                    <h4 data-translate="footer-social-title">تابعنا</h4>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/Leadersvisionacademy" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/leaders_vision_academy" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p data-translate="copyright">© 2026 دليل وكالات التأمين في الجزائر - جميع الحقوق محفوظة</p>
+            </div>
         </div>
-    </div>
+    </footer>
 
-    <!-- ========== Scripts (موحد) ========== -->
-    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <!-- زر الرجوع للأعلى -->
+    <div class="scroll-top"><i class="fas fa-arrow-up"></i></div>
+
     <script>
-        // تهيئة AOS
-        AOS.init({ duration: 800, once: true });
-
-        // نظام الترجمة (موحد)
-        let currentLang = localStorage.getItem('pageLang') || 'fr';
-        
-        function applyLanguage(lang) {
-            const page = document.getElementById('page');
-            const toggleBtnCenter = document.getElementById('toggleLangCenter');
-            const langBtnTextCenter = document.getElementById('langBtnTextCenter');
-            
-            if (lang === 'ar') {
-                page.classList.remove('lang-fr');
-                page.classList.add('lang-ar');
-                document.documentElement.setAttribute('dir', 'rtl');
-                document.documentElement.lang = 'ar';
-                if (langBtnTextCenter) langBtnTextCenter.textContent = 'Français';
-            } else {
-                page.classList.remove('lang-ar');
-                page.classList.add('lang-fr');
-                document.documentElement.setAttribute('dir', 'ltr');
-                document.documentElement.lang = 'fr';
-                if (langBtnTextCenter) langBtnTextCenter.textContent = 'العربية';
+        // ========== قاموس الترجمة ==========
+        const translations = {
+            ar: {
+                "hours": "السبت - الخميس: 09:00 - 17:00",
+                "logo-title": "دليل التأمين",
+                "nav-menu": "القائمة",
+                "nav-home": "الرئيسية",
+                "nav-services": "خدماتنا",
+                "nav-insurance": "تأمينات",
+                "nav-car-insurance": "تأمين السيارات",
+                "nav-health-insurance": "تأمين الصحة",
+                "nav-home-insurance": "تأمين السكن",
+                "nav-travel-insurance": "تأمين السفر",
+                "nav-offers": "عروض حصرية",
+                "nav-booking": "حجز موعد",
+                "nav-about": "من نحن",
+                "nav-companies": "الشركات",
+                "nav-team": "الخبراء",
+                "nav-contact": "اتصل بنا",
+                "breadcrumb-home": "الرئيسية",
+                "breadcrumb-services": "خدماتنا",
+                "breadcrumb-current": "تأمين السكن",
+                "habitation-badge": "حماية وأمان لمنزلك",
+                "habitation-title": "🏠 تأمين السكن الشامل",
+                "intro-title": "ما هو تأمين السكن؟",
+                "intro-desc": "تأمين السكن يضمن حماية منزلك وممتلكاتك من المخاطر كالحريق، والسرقة، وتسربات المياه. وهو ضروري لحماية ممتلكاتك ومسؤوليتك المدنية تجاه الغير.",
+                "why-title": "✅ لماذا تحتاج تأمين السكن؟",
+                "feature1-title": "حماية شاملة",
+                "feature1-desc": "حماية من الحريق، الفيضانات، السرقة، وتسربات المياه.",
+                "feature2-title": "مساعدة 24/7",
+                "feature2-desc": "مساعدة على مدار الساعة في حال وقوع أضرار أو طوارئ.",
+                "feature3-title": "مسؤولية مدنية",
+                "feature3-desc": "تغطية المسؤولية المدنية تجاه الغير مشمولة في العقد.",
+                "feature4-title": "للمالك والمستأجر",
+                "feature4-desc": "صيغ تأمينية مناسبة للمالكين والمستأجرين على حد سواء.",
+                "types-title": "📋 أنواع تأمين السكن المتاحة",
+                "type1-title": "الصيغة الأساسية",
+                "type1-desc": "حريق + تسربات المياه",
+                "type2-title": "الصيغة المتوسطة",
+                "type2-desc": "أساسي + سرقة + كسر الزجاج",
+                "type3-title": "الصيغة الشاملة",
+                "type3-desc": "حماية شاملة + مساعدة 24/7",
+                "faq-title": "❓ الأسئلة الشائعة",
+                "cta-title": "بحاجة إلى استشارة مخصصة؟",
+                "cta-desc": "تواصل مع خبرائنا للعثور على تأمين السكن المناسب لك",
+                "cta-call": "اتصل بنا",
+                "cta-whatsapp": "واتساب",
+                "footer-title": "دليل التأمين الجزائر",
+                "footer-desc": "منصتكم الشاملة للبحث عن وكالات التأمين في الجزائر، مصنفة حسب الولايات ونوع الخدمة.",
+                "footer-links-title": "روابط سريعة",
+                "footer-home": "الرئيسية",
+                "footer-services": "خدماتنا",
+                "footer-offers": "عروض حصرية",
+                "footer-booking": "حجز موعد",
+                "footer-about": "من نحن",
+                "footer-insurance-title": "أنواع التأمين",
+                "footer-car": "تأمين السيارات",
+                "footer-health": "تأمين الصحة",
+                "footer-home-ins": "تأمين السكن",
+                "footer-travel": "تأمين السفر",
+                "footer-social-title": "تابعنا",
+                "copyright": "© 2026 دليل وكالات التأمين في الجزائر - جميع الحقوق محفوظة"
+            },
+            fr: {
+                "hours": "Sam - Jeu: 09h00 - 17h00",
+                "logo-title": "Guide Assurance",
+                "nav-menu": "Menu",
+                "nav-home": "Accueil",
+                "nav-services": "Services",
+                "nav-insurance": "Assurances",
+                "nav-car-insurance": "Assurance Auto",
+                "nav-health-insurance": "Assurance Santé",
+                "nav-home-insurance": "Assurance Habitation",
+                "nav-travel-insurance": "Assurance Voyage",
+                "nav-offers": "Offres",
+                "nav-booking": "Rendez-vous",
+                "nav-about": "À Propos",
+                "nav-companies": "Sociétés",
+                "nav-team": "Experts",
+                "nav-contact": "Contact",
+                "breadcrumb-home": "Accueil",
+                "breadcrumb-services": "Services",
+                "breadcrumb-current": "Assurance Habitation",
+                "habitation-badge": "Protection & Sécurité",
+                "habitation-title": "🏠 Assurance Habitation Complète",
+                "intro-title": "Qu'est-ce que l'assurance habitation ?",
+                "intro-desc": "L'assurance habitation couvre votre logement et vos biens contre les risques comme l'incendie, le vol ou les dégâts des eaux. Elle est essentielle pour protéger votre patrimoine et votre responsabilité civile.",
+                "why-title": "✅ Pourquoi souscrire une assurance habitation ?",
+                "feature1-title": "Protection complète",
+                "feature1-desc": "Protection contre les incendies, inondations, vols et dégâts des eaux.",
+                "feature2-title": "Assistance 24/7",
+                "feature2-desc": "Assistance 24h/24 en cas de sinistre ou d'urgence.",
+                "feature3-title": "Responsabilité civile",
+                "feature3-desc": "Responsabilité civile incluse dans le contrat.",
+                "feature4-title": "Propriétaires et locataires",
+                "feature4-desc": "Formules adaptées aux propriétaires et locataires.",
+                "types-title": "📋 Types d'assurance habitation disponibles",
+                "type1-title": "Formule de base",
+                "type1-desc": "Incendie + Dégâts des eaux",
+                "type2-title": "Formule intermédiaire",
+                "type2-desc": "Base + Vol + Bris de glace",
+                "type3-title": "Formule complète",
+                "type3-desc": "Protection maximale + Assistance",
+                "faq-title": "❓ Questions fréquentes",
+                "cta-title": "Besoin d'un conseil personnalisé ?",
+                "cta-desc": "Contactez nos experts pour trouver l'assurance habitation qui vous correspond",
+                "cta-call": "Nous appeler",
+                "cta-whatsapp": "WhatsApp",
+                "footer-title": "Guide Assurance Algérie",
+                "footer-desc": "Votre plateforme complète pour trouver des agences d'assurance en Algérie, classées par wilaya et type de service.",
+                "footer-links-title": "Liens rapides",
+                "footer-home": "Accueil",
+                "footer-services": "Services",
+                "footer-offers": "Offres",
+                "footer-booking": "Rendez-vous",
+                "footer-about": "À Propos",
+                "footer-insurance-title": "Types d'assurance",
+                "footer-car": "Assurance Auto",
+                "footer-health": "Assurance Santé",
+                "footer-home-ins": "Assurance Habitation",
+                "footer-travel": "Assurance Voyage",
+                "footer-social-title": "Suivez-nous",
+                "copyright": "© 2026 Guide des Assurances Algérie - Tous droits réservés"
             }
-            localStorage.setItem('pageLang', lang);
-            currentLang = lang;
+        };
+        
+        // بيانات الأسئلة الشائعة
+        const faqsData = [
+            { qAr: "ما هي المخاطر التي يغطيها التأمين؟", qFr: "Quels risques sont couverts ?", aAr: "الحريق، تسرب المياه، السرقة، كسر الزجاج، الكوارث الطبيعية، وغيرها حسب الصيغة المختارة.", aFr: "Incendie, dégât des eaux, vol, bris de glace, catastrophes naturelles, et bien d'autres selon la formule choisie." },
+            { qAr: "هل التأمين على السكن إجباري؟", qFr: "Est-elle obligatoire ?", aAr: "نعم، للمستأجرين. ويوصى به بشدة للمالكين لحماية ممتلكاتهم.", aFr: "Oui, pour les locataires. Elle est vivement recommandée pour les propriétaires afin de protéger leur bien." },
+            { qAr: "كيف يمكن الاشتراك؟", qFr: "Comment souscrire ?", aAr: "عبر الإنترنت من خلال نموذجنا، أو في الوكالات، أو عبر الهاتف. مستشارونا في خدمتكم.", aFr: "En ligne via notre formulaire, en agence, ou par téléphone. Nos conseillers sont à votre disposition." },
+            { qAr: "كم تبلغ تكلفة التأمين على السكن؟", qFr: "Quel est le coût de l'assurance habitation ?", aAr: "تختلف التكلفة حسب مساحة المنزل وموقعه ونوع التغطية. تبدأ الأسعار من 5000 دج سنوياً.", aFr: "Le coût varie selon la surface, l'emplacement et le type de couverture. Les prix commencent à partir de 5000 DA/an." }
+        ];
+        
+        // بناء FAQ
+        const faqContainer = document.getElementById('faqContainer');
+        faqsData.forEach(faq => {
+            const item = document.createElement('div');
+            item.className = 'accordion-item';
+            item.innerHTML = `
+                <div class="accordion-header">
+                    <span><span class="ar">${faq.qAr}</span><span class="fr">${faq.qFr}</span></span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <p><span class="ar">${faq.aAr}</span><span class="fr">${faq.aFr}</span></p>
+                </div>
+            `;
+            faqContainer.appendChild(item);
+        });
+        
+        // ========== وظائف الموقع ==========
+        
+        // القائمة الجانبية للهاتف
+        const menuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinksMenu = document.querySelector('.nav-links');
+        const overlay = document.querySelector('.menu-overlay');
+        const mobileMenuClose = document.querySelector('.mobile-menu-close');
+        
+        if (mobileMenuClose && window.innerWidth <= 850) {
+            mobileMenuClose.style.display = 'flex';
         }
-
-        document.getElementById('toggleLangCenter').addEventListener('click', () => {
-            applyLanguage(currentLang === 'fr' ? 'ar' : 'fr');
+        
+        function openMenu() {
+            navLinksMenu.classList.add('active');
+            overlay.classList.add('active');
+            document.body.classList.add('menu-open');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeMenu() {
+            navLinksMenu.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.classList.remove('menu-open');
+            document.body.style.overflow = '';
+            document.querySelectorAll('.dropdown.active').forEach(d => d.classList.remove('active'));
+        }
+        
+        if(menuBtn) menuBtn.addEventListener('click', openMenu);
+        if(mobileMenuClose) mobileMenuClose.addEventListener('click', closeMenu);
+        if(overlay) overlay.addEventListener('click', closeMenu);
+        
+        navLinksMenu.querySelectorAll('a:not(.dropdown-toggle)').forEach(link => {
+            link.addEventListener('click', closeMenu);
         });
-        applyLanguage(currentLang);
-
-        // زر العودة للأعلى (موحد)
-        const scrollBtn = document.getElementById('scrollTop');
-        window.addEventListener('scroll', () => {
-            scrollBtn.classList.toggle('active', window.scrollY > 300);
+        
+        document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+            toggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const dropdown = this.closest('.dropdown');
+                if (window.innerWidth <= 850) {
+                    document.querySelectorAll('.dropdown').forEach(d => {
+                        if (d !== dropdown) d.classList.remove('active');
+                    });
+                    dropdown.classList.toggle('active');
+                }
+            });
         });
-        scrollBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 850) {
+                closeMenu();
+                if (mobileMenuClose) mobileMenuClose.style.display = 'none';
+            } else {
+                if (mobileMenuClose) mobileMenuClose.style.display = 'flex';
+            }
         });
+        
+        // FAQ accordion
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', function() {
+                this.closest('.accordion-item').classList.toggle('active');
+            });
+        });
+        
+        // زر الرجوع للأعلى
+        const scrollBtn = document.querySelector('.scroll-top');
+        if(scrollBtn) {
+            window.addEventListener('scroll', () => scrollBtn.classList.toggle('active', window.scrollY > 300));
+            scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        }
+        
+        // أنيميشن الظهور
+        const animateElements = document.querySelectorAll('.animate');
+        const checkAnimations = () => {
+            animateElements.forEach(el => {
+                if(el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add('active');
+            });
+        };
+        window.addEventListener('scroll', checkAnimations);
+        checkAnimations();
+        
+        // الترجمة
+        let currentLang = localStorage.getItem('preferred_language') || 'ar';
+        
+        function translatePage(lang) {
+            currentLang = lang;
+            document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+            
+            document.querySelectorAll('.ar, .fr').forEach(el => {
+                el.style.display = el.classList.contains(lang) ? 'inline' : 'none';
+            });
+            
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if(translations[lang] && translations[lang][key]) {
+                    if(element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        element.innerHTML = translations[lang][key];
+                    }
+                }
+            });
+            
+            document.title = lang === 'ar' ? 
+                'تأمين السكن | دليل وكالات التأمين في الجزائر - Trusty Tech' : 
+                'Assurance Habitation | Guide des Assurances en Algérie - Trusty Tech';
+            
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
+            localStorage.setItem('preferred_language', lang);
+        }
+        
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => translatePage(btn.dataset.lang));
+        });
+        
+        translatePage(currentLang);
     </script>
 </body>
 </html>
