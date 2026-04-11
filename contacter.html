@@ -1,258 +1,287 @@
 <!DOCTYPE html>
-<html lang="fr" dir="ltr">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Contactez-nous | اتصل بنا - Assurance Services</title>
-    <meta name="description" content="Contactez notre équipe d'experts en assurance. Nous sommes à votre écoute pour répondre à toutes vos questions.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    
+    <!-- تحسينات SEO -->
+    <title>اتصل بنا | دليل وكالات التأمين في الجزائر - Trusty Tech</title>
+    <meta name="description" content="اتصل بفريق خبراء التأمين لدينا. نحن في خدمتك للإجابة على جميع استفساراتك وتقديم استشارة مجانية حول التأمين في الجزائر.">
+    <meta name="keywords" content="اتصل بنا, دليل التأمين, استشارة تأمين, رقم هاتف تأمين, برج بوعريريج, Trusty Tech">
+    <meta name="author" content="Trusty Tech">
     <meta name="robots" content="index, follow">
     
-    <!-- Tailwind CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://davidrezgui34-oss.github.io/trustrytech/contacter">
+    <meta property="og:title" content="اتصل بنا | دليل وكالات التأمين في الجزائر">
+    <meta property="og:description" content="اتصل بفريق خبراء التأمين لدينا للإجابة على جميع استفساراتك">
+    <meta property="og:site_name" content="دليل التأمين الجزائر">
     
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Canonical -->
+    <link rel="canonical" href="https://davidrezgui34-oss.github.io/trustrytech/contacter">
     
-    <!-- AOS CSS -->
-    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* ========== المتغيرات العامة ========== */
+        :root {
+            --primary: #0B3B5E;
+            --primary-dark: #072a44;
+            --primary-light: #1a5a7a;
+            --secondary: #1B8E9E;
+            --secondary-light: #40b8c9;
+            --accent: #D4AF37;
+            --accent-light: #e6c84a;
+            --light: #F5F7FA;
+            --dark: #2C3E50;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --white: #ffffff;
+            --box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            --box-shadow-hover: 0 20px 35px rgba(0, 0, 0, 0.12);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --gradient-primary: linear-gradient(135deg, #0B3B5E 0%, #1B8E9E 100%);
+            --gradient-accent: linear-gradient(135deg, #D4AF37 0%, #e6c84a 100%);
+            --glow: 0 0 20px rgba(212, 175, 55, 0.3);
         }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
-            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Tajawal', sans-serif;
-            background: linear-gradient(135deg, #f0f9ff 0%, #e6f0fa 100%);
-            min-height: 100vh;
-            padding-top: 70px;
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
         }
         
-        /* نظام الترجمة */
-        .lang-fr .fr, .lang-ar .ar {
-            display: block;
+        body[dir="ltr"] { text-align: left; }
+        body[dir="rtl"] { text-align: right; }
+        
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--light-gray); }
+        ::-webkit-scrollbar-thumb { background: var(--secondary); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+        
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+        
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        .lang-fr .ar, .lang-ar .fr {
-            display: none;
-        }
-        .lang-ar {
-            direction: rtl;
-            text-align: right;
-        }
-        .lang-fr {
-            direction: ltr;
-            text-align: left;
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
         
-        /* ========== شريط التنقل العلوي الموحد ========== */
-        .top-navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: white;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
-            backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.98);
-            padding: 0.75rem 1rem;
-        }
-        
-        .navbar-container {
-            max-width: 1280px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        /* زر العودة إلى الرئيسية */
-        .back-home-btn {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 2rem;
-            font-weight: 600;
-            font-size: 0.8rem;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
-            white-space: nowrap;
-        }
-        .back-home-btn:hover {
-            transform: translateY(-2px);
-            background: linear-gradient(135deg, #059669, #047857);
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
-        }
-        .back-home-btn i:first-child {
-            display: none;
-        }
-        
-        /* زر اللغة في المنتصف */
-        .lang-switch-center {
-            background: linear-gradient(135deg, #1e3a8a, #1e40af);
-            border: none;
-            padding: 0.5rem 1.2rem;
-            border-radius: 2.5rem;
-            font-weight: 700;
-            font-size: 0.8rem;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            color: white;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.4);
-            white-space: nowrap;
-        }
-        .lang-switch-center:hover {
-            transform: translateY(-2px) scale(1.02);
-            background: linear-gradient(135deg, #1e40af, #1e3a8a);
-        }
-        
-        /* عنصر فارغ للتوازن */
-        .navbar-placeholder {
-            width: 0;
-            visibility: hidden;
-        }
-        
-        /* ========== تحسينات للهواتف ========== */
-        @media (min-width: 640px) {
-            .top-navbar {
-                padding: 0.75rem 1.5rem;
-            }
-            .back-home-btn {
-                padding: 0.5rem 1.2rem;
-                font-size: 0.85rem;
-            }
-            .back-home-btn i:first-child {
-                display: inline-block;
-            }
-            .lang-switch-center {
-                padding: 0.6rem 1.8rem;
-                font-size: 0.9rem;
-                gap: 10px;
-            }
-            .navbar-placeholder {
-                width: 120px;
-            }
-        }
-        
-        /* تنسيق البطاقات */
-        .info-card {
-            transition: all 0.3s ease;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-        .info-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.15);
-            border-color: rgba(59, 130, 246, 0.3);
-        }
-        
-        .social-icon {
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: #f0f9ff;
-            color: #1e3a8a;
-            margin: 0 5px;
-        }
-        .social-icon:hover {
-            transform: translateY(-3px);
-            background: #1e3a8a;
-            color: white;
-        }
-        
-        .form-input, .form-textarea {
-            transition: all 0.3s ease;
-            border: 2px solid #e5e7eb;
-        }
-        .form-input:focus, .form-textarea:focus {
-            border-color: #1e3a8a;
-            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.2);
-            outline: none;
-        }
-        
-        .btn-submit {
-            transition: all 0.3s ease;
-        }
-        .btn-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px -5px rgba(30, 58, 138, 0.4);
-        }
-        
-        .whatsapp-float {
-            position: fixed;
-            bottom: 80px;
-            left: 20px;
-            background: #25D366;
-            color: white;
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-            transition: all 0.3s ease;
-            z-index: 99;
-            text-decoration: none;
-        }
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
-        }
-        
-        .scroll-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 45px;
-            height: 45px;
-            background: linear-gradient(135deg, #1e3a8a, #1e40af);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            cursor: pointer;
+        .animate {
             opacity: 0;
-            transition: all 0.3s ease;
-            z-index: 99;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
         }
-        .scroll-top.active {
-            opacity: 1;
-        }
-        .scroll-top:hover {
-            transform: translateY(-3px);
-            background: linear-gradient(135deg, #d4af37, #e6c84a);
-            color: #1e3a8a;
+        .animate.active { 
+            opacity: 1; 
+            transform: translateY(0); 
+            animation: fadeUp 0.6s ease-out;
         }
         
-        /* ========== خلفية قسم الاتصال المحسنة ========== */
-        .contact-section-enhanced {
+        /* الشريط العلوي */
+        .top-bar {
+            background: var(--gradient-primary);
+            color: var(--white);
+            padding: 6px 0;
+            position: relative;
+            z-index: 1001;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .top-wrapper { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+        .top-contact { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+        .top-contact span {
+            display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem;
+            transition: var(--transition); padding: 3px 8px; border-radius: 20px;
+            background: rgba(255,255,255,0.05);
+        }
+        .top-contact span:hover { background: rgba(255,255,255,0.12); transform: translateY(-1px); }
+        .top-contact i { color: var(--accent); font-size: 0.75rem; }
+        .top-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .language-switch { display: flex; gap: 3px; align-items: center; background: rgba(255,255,255,0.08); padding: 2px; border-radius: 25px; }
+        .lang-btn {
+            background: transparent; border: none; padding: 4px 10px; border-radius: 20px;
+            color: rgba(255,255,255,0.85); cursor: pointer; font-family: 'Tajawal', sans-serif;
+            font-weight: 500; transition: var(--transition); font-size: 0.7rem;
+        }
+        .lang-btn:hover { color: var(--white); background: rgba(255,255,255,0.1); }
+        .lang-btn.active { background: var(--accent); color: var(--primary-dark); box-shadow: 0 2px 6px rgba(212, 175, 55, 0.3); }
+        .top-social { display: flex; gap: 4px; align-items: center; }
+        .top-social a {
+            color: var(--white); background: rgba(255,255,255,0.08); width: 28px; height: 28px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            transition: var(--transition); text-decoration: none; font-size: 0.75rem;
+        }
+        .top-social a:hover { background: var(--accent); color: var(--primary-dark); transform: translateY(-2px); }
+        
+        /* الهيدر الرئيسي */
+        header {
+            background: rgba(255,255,255,0.98);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.04);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.03);
+        }
+        .navbar { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 5px 0; 
+            gap: 10px; 
+            flex-wrap: wrap;
+        }
+        .logo-container { display: flex; align-items: center; flex-shrink: 0; }
+        .logo-icon {
+            width: 42px; height: 42px; background: var(--gradient-primary); border-radius: 10px;
+            display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(11, 59, 94, 0.15);
+            transition: var(--transition); position: relative; overflow: hidden; margin-left: 8px;
+        }
+        .logo-icon i { font-size: 1.4rem; color: var(--white); }
+        .logo-text h1 { font-size: 1.2rem; color: var(--primary); font-weight: 800; line-height: 1.2; margin: 0; }
+        .logo-text span { font-size: 0.65rem; color: var(--secondary); display: block; line-height: 1.2; font-weight: 600; }
+        
+        /* القائمة العلوية */
+        .nav-links { 
+            display: flex; 
+            list-style: none; 
+            gap: 1px; 
+            margin: 0; 
+            padding: 0; 
+            align-items: center; 
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .nav-links li { margin: 0; position: relative; }
+        .nav-links a {
+            text-decoration: none; 
+            color: var(--dark); 
+            font-weight: 600; 
+            padding: 6px 7px;
+            border-radius: 8px; 
+            transition: var(--transition); 
+            font-size: 0.72rem;
+            display: inline-flex; 
+            align-items: center; 
+            gap: 4px; 
+            white-space: nowrap; 
+            position: relative; 
+            background: transparent;
+        }
+        .nav-links a i { font-size: 0.75rem; color: var(--secondary); transition: var(--transition); }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: 2px; left: 50%; width: 0; height: 2px;
+            background: var(--gradient-accent); transition: var(--transition); transform: translateX(-50%); border-radius: 2px;
+        }
+        .nav-links a:hover { color: var(--primary); background: rgba(27, 142, 158, 0.05); }
+        .nav-links a:hover::after { width: 40%; }
+        .nav-links a:hover i { color: var(--accent); }
+        
+        /* القائمة المنسدلة */
+        .dropdown { position: relative; }
+        .dropdown-toggle i { font-size: 0.6rem; transition: transform 0.3s; margin-right: 2px; }
+        .dropdown:hover .dropdown-toggle i { transform: rotate(180deg); }
+        .dropdown-menu {
+            position: absolute; top: calc(100% + 5px); right: 0; background: var(--white);
+            min-width: 180px; border-radius: 10px; box-shadow: 0 10px 35px rgba(0,0,0,0.1);
+            padding: 6px 0; opacity: 0; visibility: hidden; transform: translateY(-8px);
+            transition: all 0.25s ease; z-index: 1000; list-style: none;
+            border: 1px solid rgba(0,0,0,0.04); backdrop-filter: blur(10px); background: rgba(255,255,255,0.98);
+        }
+        .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        .dropdown-menu a {
+            padding: 8px 14px; border-radius: 0; display: flex; align-items: center; gap: 8px;
+            color: var(--dark); font-size: 0.75rem; white-space: nowrap;
+        }
+        .dropdown-menu a i { width: 18px; color: var(--secondary); font-size: 0.8rem; }
+        .dropdown-menu a:hover {
+            background: linear-gradient(90deg, rgba(27, 142, 158, 0.05), transparent);
+            color: var(--primary); padding-right: 20px;
+        }
+        .dropdown-menu a::after { display: none; }
+        
+        /* زر القائمة للهاتف */
+        .mobile-menu-btn {
+            display: none; font-size: 1.4rem; background: rgba(27, 142, 158, 0.05);
+            border: none; color: var(--primary); cursor: pointer; padding: 6px 10px;
+            z-index: 1002; transition: var(--transition); border-radius: 8px; align-items: center; gap: 6px;
+        }
+        .mobile-menu-btn span { font-size: 0.85rem; font-weight: 600; }
+        .mobile-menu-btn:hover { background: var(--secondary); color: var(--white); }
+        
+        @media (min-width: 851px) and (max-width: 1100px) {
+            .navbar { justify-content: center; }
+            .nav-links { justify-content: center; width: 100%; }
+            .nav-links a { padding: 5px 6px; font-size: 0.68rem; }
+            .logo-text h1 { font-size: 1.1rem; }
+        }
+        
+        @media (max-width: 850px) {
+            .mobile-menu-btn { display: flex !important; }
+            .navbar { flex-direction: row; justify-content: space-between; flex-wrap: nowrap; }
+            .nav-links {
+                display: flex !important; position: fixed; top: 0; right: -100%;
+                width: 280px; max-width: 80vw; height: 100vh; background: var(--white);
+                flex-direction: column; padding: 20px 15px 25px;
+                transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: -5px 0 35px rgba(0,0,0,0.12); z-index: 1001; gap: 2px;
+                overflow-y: auto; align-items: stretch; border-left: 1px solid rgba(0,0,0,0.04);
+                flex-wrap: nowrap;
+            }
+            .nav-links.active { right: 0; }
+            .nav-links li { width: 100%; }
+            .nav-links a { display: flex; align-items: center; text-align: right; padding: 14px 15px; font-size: 1rem; white-space: normal; border-radius: 8px; margin: 1px 0; gap: 10px; }
+            .nav-links a i { width: 22px; font-size: 1rem; }
+            .nav-links a::after { display: none; }
+            .dropdown-menu { position: static; opacity: 1; visibility: visible; transform: none; box-shadow: none; border: none; background: transparent; padding: 0; margin-right: 20px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; min-width: auto; border-right: 2px solid var(--secondary); }
+            .dropdown.active .dropdown-menu { max-height: 250px; }
+            .menu-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.35); backdrop-filter: blur(2px); z-index: 1000; opacity: 0; visibility: hidden; transition: all 0.25s ease; cursor: pointer; }
+            .menu-overlay.active { opacity: 1; visibility: visible; }
+            body.menu-open { overflow: hidden; }
+            .mobile-menu-close { position: absolute; top: 15px; left: 15px; background: rgba(0,0,0,0.05); border: none; color: var(--dark); width: 36px; height: 36px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; transition: var(--transition); z-index: 1002; }
+            .mobile-menu-close:hover { background: var(--secondary); color: var(--white); transform: rotate(90deg); }
+        }
+        
+        @media (max-width: 576px) {
+            .top-bar { padding: 4px 0; }
+            .top-wrapper { flex-direction: column; gap: 6px; }
+            .top-contact { justify-content: center; gap: 6px; }
+            .top-contact span { font-size: 0.65rem; padding: 2px 6px; }
+            .logo-icon { width: 38px; height: 38px; }
+            .logo-text h1 { font-size: 1rem; }
+            .logo-text span { font-size: 0.55rem; }
+            .mobile-menu-btn span { display: none; }
+            .nav-links { padding-top: 60px; }
+            .container { width: 95%; padding: 0 10px; }
+            .section { padding: 50px 0; }
+        }
+        
+        .section { padding: 80px 0; position: relative; }
+        
+        /* ========== صفحة اتصل بنا - خلفية عصرية مع شفافية محسنة ========== */
+        .contact-page-section {
             position: relative;
             background-image: url('https://davidrezgui34-oss.github.io/trustrytech/images/pexels-mart-production-7709286.jpg');
             background-size: cover;
             background-position: center 30%;
             background-attachment: fixed;
             background-repeat: no-repeat;
+            padding: 80px 0;
         }
         
-        /* طبقة تراكب متدرجة */
-        .contact-section-enhanced::before {
+        .contact-page-section::before {
             content: '';
             position: absolute;
             top: 0;
@@ -260,517 +289,912 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(135deg, 
-                rgba(0, 0, 0, 0.75) 0%,
-                rgba(30, 58, 138, 0.65) 50%,
-                rgba(0, 0, 0, 0.75) 100%);
+                rgba(0, 0, 0, 0.65) 0%,
+                rgba(30, 58, 138, 0.55) 50%,
+                rgba(0, 0, 0, 0.65) 100%);
             z-index: 1;
         }
         
-        /* المحتوى فوق كل الطبقات */
-        .contact-section-enhanced > div {
+        .contact-page-section .container {
             position: relative;
             z-index: 3;
         }
         
-        /* ========== تحسينات جمالية عصرية (زجاجية) ========== */
-        .contact-section-enhanced .info-card {
-            background: rgba(255, 255, 255, 0.85) !important;
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.5) !important;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 3;
         }
-        .contact-section-enhanced .info-card:hover {
-            background: rgba(255, 255, 255, 0.95) !important;
-            backdrop-filter: blur(12px);
-            transform: translateY(-8px) scale(1.02);
-            border-color: rgba(255, 215, 0, 0.6) !important;
-        }
-
-        .contact-section-enhanced .bg-white.rounded-2xl {
-            background: rgba(255, 255, 255, 0.9) !important;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.6) !important;
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3) !important;
-        }
-
-        .contact-section-enhanced .text-center h2,
-        .contact-section-enhanced .text-center p {
+        .section-title h2 {
+            font-size: 2.3rem;
+            color: var(--white);
+            margin-bottom: 15px;
+            font-weight: 800;
+            position: relative;
+            display: inline-block;
             text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
         }
-        .contact-section-enhanced .text-center h2 span,
-        .contact-section-enhanced .text-center p span {
-            color: white !important;
+        .section-title h2::after {
+            content: "";
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 4px;
+            background: var(--gradient-accent);
+            border-radius: 2px;
+        }
+        .section-title p {
+            color: rgba(255,255,255,0.95);
+            max-width: 700px;
+            margin: 25px auto 0;
+            font-size: 1.1rem;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+        }
+        
+        .contact-grid-full {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 40px;
+            position: relative;
+            z-index: 3;
+            margin-bottom: 40px;
+        }
+        
+        /* شفافية أقل للبطاقات لإظهار الخلفية بشكل أفضل */
+        .contact-info-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 20px;
+            padding: 35px 30px;
+            box-shadow: 0 15px 35px -8px rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            transition: var(--transition);
+        }
+        
+        .contact-info-panel:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-color: var(--accent);
+        }
+        
+        .contact-info-panel h3 {
+            color: var(--primary-dark);
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            text-shadow: 0 1px 2px rgba(255,255,255,0.5);
+        }
+        
+        .info-card-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
+            margin-bottom: 28px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(4px);
+            border-radius: 15px;
+            transition: var(--transition);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        
+        .info-card-item:hover {
+            transform: translateX(-5px);
+            background: rgba(255, 255, 255, 0.75);
+            box-shadow: var(--box-shadow);
+        }
+        
+        .info-card-item i {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-primary);
+            color: var(--white);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        
+        .info-card-item h4 {
+            color: var(--primary-dark);
+            margin-bottom: 5px;
+            font-size: 1.1rem;
             font-weight: 700;
         }
-        .contact-section-enhanced .inline-block.bg-blue-100 {
-            background: rgba(255, 255, 255, 0.25) !important;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-        .contact-section-enhanced .inline-block.bg-blue-100 span {
-            color: #FFD700 !important;
-        }
-        .contact-section-enhanced .inline-block.bg-blue-100 i {
-            color: #FFD700 !important;
+        
+        .info-card-item p {
+            color: var(--dark);
+            font-size: 0.95rem;
+            font-weight: 500;
         }
         
-        /* ========== تحسينات الوضوح على جميع الأجهزة ========== */
-        @media (max-width: 640px) {
-            body {
-                padding-top: 60px;
-            }
-            
-            .contact-section-enhanced {
-                background-attachment: scroll;
-                padding: 20px 15px 40px !important;
-            }
-            
-            .text-4xl {
-                font-size: 1.8rem !important;
-            }
-            
-            .text-2xl {
-                font-size: 1.4rem !important;
-            }
-            
-            .text-sm {
-                font-size: 0.9rem !important;
-            }
-            
-            p, .text-gray-600, .text-gray-300 {
-                font-size: 0.95rem !important;
-                line-height: 1.5 !important;
-            }
-            
-            h3 {
-                font-size: 1.2rem !important;
-            }
-            
-            .whatsapp-float {
-                bottom: 70px;
-                left: 15px;
-                width: 50px;
-                height: 50px;
-                font-size: 1.5rem;
-            }
-            
-            .scroll-top {
-                bottom: 15px;
-                right: 15px;
-                width: 40px;
-                height: 40px;
-            }
-            
-            .map-container iframe {
-                height: 300px;
-            }
+        .social-links-panel {
+            display: flex;
+            gap: 12px;
+            margin-top: 30px;
+            justify-content: center;
         }
         
-        @media (min-width: 641px) and (max-width: 1024px) {
-            .contact-section-enhanced {
-                padding: 30px 20px 50px !important;
-            }
+        .social-links-panel a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(4px);
+            border-radius: 12px;
+            color: var(--primary);
+            font-size: 1.2rem;
+            transition: var(--transition);
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.4);
         }
         
-        .map-container {
-            border-radius: 1rem;
-            overflow: hidden;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        .social-links-panel a:hover {
+            background: var(--gradient-primary);
+            color: var(--white);
+            transform: translateY(-5px);
+            box-shadow: var(--box-shadow);
         }
         
-        .map-container iframe {
+        .contact-form-panel {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 20px;
+            padding: 35px 30px;
+            box-shadow: 0 15px 35px -8px rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.45);
+        }
+        
+        .contact-form-panel h3 {
+            color: var(--primary-dark);
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+            text-align: center;
+            font-weight: 800;
+            text-shadow: 0 1px 2px rgba(255,255,255,0.5);
+        }
+        
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
+        .form-group { margin-bottom: 18px; }
+        
+        .form-control {
             width: 100%;
+            padding: 14px 18px;
+            border: 2px solid rgba(255,255,255,0.5);
+            background: rgba(255,255,255,0.6);
+            backdrop-filter: blur(4px);
+            border-radius: 12px;
+            font-family: 'Tajawal', sans-serif;
+            transition: var(--transition);
+            font-size: 1rem;
+            color: var(--dark);
+            font-weight: 500;
+        }
+        
+        .form-control::placeholder {
+            color: rgba(44, 62, 80, 0.6);
+            font-weight: 400;
+        }
+        
+        .form-control:focus {
+            border-color: var(--secondary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(27, 142, 158, 0.2);
+            background: rgba(255,255,255,0.85);
+        }
+        
+        textarea.form-control { min-height: 130px; resize: vertical; }
+        
+        .captcha-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .captcha-question {
+            background: var(--gradient-primary);
+            color: var(--white);
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            white-space: nowrap;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        
+        .btn-submit-contact {
+            background: var(--gradient-primary);
+            color: var(--white);
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Tajawal', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(11, 59, 94, 0.3);
+        }
+        
+        .btn-submit-contact:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(11, 59, 94, 0.4);
+            background: var(--gradient-accent);
+            color: var(--primary-dark);
+        }
+        
+        .btn-whatsapp-direct {
+            background: #25D366;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: var(--transition);
+            width: 100%;
+            margin-top: 15px;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+        
+        .btn-whatsapp-direct:hover {
+            background: #1da851;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+            color: white;
+        }
+        
+        .map-full-container {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px -8px rgba(0, 0, 0, 0.3);
             height: 400px;
+            margin-top: 20px;
+            transition: var(--transition);
+            position: relative;
+            z-index: 3;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        
+        .map-full-container:hover {
+            transform: scale(1.01);
+            box-shadow: 0 25px 50px -5px rgba(0,0,0,0.4);
+        }
+        
+        .map-full-container iframe {
+            width: 100%;
+            height: 100%;
             border: none;
         }
         
-        html {
-            scroll-behavior: smooth;
+        .title-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            border-radius: 30px;
+            padding: 8px 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        .title-badge i {
+            color: var(--accent);
+            margin-left: 8px;
+        }
+        .title-badge span {
+            color: var(--white);
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
         
-        /* تحسين وضوح النص في البطاقات */
-        .info-card p, .bg-white p {
-            font-weight: 500 !important;
-            color: #1f2937 !important;
+        .footer {
+            background: var(--primary-dark);
+            color: rgba(255,255,255,0.8);
+            padding: 60px 0 30px;
         }
         
-        .contact-section-enhanced .info-card h3 {
-            color: #1e3a8a !important;
-            font-weight: 800 !important;
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-widget h4 { color: var(--white); margin-bottom: 20px; position: relative; padding-bottom: 10px; }
+        .footer-widget h4::after { content: ""; position: absolute; bottom: 0; right: 0; width: 50px; height: 3px; background: var(--gradient-accent); border-radius: 2px; }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a { color: rgba(255,255,255,0.7); text-decoration: none; transition: var(--transition); }
+        .footer-links a:hover { color: var(--accent); padding-right: 5px; }
+        .social-links { display: flex; gap: 15px; margin-top: 15px; }
+        .social-links a { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; color: var(--white); font-size: 1.2rem; transition: var(--transition); text-decoration: none; }
+        .social-links a:hover { background: var(--accent); color: var(--primary-dark); transform: translateY(-5px) rotate(360deg); }
+        .copyright { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); }
+        
+        .scroll-top {
+            position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px;
+            background: var(--gradient-primary); border-radius: 50%; display: flex;
+            align-items: center; justify-content: center; color: white; cursor: pointer;
+            opacity: 0; transition: var(--transition); z-index: 998;
+            box-shadow: var(--box-shadow); border: 2px solid rgba(255,255,255,0.3);
+        }
+        .scroll-top.active { opacity: 1; }
+        .scroll-top:hover { transform: translateY(-5px); background: var(--gradient-accent); color: var(--primary-dark); }
+        
+        @media (max-width: 992px) {
+            .contact-grid-full { grid-template-columns: 1fr; gap: 30px; }
+            .section { padding: 60px 0; }
+            .contact-page-section { background-attachment: scroll; }
+        }
+        
+        @media (max-width: 768px) {
+            .form-row { grid-template-columns: 1fr; }
+            .captcha-group { flex-direction: column; align-items: flex-start; }
+            .captcha-question { width: 100%; text-align: center; }
+            .map-full-container { height: 300px; }
+            .scroll-top { right: 15px; bottom: 30px; }
+            .section-title h2 { font-size: 1.8rem; }
         }
     </style>
 </head>
-<body>
-    <!-- شريط التنقل العلوي الموحد -->
-    <div class="top-navbar">
-        <div class="navbar-container">
-            <a href="https://davidrezgui34-oss.github.io/trustrytech/" class="back-home-btn">
-                <i class="fas fa-arrow-right"></i>
-                <i class="fas fa-home"></i>
-                <span class="fr">Accueil</span>
-                <span class="ar">الرئيسية</span>
-            </a>
-            
-            <button class="lang-switch-center" id="toggleLangCenter">
-                <i class="fas fa-globe"></i>
-                <span id="langBtnTextCenter">العربية</span>
-                <i class="fas fa-exchange-alt"></i>
-            </button>
-            
-            <div class="navbar-placeholder"></div>
+<body dir="rtl">
+    <!-- الشريط العلوي -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-wrapper">
+                <div class="top-contact">
+                    <span><i class="fas fa-phone-alt"></i> 0774479525</span>
+                    <span><i class="fas fa-envelope"></i> contact@annuaire-assurance.dz</span>
+                    <span><i class="fas fa-clock"></i> <span data-translate="hours">السبت - الخميس: 09:00 - 17:00</span></span>
+                </div>
+                <div class="top-actions">
+                    <div class="language-switch">
+                        <button class="lang-btn active" data-lang="ar">🇩🇿 العربية</button>
+                        <button class="lang-btn" data-lang="fr">🇫🇷 Français</button>
+                    </div>
+                    <div class="top-social">
+                        <a href="https://www.facebook.com/Leadersvisionacademy" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/leaders_vision_academy" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- أيقونة واتساب عائمة -->
-    <a href="https://wa.me/213668460780" class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
-    <!-- زر العودة للأعلى -->
-    <div class="scroll-top" id="scrollTop">
-        <i class="fas fa-arrow-up"></i>
-    </div>
-
-    <div class="lang-fr" id="page">
-        
-        <!-- Section Contact avec la nouvelle image de fond -->
-        <section class="contact-section-enhanced" style="padding: 40px 20px 60px;">
-            <div style="max-width: 1100px; margin: auto;">
+    <!-- الهيدر الرئيسي -->
+    <header>
+        <div class="container">
+            <div class="navbar">
+                <div class="logo-container">
+                    <div class="logo-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h1>Trusty Tech</h1>
+                        <span data-translate="logo-title">دليل التأمين</span>
+                    </div>
+                </div>
                 
-                <!-- En-tête -->
-                <div class="text-center mb-8 md:mb-12" data-aos="fade-up">
-                    <div class="inline-block bg-blue-100 rounded-full px-4 py-1 mb-4">
-                        <i class="fas fa-headset text-blue-600 ml-2"></i>
-                        <span class="text-blue-600 text-sm font-semibold fr">Support Client</span>
-                        <span class="text-blue-600 text-sm font-semibold ar">دعم العملاء</span>
-                    </div>
-                    <h2 class="text-3xl md:text-4xl font-bold text-blue-800 mb-3 md:mb-4">
-                        <span class="fr">📞 Contactez-nous</span>
-                        <span class="ar">📞 اتصل بنا</span>
-                    </h2>
-                    <p class="text-gray-600 max-w-2xl mx-auto text-sm md:text-base px-4">
-                        <span class="fr">Notre équipe d'experts est à votre disposition pour répondre à toutes vos questions.</span>
-                        <span class="ar">فريق خبرائنا تحت تصرفكم للإجابة على جميع أسئلتكم.</span>
-                    </p>
-                </div>
+                <button class="mobile-menu-btn" aria-label="القائمة">
+                    <i class="fas fa-bars"></i>
+                    <span data-translate="nav-menu">القائمة</span>
+                </button>
+                
+                <div class="menu-overlay"></div>
+                
+                <ul class="nav-links">
+                    <button class="mobile-menu-close" style="display: none;"><i class="fas fa-times"></i></button>
+                    
+                    <li><a href="https://davidrezgui34-oss.github.io/trustrytech/"><i class="fas fa-home"></i> <span data-translate="nav-home">الرئيسية</span></a></li>
+                    <li><a href="https://davidrezgui34-oss.github.io/trustrytech/services"><i class="fas fa-cogs"></i> <span data-translate="nav-services">خدماتنا</span></a></li>
+                    
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle"><i class="fas fa-shield"></i> <span data-translate="nav-insurance">تأمينات</span> <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="https://davidrezgui34-oss.github.io/trustrytech/automobile"><i class="fas fa-car"></i> <span data-translate="nav-car-insurance">تأمين السيارات</span></a></li>
+                            <li><a href="https://davidrezgui34-oss.github.io/trustrytech/sante"><i class="fas fa-heartbeat"></i> <span data-translate="nav-health-insurance">تأمين الصحة</span></a></li>
+                            <li><a href="https://davidrezgui34-oss.github.io/trustrytech/habitation"><i class="fas fa-home"></i> <span data-translate="nav-home-insurance">تأمين السكن</span></a></li>
+                            <li><a href="https://davidrezgui34-oss.github.io/trustrytech/voyage"><i class="fas fa-plane"></i> <span data-translate="nav-travel-insurance">تأمين السفر</span></a></li>
+                        </ul>
+                    </li>
+                    
+                    <li><a href="https://davidrezgui34-oss.github.io/trustrytech/#offers"><i class="fas fa-tags"></i> <span data-translate="nav-offers">عروض حصرية</span></a></li>
+                    <li><a href="https://davidrezgui34-oss.github.io/trustrytech/#booking"><i class="fas fa-calendar-alt"></i> <span data-translate="nav-booking">حجز موعد</span></a></li>
+                    <li><a href="https://davidrezgui34-oss.github.io/trustrytech/#about"><i class="fas fa-info-circle"></i> <span data-translate="nav-about">من نحن</span></a></li>
+                    <li><a href="https://davidrezgui34-oss.github.io/trustrytech/#companies"><i class="fas fa-building"></i> <span data-translate="nav-companies">الشركات</span></a></li>
+                    <li><a href="https://davidrezgui34-oss.github.io/trustrytech/#team"><i class="fas fa-users"></i> <span data-translate="nav-team">الخبراء</span></a></li>
+                    <li><a href="https://davidrezgui34-oss.github.io/trustrytech/contacter" style="color: var(--accent);"><i class="fas fa-phone"></i> <span data-translate="nav-contact">اتصل بنا</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
 
-                <!-- Cartes d'informations -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-8 md:mb-12" data-aos="fade-up" data-aos-delay="100">
-                    <div class="info-card bg-white p-4 md:p-6 rounded-xl shadow-md text-center">
-                        <div class="bg-blue-100 w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
-                            <i class="fas fa-map-marker-alt text-xl md:text-2xl text-blue-600"></i>
+    <!-- محتوى صفحة اتصل بنا -->
+    <section class="section contact-page-section">
+        <div class="container">
+            <div class="section-title">
+                <div class="title-badge animate">
+                    <i class="fas fa-headset"></i>
+                    <span data-translate="support-badge">دعم العملاء</span>
+                </div>
+                <h2 data-translate="contact-title">📞 اتصل بنا</h2>
+                <p data-translate="contact-subtitle">فريق خبرائنا تحت تصرفكم للإجابة على جميع أسئلتكم واستفساراتكم</p>
+            </div>
+            
+            <div class="contact-grid-full">
+                <!-- لوحة معلومات الاتصال -->
+                <div class="contact-info-panel animate">
+                    <h3><i class="fas fa-address-card" style="color: var(--accent);"></i> <span data-translate="info-title">معلومات التواصل</span></h3>
+                    
+                    <div class="info-card-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4 data-translate="address-label">العنوان</h4>
+                            <p data-translate="address-value">برج بوعريريج، حي الأمان، الجزائر</p>
                         </div>
-                        <h3 class="font-bold text-gray-800 mb-1 md:mb-2 text-base md:text-lg">
-                            <span class="fr">Adresse</span>
-                            <span class="ar">العنوان</span>
-                        </h3>
-                        <p class="text-gray-600 text-xs md:text-sm">
-                            <span class="fr">Bordj Bou Arreridj, Cité El Amal, Algérie</span>
-                            <span class="ar">برج بوعريريج، حي الأمان، الجزائر</span>
-                        </p>
                     </div>
                     
-                    <div class="info-card bg-white p-4 md:p-6 rounded-xl shadow-md text-center">
-                        <div class="bg-blue-100 w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
-                            <i class="fas fa-phone-alt text-xl md:text-2xl text-blue-600"></i>
+                    <div class="info-card-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div>
+                            <h4 data-translate="phone-label">الهاتف</h4>
+                            <p>+213 774 479 525</p>
+                            <p style="font-size: 0.85rem; margin-top: 5px;">+213 668 460 780</p>
                         </div>
-                        <h3 class="font-bold text-gray-800 mb-1 md:mb-2 text-base md:text-lg">
-                            <span class="fr">Téléphone</span>
-                            <span class="ar">الهاتف</span>
-                        </h3>
-                        <p class="text-gray-600 text-xs md:text-sm">+213 668 460 780</p>
                     </div>
                     
-                    <div class="info-card bg-white p-4 md:p-6 rounded-xl shadow-md text-center">
-                        <div class="bg-blue-100 w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
-                            <i class="fas fa-envelope text-xl md:text-2xl text-blue-600"></i>
+                    <div class="info-card-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4 data-translate="email-label">البريد الإلكتروني</h4>
+                            <p>contact@annuaire-assurance.dz</p>
+                            <p style="font-size: 0.85rem; margin-top: 5px;">davidrezgui34@gmail.com</p>
                         </div>
-                        <h3 class="font-bold text-gray-800 mb-1 md:mb-2 text-base md:text-lg">Email</h3>
-                        <p class="text-gray-600 text-xs md:text-sm">contact@assurance.dz</p>
                     </div>
                     
-                    <div class="info-card bg-white p-4 md:p-6 rounded-xl shadow-md text-center">
-                        <div class="bg-blue-100 w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
-                            <i class="fas fa-clock text-xl md:text-2xl text-blue-600"></i>
+                    <div class="info-card-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4 data-translate="hours-label">ساعات العمل</h4>
+                            <p data-translate="hours-value">السبت - الخميس: 09:00 - 17:00</p>
+                            <p style="font-size: 0.85rem; margin-top: 5px;" data-translate="hours-weekend">الجمعة: عطلة</p>
                         </div>
-                        <h3 class="font-bold text-gray-800 mb-1 md:mb-2 text-base md:text-lg">
-                            <span class="fr">Horaires</span>
-                            <span class="ar">ساعات العمل</span>
-                        </h3>
-                        <p class="text-gray-600 text-xs md:text-sm">
-                            <span class="fr">Lun - Sam : 09h00 - 17h00</span>
-                            <span class="ar">السبت - الخميس: 09:00 - 17:00</span>
-                        </p>
                     </div>
+                    
+                    <div class="social-links-panel">
+                        <a href="https://www.facebook.com/Leadersvisionacademy" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/leaders_vision_academy" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                    
+                    <a href="https://wa.me/213774479525" class="btn-whatsapp-direct" target="_blank">
+                        <i class="fab fa-whatsapp"></i> <span data-translate="whatsapp-btn">تواصل مباشر عبر واتساب</span>
+                    </a>
                 </div>
-
-                <!-- Formulaire + Carte Double (WhatsApp/Email) -->
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mb-8 md:mb-12" data-aos="fade-up" data-aos-delay="200">
-                    <!-- Formulaire de contact -->
-                    <div class="bg-white rounded-2xl shadow-xl p-5 md:p-8">
-                        <h3 class="text-xl md:text-2xl font-bold text-blue-800 mb-4 md:mb-6 text-center">
-                            <span class="fr">✉️ Envoyez-nous un message</span>
-                            <span class="ar">✉️ أرسل لنا رسالة</span>
-                        </h3>
-                        
-                        <form id="contactForm">
-                            <input type="text" name="_gotcha" style="display:none">
-                            
-                            <div class="mb-3 md:mb-4">
-                                <label class="block text-gray-700 font-medium mb-1 md:mb-2 text-sm md:text-base">
-                                    <i class="fas fa-user text-blue-600 ml-1"></i>
-                                    <span class="fr">Nom complet</span>
-                                    <span class="ar">الاسم الكامل</span>
-                                </label>
-                                <input type="text" id="fullName" required class="form-input w-full px-3 md:px-4 py-2 md:py-3 rounded-xl border-2 border-gray-200 focus:border-blue-500 transition text-sm md:text-base">
+                
+                <!-- لوحة نموذج الاتصال -->
+                <div class="contact-form-panel animate">
+                    <h3><i class="fas fa-paper-plane" style="color: var(--accent); margin-left: 8px;"></i> <span data-translate="form-title">أرسل لنا رسالة</span></h3>
+                    
+                    <form id="contactPageForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="contactName" data-translate-placeholder="name-placeholder" placeholder="الاسم الكامل" required>
                             </div>
-                            
-                            <div class="mb-3 md:mb-4">
-                                <label class="block text-gray-700 font-medium mb-1 md:mb-2 text-sm md:text-base">
-                                    <i class="fas fa-envelope text-blue-600 ml-1"></i> Email
-                                </label>
-                                <input type="email" id="email" required class="form-input w-full px-3 md:px-4 py-2 md:py-3 rounded-xl border-2 border-gray-200 focus:border-blue-500 transition text-sm md:text-base">
+                            <div class="form-group">
+                                <input type="email" class="form-control" id="contactEmail" data-translate-placeholder="email-placeholder" placeholder="البريد الإلكتروني" required>
                             </div>
-                            
-                            <div class="mb-3 md:mb-4">
-                                <label class="block text-gray-700 font-medium mb-1 md:mb-2 text-sm md:text-base">
-                                    <i class="fas fa-phone text-blue-600 ml-1"></i>
-                                    <span class="fr">Téléphone</span>
-                                    <span class="ar">رقم الهاتف</span>
-                                </label>
-                                <input type="tel" id="phone" class="form-input w-full px-3 md:px-4 py-2 md:py-3 rounded-xl border-2 border-gray-200 focus:border-blue-500 transition text-sm md:text-base">
-                            </div>
-                            
-                            <div class="mb-3 md:mb-4">
-                                <label class="block text-gray-700 font-medium mb-1 md:mb-2 text-sm md:text-base">
-                                    <i class="fas fa-comment-dots text-blue-600 ml-1"></i>
-                                    <span class="fr">Message</span>
-                                    <span class="ar">الرسالة</span>
-                                </label>
-                                <textarea id="message" rows="4" required class="form-textarea w-full px-3 md:px-4 py-2 md:py-3 rounded-xl border-2 border-gray-200 focus:border-blue-500 transition text-sm md:text-base"></textarea>
-                            </div>
-                            
-                            <div class="mb-4 md:mb-6">
-                                <label class="block text-gray-700 font-medium mb-1 md:mb-2 text-sm md:text-base">
-                                    <i class="fas fa-robot text-blue-600 ml-1"></i>
-                                    <span class="fr">Combien font 3 + 4 ?</span>
-                                    <span class="ar">كم ناتج 3 + 4؟</span>
-                                </label>
-                                <input type="number" id="captcha" required class="form-input w-full px-3 md:px-4 py-2 md:py-3 rounded-xl border-2 border-gray-200 focus:border-blue-500 transition text-sm md:text-base">
-                            </div>
-                            
-                            <button type="submit" id="submitBtn" class="btn-submit w-full bg-gradient-to-r from-blue-600 to-blue-800 text-white py-2 md:py-3 rounded-xl font-semibold text-base md:text-lg flex items-center justify-center gap-2">
-                                <i class="fas fa-paper-plane"></i>
-                                <span class="fr">Envoyer le message</span>
-                                <span class="ar">إرسال الرسالة</span>
-                            </button>
-                            
-                            <button type="button" id="retryBtn" style="display:none" class="w-full mt-3 bg-red-600 text-white py-2 md:py-3 rounded-xl font-semibold flex items-center justify-center gap-2 text-sm md:text-base">
-                                <i class="fas fa-rotate-left"></i>
-                                <span class="fr">Réessayer</span>
-                                <span class="ar">إعادة المحاولة</span>
-                            </button>
-                        </form>
-                    </div>
-
-                    <!-- بطاقة التواصل المزدوجة العصرية (واتساب + إيميل) -->
-                    <div class="bg-gradient-to-br from-gray-800/90 to-gray-900/90 backdrop-blur-md rounded-2xl shadow-2xl p-5 md:p-8 text-white text-center border border-gray-600/50" style="backdrop-filter: blur(12px);">
-                        <div class="flex justify-center gap-3 md:gap-4 mb-4 md:mb-6">
-                            <span class="bg-green-500/20 p-2 md:p-3 rounded-full"><i class="fab fa-whatsapp text-2xl md:text-3xl text-green-400"></i></span>
-                            <span class="bg-blue-500/20 p-2 md:p-3 rounded-full"><i class="fas fa-envelope text-2xl md:text-3xl text-blue-400"></i></span>
                         </div>
-                        <h3 class="text-xl md:text-2xl font-bold mb-2 md:mb-3 text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-400">
-                            <span class="fr">Contactez-nous directement</span>
-                            <span class="ar">تواصل معنا مباشرة</span>
-                        </h3>
-                        <p class="mb-6 md:mb-8 text-gray-300 text-xs md:text-sm">
-                            <span class="fr">Choisissez votre méthode préférée</span>
-                            <span class="ar">اختر الطريقة التي تفضلها</span>
-                        </p>
                         
-                        <!-- خيار واتساب -->
-                        <a href="https://wa.me/213668460780" target="_blank" class="block w-full bg-green-600 hover:bg-green-500 text-white px-4 md:px-6 py-3 md:py-4 rounded-xl font-bold transition-all transform hover:scale-[1.02] hover:shadow-lg mb-3 md:mb-4 group">
-                            <div class="flex items-center justify-between">
-                                <span class="flex items-center gap-2 md:gap-3">
-                                    <i class="fab fa-whatsapp text-xl md:text-2xl"></i>
-                                    <span class="fr text-sm md:text-base">WhatsApp</span>
-                                    <span class="ar text-sm md:text-base">واتساب</span>
-                                </span>
-                                <span class="text-xs bg-white/20 px-2 md:px-3 py-1 rounded-full">
-                                    <span class="fr">Réponse rapide</span>
-                                    <span class="ar">رد سريع</span>
-                                </span>
-                                <i class="fas fa-arrow-right group-hover:translate-x-1 transition text-sm"></i>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="tel" class="form-control" id="contactPhone" data-translate-placeholder="phone-placeholder" placeholder="رقم الهاتف">
                             </div>
-                        </a>
-                        
-                        <!-- خيار الإيميل -->
-                        <a href="mailto:davidrezgui34@gmail.com" class="block w-full bg-blue-600 hover:bg-blue-500 text-white px-4 md:px-6 py-3 md:py-4 rounded-xl font-bold transition-all transform hover:scale-[1.02] hover:shadow-lg group">
-                            <div class="flex items-center justify-between">
-                                <span class="flex items-center gap-2 md:gap-3">
-                                    <i class="fas fa-envelope text-xl md:text-2xl"></i>
-                                    <span class="fr text-sm md:text-base">Email</span>
-                                    <span class="ar text-sm md:text-base">البريد الإلكتروني</span>
-                                </span>
-                                <span class="text-xs bg-white/20 px-2 md:px-3 py-1 rounded-full">
-                                    <span class="fr">Sous 24h</span>
-                                    <span class="ar">خلال 24 ساعة</span>
-                                </span>
-                                <i class="fas fa-arrow-right group-hover:translate-x-1 transition text-sm"></i>
+                            <div class="form-group">
+                                <select class="form-control" id="contactSubject">
+                                    <option value="" data-translate="subject-default">موضوع الرسالة</option>
+                                    <option value="general" data-translate="subject-general">استفسار عام</option>
+                                    <option value="quote" data-translate="subject-quote">طلب عرض سعر</option>
+                                    <option value="support" data-translate="subject-support">دعم فني</option>
+                                    <option value="complaint" data-translate="subject-complaint">شكوى أو اقتراح</option>
+                                </select>
                             </div>
-                        </a>
+                        </div>
                         
-                        <!-- نص فرعي للإيميل -->
-                        <p class="mt-4 text-xs text-gray-400 font-mono tracking-wider border-t border-gray-700 pt-4">
-                            <i class="far fa-envelope mr-1"></i> davidrezgui34@gmail.com
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Réseaux sociaux -->
-                <div class="text-center mb-8 md:mb-12" data-aos="fade-up" data-aos-delay="300">
-                    <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-3 md:mb-4">
-                        <span class="fr">📱 Suivez-nous</span>
-                        <span class="ar">📱 تابعونا</span>
-                    </h3>
-                    <div class="flex justify-center gap-2 md:gap-3">
-                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                        <a href="https://wa.me/213668460780" class="social-icon" style="background:#25D366; color:white"><i class="fab fa-whatsapp"></i></a>
-                    </div>
-                </div>
-
-                <!-- Google Maps -->
-                <div class="map-container" data-aos="fade-up" data-aos-delay="400">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3190.123456789!2d4.761111!3d36.073333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x128e5b8b8b8b8b8b%3A0x8b8b8b8b8b8b8b8b!2sBordj%20Bou%20Arr%C3%A9ridj!5e0!3m2!1sfr!2sdz!4v1700000000000!5m2!1sfr!2sdz" 
-                        allowfullscreen="" 
-                        loading="lazy">
-                    </iframe>
+                        <div class="form-group">
+                            <textarea class="form-control" id="contactMessage" data-translate-placeholder="message-placeholder" placeholder="رسالتك..." required></textarea>
+                        </div>
+                        
+                        <div class="form-group captcha-group">
+                            <div class="captcha-question">
+                                <i class="fas fa-calculator"></i> <span data-translate="captcha-question">3 + 4 = ؟</span>
+                            </div>
+                            <input type="number" class="form-control" id="contactCaptcha" data-translate-placeholder="captcha-placeholder" placeholder="أدخل الناتج" required style="text-align: center;">
+                        </div>
+                        
+                        <button type="submit" class="btn-submit-contact">
+                            <i class="fas fa-paper-plane"></i> <span data-translate="submit-btn">إرسال الرسالة</span>
+                        </button>
+                    </form>
                 </div>
             </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="bg-gray-900 text-white py-6 md:py-8 mt-6 md:mt-8">
-            <div class="container mx-auto px-4 text-center">
-                <p class="text-sm md:text-base">© 2026 - <span class="fr">Assurance Services | Tous droits réservés</span><span class="ar">خدمات التأمين | جميع الحقوق محفوظة</span></p>
-                <p class="text-gray-400 text-xs md:text-sm mt-2">
-                    <span class="fr">Votre partenaire de confiance pour toutes vos assurances</span>
-                    <span class="ar">شريكك الموثوق لجميع تأميناتك</span>
-                </p>
+            
+            <!-- خريطة جوجل -->
+            <div class="map-full-container animate">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12901.123456789!2d4.761111!3d36.073333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x128e5b8b8b8b8b8b%3A0x8b8b8b8b8b8b8b8b!2sBordj%20Bou%20Arr%C3%A9ridj!5e0!3m2!1sfr!2sdz!4v1700000000000!5m2!1sfr!2sdz" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
             </div>
-        </footer>
-    </div>
+        </div>
+    </section>
 
-    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <!-- الفوتر -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-widget">
+                    <h4 data-translate="footer-title">دليل التأمين الجزائر</h4>
+                    <p data-translate="footer-desc">منصتكم الشاملة للبحث عن وكالات التأمين في الجزائر، مصنفة حسب الولايات ونوع الخدمة.</p>
+                </div>
+                <div class="footer-widget">
+                    <h4 data-translate="footer-links-title">روابط سريعة</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://davidrezgui34-oss.github.io/trustrytech/" data-translate="footer-home">الرئيسية</a></li>
+                        <li><a href="https://davidrezgui34-oss.github.io/trustrytech/services" data-translate="footer-services">خدماتنا</a></li>
+                        <li><a href="https://davidrezgui34-oss.github.io/trustrytech/#offers" data-translate="footer-offers">عروض حصرية</a></li>
+                        <li><a href="https://davidrezgui34-oss.github.io/trustrytech/#booking" data-translate="footer-booking">حجز موعد</a></li>
+                        <li><a href="https://davidrezgui34-oss.github.io/trustrytech/#about" data-translate="footer-about">من نحن</a></li>
+                    </ul>
+                </div>
+                <div class="footer-widget">
+                    <h4 data-translate="footer-insurance-title">أنواع التأمين</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://davidrezgui34-oss.github.io/trustrytech/automobile" data-translate="footer-car">تأمين السيارات</a></li>
+                        <li><a href="https://davidrezgui34-oss.github.io/trustrytech/sante" data-translate="footer-health">تأمين الصحة</a></li>
+                        <li><a href="https://davidrezgui34-oss.github.io/trustrytech/habitation" data-translate="footer-home-ins">تأمين السكن</a></li>
+                        <li><a href="https://davidrezgui34-oss.github.io/trustrytech/voyage" data-translate="footer-travel">تأمين السفر</a></li>
+                    </ul>
+                </div>
+                <div class="footer-widget">
+                    <h4 data-translate="footer-social-title">تابعنا</h4>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/Leadersvisionacademy" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/leaders_vision_academy" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p data-translate="copyright">© 2026 دليل وكالات التأمين في الجزائر - جميع الحقوق محفوظة</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- زر الرجوع للأعلى -->
+    <div class="scroll-top"><i class="fas fa-arrow-up"></i></div>
+
     <script>
-        // تهيئة AOS
-        AOS.init({
-            duration: 800,
-            once: true
-        });
-
-        // نظام الترجمة
-        let currentLang = localStorage.getItem('contactLang') || 'fr';
+        // ========== قاموس الترجمة الكامل ==========
+        const translations = {
+            ar: {
+                // الشريط العلوي
+                "hours": "السبت - الخميس: 09:00 - 17:00",
+                "logo-title": "دليل التأمين",
+                
+                // القائمة
+                "nav-menu": "القائمة",
+                "nav-home": "الرئيسية",
+                "nav-services": "خدماتنا",
+                "nav-insurance": "تأمينات",
+                "nav-car-insurance": "تأمين السيارات",
+                "nav-health-insurance": "تأمين الصحة",
+                "nav-home-insurance": "تأمين السكن",
+                "nav-travel-insurance": "تأمين السفر",
+                "nav-offers": "عروض حصرية",
+                "nav-booking": "حجز موعد",
+                "nav-about": "من نحن",
+                "nav-companies": "الشركات",
+                "nav-team": "الخبراء",
+                "nav-contact": "اتصل بنا",
+                
+                // قسم الاتصال
+                "support-badge": "دعم العملاء",
+                "contact-title": "📞 اتصل بنا",
+                "contact-subtitle": "فريق خبرائنا تحت تصرفكم للإجابة على جميع أسئلتكم واستفساراتكم",
+                "info-title": "معلومات التواصل",
+                "address-label": "العنوان",
+                "address-value": "برج بوعريريج، حي الأمان، الجزائر",
+                "phone-label": "الهاتف",
+                "email-label": "البريد الإلكتروني",
+                "hours-label": "ساعات العمل",
+                "hours-value": "السبت - الخميس: 09:00 - 17:00",
+                "hours-weekend": "الجمعة: عطلة",
+                "whatsapp-btn": "تواصل مباشر عبر واتساب",
+                
+                // النموذج
+                "form-title": "أرسل لنا رسالة",
+                "name-placeholder": "الاسم الكامل",
+                "email-placeholder": "البريد الإلكتروني",
+                "phone-placeholder": "رقم الهاتف",
+                "subject-default": "موضوع الرسالة",
+                "subject-general": "استفسار عام",
+                "subject-quote": "طلب عرض سعر",
+                "subject-support": "دعم فني",
+                "subject-complaint": "شكوى أو اقتراح",
+                "message-placeholder": "رسالتك...",
+                "captcha-question": "3 + 4 = ؟",
+                "captcha-placeholder": "أدخل الناتج",
+                "submit-btn": "إرسال الرسالة",
+                
+                // الفوتر
+                "footer-title": "دليل التأمين الجزائر",
+                "footer-desc": "منصتكم الشاملة للبحث عن وكالات التأمين في الجزائر، مصنفة حسب الولايات ونوع الخدمة.",
+                "footer-links-title": "روابط سريعة",
+                "footer-home": "الرئيسية",
+                "footer-services": "خدماتنا",
+                "footer-offers": "عروض حصرية",
+                "footer-booking": "حجز موعد",
+                "footer-about": "من نحن",
+                "footer-companies": "الشركات",
+                "footer-team": "الخبراء",
+                "footer-contact": "اتصل بنا",
+                "footer-insurance-title": "أنواع التأمين",
+                "footer-car": "تأمين السيارات",
+                "footer-health": "تأمين الصحة",
+                "footer-home-ins": "تأمين السكن",
+                "footer-travel": "تأمين السفر",
+                "footer-social-title": "تابعنا",
+                "copyright": "© 2026 دليل وكالات التأمين في الجزائر - جميع الحقوق محفوظة"
+            },
+            fr: {
+                // الشريط العلوي
+                "hours": "Sam - Jeu: 09h00 - 17h00",
+                "logo-title": "Guide Assurance",
+                
+                // القائمة
+                "nav-menu": "Menu",
+                "nav-home": "Accueil",
+                "nav-services": "Services",
+                "nav-insurance": "Assurances",
+                "nav-car-insurance": "Assurance Auto",
+                "nav-health-insurance": "Assurance Santé",
+                "nav-home-insurance": "Assurance Habitation",
+                "nav-travel-insurance": "Assurance Voyage",
+                "nav-offers": "Offres",
+                "nav-booking": "Rendez-vous",
+                "nav-about": "À Propos",
+                "nav-companies": "Sociétés",
+                "nav-team": "Experts",
+                "nav-contact": "Contact",
+                
+                // قسم الاتصال
+                "support-badge": "Support Client",
+                "contact-title": "📞 Contactez-nous",
+                "contact-subtitle": "Notre équipe d'experts est à votre disposition pour répondre à toutes vos questions.",
+                "info-title": "Informations",
+                "address-label": "Adresse",
+                "address-value": "Bordj Bou Arreridj, Cité El Amal, Algérie",
+                "phone-label": "Téléphone",
+                "email-label": "Email",
+                "hours-label": "Horaires",
+                "hours-value": "Sam - Jeu: 09h00 - 17h00",
+                "hours-weekend": "Vendredi: Fermé",
+                "whatsapp-btn": "Contact direct WhatsApp",
+                
+                // النموذج
+                "form-title": "Envoyez-nous un message",
+                "name-placeholder": "Nom complet",
+                "email-placeholder": "Email",
+                "phone-placeholder": "Téléphone",
+                "subject-default": "Sujet du message",
+                "subject-general": "Demande générale",
+                "subject-quote": "Demande de devis",
+                "subject-support": "Support technique",
+                "subject-complaint": "Réclamation ou suggestion",
+                "message-placeholder": "Votre message...",
+                "captcha-question": "3 + 4 = ?",
+                "captcha-placeholder": "Entrez le résultat",
+                "submit-btn": "Envoyer le message",
+                
+                // الفوتر
+                "footer-title": "Guide Assurance Algérie",
+                "footer-desc": "Votre plateforme complète pour trouver des agences d'assurance en Algérie, classées par wilaya et type de service.",
+                "footer-links-title": "Liens rapides",
+                "footer-home": "Accueil",
+                "footer-services": "Services",
+                "footer-offers": "Offres",
+                "footer-booking": "Rendez-vous",
+                "footer-about": "À Propos",
+                "footer-companies": "Sociétés",
+                "footer-team": "Experts",
+                "footer-contact": "Contact",
+                "footer-insurance-title": "Types d'assurance",
+                "footer-car": "Assurance Auto",
+                "footer-health": "Assurance Santé",
+                "footer-home-ins": "Assurance Habitation",
+                "footer-travel": "Assurance Voyage",
+                "footer-social-title": "Suivez-nous",
+                "copyright": "© 2026 Guide des Assurances Algérie - Tous droits réservés"
+            }
+        };
         
-        function applyLanguage(lang) {
-            const page = document.getElementById('page');
-            const toggleBtnCenter = document.getElementById('toggleLangCenter');
-            const langBtnTextCenter = document.getElementById('langBtnTextCenter');
-            
-            if (lang === 'ar') {
-                page.classList.remove('lang-fr');
-                page.classList.add('lang-ar');
-                document.documentElement.setAttribute('dir', 'rtl');
-                document.documentElement.lang = 'ar';
-                if (langBtnTextCenter) langBtnTextCenter.textContent = 'Français';
+        // ========== وظائف الموقع ==========
+        
+        // القائمة الجانبية للهاتف
+        const menuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinksMenu = document.querySelector('.nav-links');
+        const overlay = document.querySelector('.menu-overlay');
+        const mobileMenuClose = document.querySelector('.mobile-menu-close');
+        
+        if (mobileMenuClose && window.innerWidth <= 850) {
+            mobileMenuClose.style.display = 'flex';
+        }
+        
+        function openMenu() {
+            navLinksMenu.classList.add('active');
+            overlay.classList.add('active');
+            document.body.classList.add('menu-open');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeMenu() {
+            navLinksMenu.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.classList.remove('menu-open');
+            document.body.style.overflow = '';
+            document.querySelectorAll('.dropdown.active').forEach(d => d.classList.remove('active'));
+        }
+        
+        if(menuBtn) menuBtn.addEventListener('click', openMenu);
+        if(mobileMenuClose) mobileMenuClose.addEventListener('click', closeMenu);
+        if(overlay) overlay.addEventListener('click', closeMenu);
+        
+        navLinksMenu.querySelectorAll('a:not(.dropdown-toggle)').forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+        
+        document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+            toggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const dropdown = this.closest('.dropdown');
+                if (window.innerWidth <= 850) {
+                    document.querySelectorAll('.dropdown').forEach(d => {
+                        if (d !== dropdown) d.classList.remove('active');
+                    });
+                    dropdown.classList.toggle('active');
+                }
+            });
+        });
+        
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 850) {
+                closeMenu();
+                if (mobileMenuClose) mobileMenuClose.style.display = 'none';
             } else {
-                page.classList.remove('lang-ar');
-                page.classList.add('lang-fr');
-                document.documentElement.setAttribute('dir', 'ltr');
-                document.documentElement.lang = 'fr';
-                if (langBtnTextCenter) langBtnTextCenter.textContent = 'العربية';
+                if (mobileMenuClose) mobileMenuClose.style.display = 'flex';
             }
-            localStorage.setItem('contactLang', lang);
+        });
+        
+        // زر الرجوع للأعلى
+        const scrollBtn = document.querySelector('.scroll-top');
+        if(scrollBtn) {
+            window.addEventListener('scroll', () => scrollBtn.classList.toggle('active', window.scrollY > 300));
+            scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        }
+        
+        // أنيميشن الظهور
+        const animateElements = document.querySelectorAll('.animate');
+        const checkAnimations = () => {
+            animateElements.forEach(el => {
+                if(el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add('active');
+            });
+        };
+        window.addEventListener('scroll', checkAnimations);
+        checkAnimations();
+        
+        // الترجمة
+        let currentLang = localStorage.getItem('preferred_language') || 'ar';
+        
+        function translatePage(lang) {
             currentLang = lang;
+            document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            
+            // ترجمة النصوص العادية
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if(translations[lang] && translations[lang][key]) {
+                    if(element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[lang][key];
+                    } else if(element.tagName === 'OPTION') {
+                        element.textContent = translations[lang][key];
+                    } else {
+                        element.innerHTML = translations[lang][key];
+                    }
+                }
+            });
+            
+            // ترجمة placeholders
+            document.querySelectorAll('[data-translate-placeholder]').forEach(element => {
+                const key = element.getAttribute('data-translate-placeholder');
+                if(translations[lang] && translations[lang][key]) {
+                    element.placeholder = translations[lang][key];
+                }
+            });
+            
+            // تحديث عنوان الصفحة
+            document.title = lang === 'ar' ? 
+                'اتصل بنا | دليل وكالات التأمين في الجزائر - Trusty Tech' : 
+                'Contactez-nous | Guide des Assurances en Algérie - Trusty Tech';
+            
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
+            localStorage.setItem('preferred_language', lang);
         }
-
-        document.getElementById('toggleLangCenter').addEventListener('click', () => {
-            applyLanguage(currentLang === 'fr' ? 'ar' : 'fr');
+        
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => translatePage(btn.dataset.lang));
         });
-        applyLanguage(currentLang);
-
-        // Toast notification
-        function showToast(message, isError = false) {
-            const toast = document.createElement('div');
-            toast.className = `fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-${isError ? 'red' : 'green'}-600 text-white px-6 py-3 rounded-lg shadow-lg z-50 flex items-center gap-2 text-sm md:text-base`;
-            toast.innerHTML = `<i class="fas ${isError ? 'fa-exclamation-triangle' : 'fa-check-circle'}"></i><span>${message}</span>`;
-            document.body.appendChild(toast);
-            setTimeout(() => toast.remove(), 4000);
+        
+        translatePage(currentLang);
+        
+        // نموذج الاتصال
+        const contactForm = document.getElementById('contactPageForm');
+        if(contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const captcha = document.getElementById('contactCaptcha');
+                const errorMsg = currentLang === 'ar' ? '❌ رمز التحقق غير صحيح! الإجابة هي 7' : '❌ CAPTCHA incorrect! La réponse est 7';
+                const requiredMsg = currentLang === 'ar' ? '⚠️ الرجاء ملء جميع الحقول المطلوبة' : '⚠️ Veuillez remplir tous les champs obligatoires';
+                const successMsg = currentLang === 'ar' ? '✅ تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.' : '✅ Message envoyé avec succès! Nous vous contacterons bientôt.';
+                
+                if(parseInt(captcha.value) !== 7) {
+                    alert(errorMsg);
+                    return;
+                }
+                
+                const name = document.getElementById('contactName').value.trim();
+                const email = document.getElementById('contactEmail').value.trim();
+                const phone = document.getElementById('contactPhone').value.trim();
+                const subjectEl = document.getElementById('contactSubject');
+                const subject = subjectEl.options[subjectEl.selectedIndex]?.text || '';
+                const message = document.getElementById('contactMessage').value.trim();
+                
+                if(!name || !email || !message) {
+                    alert(requiredMsg);
+                    return;
+                }
+                
+                const whatsappMsg = currentLang === 'ar' 
+                    ? `📋 *رسالة جديدة من صفحة اتصل بنا*%0A%0A👤 *الاسم:* ${encodeURIComponent(name)}%0A📧 *البريد:* ${encodeURIComponent(email)}%0A📞 *الهاتف:* ${encodeURIComponent(phone || 'غير مدخل')}%0A📌 *الموضوع:* ${encodeURIComponent(subject || 'غير محدد')}%0A💬 *الرسالة:* ${encodeURIComponent(message)}`
+                    : `📋 *Nouveau message de la page Contact*%0A%0A👤 *Nom:* ${encodeURIComponent(name)}%0A📧 *Email:* ${encodeURIComponent(email)}%0A📞 *Téléphone:* ${encodeURIComponent(phone || 'Non renseigné')}%0A📌 *Sujet:* ${encodeURIComponent(subject || 'Non spécifié')}%0A💬 *Message:* ${encodeURIComponent(message)}`;
+                
+                window.open(`https://wa.me/213774479525?text=${whatsappMsg}`, '_blank');
+                alert(successMsg);
+                contactForm.reset();
+            });
         }
-
-        // Formulaire
-        const form = document.getElementById('contactForm');
-        const submitBtn = document.getElementById('submitBtn');
-        const retryBtn = document.getElementById('retryBtn');
-        const captchaInput = document.getElementById('captcha');
-
-        retryBtn.addEventListener('click', () => {
-            submitBtn.disabled = false;
-            retryBtn.style.display = 'none';
-            submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> <span class="fr">Envoyer le message</span><span class="ar">إرسال الرسالة</span>';
-        });
-
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            if (parseInt(captchaInput.value) !== 7) {
-                showToast(currentLang === 'ar' ? '❌ رمز التحقق غير صحيح!' : '❌ CAPTCHA incorrect!', true);
-                return;
-            }
-            
-            const name = document.getElementById('fullName').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const message = document.getElementById('message').value;
-            
-            if (!name || !email || !message) {
-                showToast(currentLang === 'ar' ? '❌ الرجاء ملء جميع الحقول المطلوبة' : '❌ Veuillez remplir tous les champs obligatoires', true);
-                return;
-            }
-            
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<div class="loader"></div><span class="fr">Envoi...</span><span class="ar">جاري الإرسال...</span>';
-            
-            // Envoyer vers WhatsApp
-            const whatsappMsg = `📋 *Nouveau message de contact*\n\n👤 *Nom:* ${name}\n📧 *Email:* ${email}\n📞 *Téléphone:* ${phone || 'Non renseigné'}\n💬 *Message:* ${message}`;
-            
-            try {
-                window.open(`https://wa.me/213668460780?text=${encodeURIComponent(whatsappMsg)}`, '_blank');
-                showToast(currentLang === 'ar' ? '✅ تم إرسال رسالتك بنجاح!' : '✅ Message envoyé avec succès!');
-                form.reset();
-            } catch (error) {
-                showToast(currentLang === 'ar' ? '❌ خطأ في الإرسال. الرجاء المحاولة مرة أخرى.' : '❌ Erreur d\'envoi. Veuillez réessayer.', true);
-                retryBtn.style.display = 'inline-block';
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> <span class="fr">Envoyer le message</span><span class="ar">إرسال الرسالة</span>';
-            }
-        });
-
-        // Scroll to top button
-        const scrollBtn = document.getElementById('scrollTop');
-        window.addEventListener('scroll', () => {
-            scrollBtn.classList.toggle('active', window.scrollY > 300);
-        });
-        scrollBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
     </script>
 </body>
 </html>
