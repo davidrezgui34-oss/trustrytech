@@ -80,7 +80,7 @@
         },
         "telephone": "+213774479525",
         "email": "contact@annuaire-assurance.dz",
-        "priceRange": "$$",
+        "currenciesAccepted": "DZD",
         "openingHoursSpecification": [
             {
                 "@type": "OpeningHoursSpecification",
@@ -1870,19 +1870,47 @@
             backdrop-filter: blur(4px);
         }
         
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+        /* ==================== */
+        /* قسم الخبراء - Slider محسن */
+        /* ==================== */
+        .team-slider-section {
+            position: relative;
+            padding: 20px 0;
+        }
+        
+        .team-slider-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 50px;
+        }
+        
+        .team-slider-wrapper {
+            overflow: hidden;
+            border-radius: 20px;
+        }
+        
+        .team-slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        
+        .team-slide {
+            flex: 0 0 calc(25% - 20px);
+            margin: 0 10px;
+            min-width: 0;
         }
         
         .team-card {
             background: var(--white);
             border-radius: 20px;
             overflow: hidden;
-            text-align: center;
             box-shadow: var(--box-shadow);
             transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
         }
         
         .team-card:hover {
@@ -1890,37 +1918,259 @@
             box-shadow: var(--box-shadow-hover);
         }
         
-        .team-img {
-            height: 250px;
-            overflow: hidden;
+        .team-card-img {
             position: relative;
+            width: 100%;
+            padding-bottom: 120%;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
         }
         
-        .team-img img {
+        .team-card-img img {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: var(--transition);
+            transition: transform 0.5s ease;
         }
         
-        .team-card:hover .team-img img {
+        .team-card:hover .team-card-img img {
             transform: scale(1.1);
         }
         
-        .team-content {
+        .team-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
             padding: 20px;
+            background: linear-gradient(to top, rgba(11, 59, 94, 0.95), transparent);
+            color: var(--white);
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
         }
         
-        .team-content h3 {
+        .team-card:hover .team-overlay {
+            transform: translateY(0);
+        }
+        
+        .team-overlay .social-links-mini {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+        
+        .team-overlay .social-links-mini a {
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1rem;
+            transition: var(--transition);
+            text-decoration: none;
+            backdrop-filter: blur(5px);
+        }
+        
+        .team-overlay .social-links-mini a:hover {
+            background: var(--accent);
+            color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+        
+        .team-card-content {
+            padding: 25px 20px;
+            text-align: center;
+            background: var(--white);
+            position: relative;
+        }
+        
+        .team-card-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: var(--gradient-accent);
+            border-radius: 3px;
+        }
+        
+        .team-card-content h3 {
             color: var(--primary);
-            margin-bottom: 5px;
-            font-size: 1.2rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 8px;
         }
         
-        .team-content span {
+        .team-card-content .team-role {
             color: var(--secondary);
-            font-weight: 500;
+            font-weight: 600;
             font-size: 0.9rem;
+            margin-bottom: 12px;
+            display: block;
+        }
+        
+        .team-badge {
+            display: inline-block;
+            background: var(--gradient-accent);
+            color: var(--primary-dark);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+        
+        /* أزرار التنقل */
+        .team-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: var(--white);
+            border: none;
+            border-radius: 50%;
+            box-shadow: var(--box-shadow);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.25rem;
+            transition: var(--transition);
+            z-index: 10;
+            border: 2px solid var(--light-gray);
+        }
+        
+        .team-nav-btn:hover {
+            background: var(--gradient-primary);
+            color: var(--white);
+            border-color: var(--primary);
+            box-shadow: var(--box-shadow-hover);
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .team-nav-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: translateY(-50%);
+            background: var(--light-gray);
+            border-color: var(--gray);
+        }
+        
+        .team-nav-btn:disabled:hover {
+            background: var(--light-gray);
+            color: var(--primary);
+        }
+        
+        .team-nav-prev {
+            left: 0;
+        }
+        
+        body[dir="ltr"] .team-nav-prev {
+            left: 0;
+        }
+        
+        .team-nav-next {
+            right: 0;
+        }
+        
+        body[dir="ltr"] .team-nav-next {
+            right: 0;
+        }
+        
+        /* نقاط التقدم */
+        .team-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 40px;
+        }
+        
+        .team-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--light-gray);
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            padding: 0;
+            border: 2px solid transparent;
+        }
+        
+        .team-dot:hover {
+            background: var(--secondary);
+        }
+        
+        .team-dot.active {
+            background: var(--primary);
+            width: 30px;
+            border-radius: 20px;
+            border-color: var(--accent);
+        }
+        
+        /* تجاوب slider */
+        @media (max-width: 992px) {
+            .team-slide {
+                flex: 0 0 calc(33.333% - 20px);
+            }
+            
+            .team-slider-container {
+                padding: 20px 45px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .team-slide {
+                flex: 0 0 calc(50% - 20px);
+            }
+            
+            .team-slider-container {
+                padding: 20px 40px;
+            }
+            
+            .team-nav-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            
+            .team-card-content h3 {
+                font-size: 1.1rem;
+            }
+            
+            .team-card-content .team-role {
+                font-size: 0.8rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .team-slide {
+                flex: 0 0 calc(100% - 20px);
+            }
+            
+            .team-slider-container {
+                padding: 20px 35px;
+            }
+            
+            .team-card-img {
+                padding-bottom: 100%;
+            }
+            
+            .team-overlay {
+                transform: translateY(0);
+                background: linear-gradient(to top, rgba(11, 59, 94, 0.8), transparent);
+                padding: 15px;
+            }
         }
         
         .contact-section { 
@@ -2401,9 +2651,6 @@
                 right: 15px; 
                 bottom: 80px; 
             }
-            .team-grid { 
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-            }
         }
     </style>
 </head>
@@ -2621,7 +2868,6 @@
         </div>
     </section>
 
-    <!-- باقي الأقسام كما هي دون تغيير -->
     <section class="section" id="booking">
         <div class="container">
             <div class="booking-section">
@@ -2813,36 +3059,28 @@
         </div>
     </section>
 
+    <!-- قسم الخبراء - Slider محسن -->
     <section class="section" id="team">
         <div class="container">
             <div class="section-title">
                 <h2 data-translate="team-title">خبراؤنا في التأمين</h2>
                 <p data-translate="team-desc">فريق من المستشارين المتخصصين لخدمتكم</p>
             </div>
-            <div class="team-grid">
-                <div class="team-card animate">
-                    <div class="team-img"><img src="https://raw.githubusercontent.com/davidrezgui34-oss/trustrytech/refs/heads/main/images/e1.jpg" alt="خبير تأمين سيارات"></div>
-                    <div class="team-content"><h3> عبد الله </h3><span data-translate="team1">خبير في تأمين السيارات</span></div>
-                </div>
-                <div class="team-card animate">
-                    <div class="team-img"><img src="https://raw.githubusercontent.com/davidrezgui34-oss/trustrytech/refs/heads/main/images/e2.jpg" alt="مستشارة تأمين صحي"></div>
-                    <div class="team-content"><h3>منال </h3><span data-translate="team2">مستشارة في تأمين الصحة</span></div>
-                </div>
-                <div class="team-card animate">
-                    <div class="team-img"><img src="https://raw.githubusercontent.com/davidrezgui34-oss/trustrytech/refs/heads/main/images/e3.jpg" alt="وسيط تأمين مستقل"></div>
-                    <div class="team-content"><h3> أيمن  </h3><span data-translate="team3">وسيط تأمين مستقل</span></div>
-                </div>
-                <div class="team-card animate">
-                    <div class="team-img"><img src="https://raw.githubusercontent.com/davidrezgui34-oss/trustrytech/refs/heads/main/images/e4.jpg" alt="وسيط تأمين"></div>
-                    <div class="team-content"><h3> عبد الرحمان </h3><span data-translate="team4">وسيط تأمين مستقل</span></div>
-                </div>
-                <div class="team-card animate">
-                    <div class="team-img"><img src="https://raw.githubusercontent.com/davidrezgui34-oss/trustrytech/refs/heads/main/images/e5.jpg" alt="خبير تأمين سكن"></div>
-                    <div class="team-content"><h3>أسامة </h3><span data-translate="team5">خبير في تأمين السكن</span></div>
-                </div>
-                <div class="team-card animate">
-                    <div class="team-img"><img src="https://raw.githubusercontent.com/davidrezgui34-oss/trustrytech/refs/heads/main/images/e6.jpg" alt="محامي تأمين"></div>
-                    <div class="team-content"><h3>خالد مغاني</h3><span data-translate="team6">محامي متخصص في التأمين</span></div>
+            
+            <div class="team-slider-section">
+                <div class="team-slider-container">
+                    <button class="team-nav-btn team-nav-prev" aria-label="السابق">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <button class="team-nav-btn team-nav-next" aria-label="التالي">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    
+                    <div class="team-slider-wrapper">
+                        <div class="team-slider" id="teamSlider"></div>
+                    </div>
+                    
+                    <div class="team-dots" id="teamDots"></div>
                 </div>
             </div>
         </div>
@@ -3081,12 +3319,6 @@
                 "stat4": "عميل شهرياً",
                 "team-title": "خبراؤنا في التأمين",
                 "team-desc": "فريق من المستشارين المتخصصين لخدمتكم",
-                "team1": "خبير في تأمين السيارات",
-                "team2": "مستشارة في تأمين الصحة",
-                "team3": "وسيط تأمين مستقل",
-                "team4": "وسيط تأمين مستقل",
-                "team5": "خبير في تأمين السكن",
-                "team6": "محامي متخصص في التأمين",
                 "contact-title": "اتصل بنا",
                 "contact-desc": "هل تحتاج استشارة؟ خبراؤنا هنا لمساعدتك",
                 "contact-info-title": "معلومات التواصل",
@@ -3247,12 +3479,6 @@
                 "stat4": "Clients/mois",
                 "team-title": "Nos Experts",
                 "team-desc": "Équipe de conseillers spécialisés",
-                "team1": "Expert Assurance Auto",
-                "team2": "Conseillère Santé",
-                "team3": "Courtier Indépendant",
-                "team4": "Courtier Indépendant",
-                "team5": "Expert Habitation",
-                "team6": "Avocat Spécialisé",
                 "contact-title": "Contactez-nous",
                 "contact-desc": "Besoin d'une consultation?",
                 "contact-info-title": "Informations",
@@ -3356,7 +3582,205 @@
             document.title = (lang === 'ar' ? 'دليل وكالات التأمين في الجزائر' : 'Guide des Assurances en Algérie') + ' | Annuaire des Assurances';
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
             localStorage.setItem('preferred_language', lang);
+            
+            initTeamSlider();
         }
+        
+        // بيانات فريق الخبراء
+        const teamMembers = [
+            { 
+                nameAr: "عبد الله", 
+                nameFr: "Abdallah", 
+                roleAr: "خبير في تأمين السيارات", 
+                roleFr: "Expert en Assurance Auto",
+                badgeAr: "15 سنة خبرة",
+                badgeFr: "15 ans d'expérience",
+                img: "https://raw.githubusercontent.com/davidrezgui34-oss/trustrytech/refs/heads/main/images/e1.jpg" 
+            },
+            { 
+                nameAr: "منال", 
+                nameFr: "Manel", 
+                roleAr: "مستشارة في تأمين الصحة", 
+                roleFr: "Conseillère en Assurance Santé",
+                badgeAr: "12 سنة خبرة",
+                badgeFr: "12 ans d'expérience",
+                img: "https://raw.githubusercontent.com/davidrezgui34-oss/trustrytech/refs/heads/main/images/e2.jpg" 
+            },
+            { 
+                nameAr: "أيمن", 
+                nameFr: "Aymen", 
+                roleAr: "وسيط تأمين مستقل", 
+                roleFr: "Courtier Indépendant",
+                badgeAr: "10 سنوات خبرة",
+                badgeFr: "10 ans d'expérience",
+                img: "https://raw.githubusercontent.com/davidrezgui34-oss/trustrytech/refs/heads/main/images/e3.jpg" 
+            },
+            { 
+                nameAr: "عبد الرحمان", 
+                nameFr: "Abderrahmane", 
+                roleAr: "وسيط تأمين مستقل", 
+                roleFr: "Courtier Indépendant",
+                badgeAr: "8 سنوات خبرة",
+                badgeFr: "8 ans d'expérience",
+                img: "https://raw.githubusercontent.com/davidrezgui34-oss/trustrytech/refs/heads/main/images/e4.jpg" 
+            },
+            { 
+                nameAr: "أسامة", 
+                nameFr: "Oussama", 
+                roleAr: "خبير في تأمين السكن", 
+                roleFr: "Expert en Assurance Habitation",
+                badgeAr: "14 سنة خبرة",
+                badgeFr: "14 ans d'expérience",
+                img: "https://raw.githubusercontent.com/davidrezgui34-oss/trustrytech/refs/heads/main/images/e5.jpg" 
+            },
+            { 
+                nameAr: "خالد مغاني", 
+                nameFr: "Khaled Meghani", 
+                roleAr: "محامي متخصص في التأمين", 
+                roleFr: "Avocat Spécialisé en Assurance",
+                badgeAr: "20 سنة خبرة",
+                badgeFr: "20 ans d'expérience",
+                img: "https://raw.githubusercontent.com/davidrezgui34-oss/trustrytech/refs/heads/main/images/e6.jpg" 
+            }
+        ];
+        
+        let currentSlide = 0;
+        let slidesPerView = 4;
+        let teamSlider, teamDots, prevBtn, nextBtn;
+        
+        function getSlidesPerView() {
+            if (window.innerWidth <= 576) return 1;
+            if (window.innerWidth <= 768) return 2;
+            if (window.innerWidth <= 992) return 3;
+            return 4;
+        }
+        
+        function renderTeamCards() {
+            if (!teamSlider) return;
+            
+            const lang = currentLang;
+            let html = '';
+            
+            teamMembers.forEach(member => {
+                html += `
+                    <div class="team-slide">
+                        <div class="team-card">
+                            <div class="team-card-img">
+                                <img src="${member.img}" alt="${lang === 'ar' ? member.nameAr : member.nameFr}" loading="lazy">
+                                <div class="team-overlay">
+                                    <div class="social-links-mini">
+                                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                                        <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="team-card-content">
+                                <h3>${lang === 'ar' ? member.nameAr : member.nameFr}</h3>
+                                <span class="team-role">${lang === 'ar' ? member.roleAr : member.roleFr}</span>
+                                <span class="team-badge">${lang === 'ar' ? member.badgeAr : member.badgeFr}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            teamSlider.innerHTML = html;
+        }
+        
+        function renderDots() {
+            if (!teamDots) return;
+            
+            slidesPerView = getSlidesPerView();
+            const totalSlides = teamMembers.length;
+            const maxDots = totalSlides - slidesPerView + 1;
+            
+            let dotsHtml = '';
+            for (let i = 0; i < maxDots; i++) {
+                dotsHtml += `<button class="team-dot ${i === currentSlide ? 'active' : ''}" data-index="${i}"></button>`;
+            }
+            teamDots.innerHTML = dotsHtml;
+            
+            document.querySelectorAll('.team-dot').forEach(dot => {
+                dot.addEventListener('click', () => {
+                    const index = parseInt(dot.dataset.index);
+                    goToSlide(index);
+                });
+            });
+        }
+        
+        function updateSliderPosition() {
+            if (!teamSlider) return;
+            
+            const slideWidth = teamSlider.querySelector('.team-slide')?.offsetWidth || 0;
+            const gap = 20;
+            const movePercentage = (currentSlide * (slideWidth + gap)) / teamSlider.parentElement.offsetWidth * 100;
+            
+            teamSlider.style.transform = `translateX(${currentLang === 'ar' ? '' : '-'}${movePercentage}%)`;
+            
+            if (prevBtn) prevBtn.disabled = currentSlide === 0;
+            if (nextBtn) nextBtn.disabled = currentSlide >= teamMembers.length - slidesPerView;
+            
+            document.querySelectorAll('.team-dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+        
+        function goToSlide(index) {
+            const maxIndex = teamMembers.length - slidesPerView;
+            currentSlide = Math.max(0, Math.min(index, maxIndex));
+            updateSliderPosition();
+        }
+        
+        function nextSlide() {
+            goToSlide(currentSlide + 1);
+        }
+        
+        function prevSlide() {
+            goToSlide(currentSlide - 1);
+        }
+        
+        function initTeamSlider() {
+            teamSlider = document.getElementById('teamSlider');
+            teamDots = document.getElementById('teamDots');
+            prevBtn = document.querySelector('.team-nav-prev');
+            nextBtn = document.querySelector('.team-nav-next');
+            
+            if (!teamSlider) return;
+            
+            renderTeamCards();
+            
+            slidesPerView = getSlidesPerView();
+            currentSlide = 0;
+            
+            renderDots();
+            setTimeout(updateSliderPosition, 50);
+            
+            if (prevBtn) {
+                prevBtn.removeEventListener('click', prevSlide);
+                prevBtn.addEventListener('click', prevSlide);
+            }
+            if (nextBtn) {
+                nextBtn.removeEventListener('click', nextSlide);
+                nextBtn.addEventListener('click', nextSlide);
+            }
+        }
+        
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                const newSlidesPerView = getSlidesPerView();
+                if (newSlidesPerView !== slidesPerView) {
+                    slidesPerView = newSlidesPerView;
+                    currentSlide = Math.min(currentSlide, teamMembers.length - slidesPerView);
+                    renderDots();
+                    updateSliderPosition();
+                } else {
+                    updateSliderPosition();
+                }
+            }, 100);
+        });
         
         document.querySelectorAll('.lang-btn').forEach(btn => {
             btn.addEventListener('click', () => translatePage(btn.dataset.lang));
@@ -3524,7 +3948,7 @@
                 const response = getSmartResponse(message);
                 const botMsgDiv = document.createElement('div');
                 botMsgDiv.className = 'message bot';
-                botMsgDiv.innerHTML = `<div class="message-content">${response}</div>`;
+                botMsgDiv.innerHTML = `<div class="message-content">${escapeHtml(response)}</div>`;
                 messagesContainer.appendChild(botMsgDiv);
                 messagesContainer.scrollTop = messagesContainer.scrollHeight;
             }, 800);
@@ -3573,6 +3997,10 @@
             window.open(`https://wa.me/213774479525?text=${msg}`, '_blank');
             alert(currentLang === 'ar' ? '✓ تم التوجيه إلى واتساب، سنتواصل معك قريباً' : '✓ Redirection vers WhatsApp');
         }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            initTeamSlider();
+        });
     </script>
 </body>
 </html>
